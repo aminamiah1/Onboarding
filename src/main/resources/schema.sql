@@ -1,9 +1,8 @@
-
-DROP TABLE IF EXISTS Candidates;
 DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
 DROP TABLE IF EXISTS Applications;
+DROP TABLE IF EXISTS Candidates;
 DROP TABLE IF EXISTS Master_Admin;
 
     -- -----------------------------------------------------
@@ -12,13 +11,12 @@ DROP TABLE IF EXISTS Master_Admin;
 
 CREATE TABLE IF NOT EXISTS Candidates
 (
-    ID            INTEGER AUTO_INCREMENT NOT NULL,
-    First_Name    VARCHAR(200),
-    Surname       VARCHAR(200),
-    Email         VARCHAR(200) NOT NULL UNIQUE,
-    Password      VARCHAR(200) NOT NULL UNIQUE,
-    Company_Name  VARCHAR(200),
-    PRIMARY KEY (`ID`)
+    ID            int auto_increment not null primary key,
+    First_Name    varchar(200) not null,
+    Surname       varchar(200) not null,
+    Email         varchar(200) not null unique,
+    Password      varchar(200) not null unique,
+    Company_Name  varchar(200) not null
 )
     ENGINE = INNODB;
 
@@ -26,16 +24,17 @@ CREATE TABLE IF NOT EXISTS Candidates
 -- TABLE `Personal_Information`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Personal_Information
+create table Personal_Information
 (
-    ID INTEGER AUTO_INCREMENT NOT NULL,
-    C_ID INTEGER NOT NULL,
-    National_Insurance INTEGER,
-    Ethnicity VARCHAR(200),
-    Gender VARCHAR(200),
-    Age INTEGER,
-    Sexuality VARCHAR(200),
-    PRIMARY KEY (`ID`)
+    ID                 int auto_increment not null primary key,
+    C_ID               int not null,
+    National_Insurance int not null ,
+    Ethnicity          varchar(200) not null,
+    Gender             varchar(200) not null,
+    Age                int not null,
+    Sexuality          varchar(200) not null,
+    constraint PI_candidate_fk
+        foreign key (C_ID) references candidates (ID)
 )
     ENGINE = INNODB;
 
@@ -43,15 +42,13 @@ CREATE TABLE IF NOT EXISTS Personal_Information
 -- TABLE `Vetting_Officers`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Vetting_Officers
+create table Vetting_Officers
 (
-    ID            INTEGER AUTO_INCREMENT NOT NULL,
-    First_Name    VARCHAR(200),
-    Surname       VARCHAR(200),
-    Email         VARCHAR(200) NOT NULL UNIQUE,
-    Password      VARCHAR(200) NOT NULL UNIQUE,
-    App_ID        INTEGER NOT NULL,
-    PRIMARY KEY (`ID`)
+    ID         int auto_increment not null primary key,
+    First_Name varchar(200) not null,
+    Surname    varchar(200) not null,
+    Email      varchar(200) not null unique,
+    Password   varchar(200) not null unique
 )
     ENGINE = INNODB;
 
@@ -59,12 +56,14 @@ CREATE TABLE IF NOT EXISTS Vetting_Officers
 -- TABLE `Candidate_References`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Candidate_References (
-    ID INTEGER NOT NULL,
-    C_ID INTEGER NOT NULL,
-    Referee VARCHAR(200),
-    Referee_Number INTEGER,
-    PRIMARY KEY (`ID`)
+create table Candidate_References
+(
+    ID             int  auto_increment not null primary key,
+    C_ID           int not null,
+    Referee        varchar(200) not null,
+    Referee_Number int not null,
+    constraint candidate_references__fk
+        foreign key (C_ID) references candidates (ID)
 )
     ENGINE = INNODB;
 
@@ -72,12 +71,13 @@ CREATE TABLE IF NOT EXISTS Candidate_References (
 -- TABLE `Applications`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Applications (
-    ID INTEGER NOT NULL,
-    App_Status VARCHAR(200),
-    C_ID INTEGER NOT NULL,
-    R_ID INTEGER NOT NULL,
-    PRIMARY KEY (`ID`)
+create table Applications
+(
+    ID         int auto_increment not null primary key,
+    App_Status varchar(200) not null,
+    C_ID       int not null,
+    constraint applications_candidates_fk
+        foreign key (C_ID) references candidates (ID)
 )
     ENGINE = INNODB;
 
@@ -87,9 +87,8 @@ CREATE TABLE IF NOT EXISTS Applications (
 
 CREATE TABLE IF NOT EXISTS Master_Admin
 (
-    ID            INTEGER AUTO_INCREMENT NOT NULL,
-    Username        VARCHAR(200) NOT NULL UNIQUE,
-    Password      VARCHAR(200) NOT NULL UNIQUE,
-    PRIMARY KEY (`ID`)
+    ID            int auto_increment not null primary key,
+    Username      varchar(200) not null unique,
+    Password      varchar(200) not null unique
 )
     ENGINE = INNODB;
