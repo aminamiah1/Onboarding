@@ -28,7 +28,7 @@ create table Personal_Information
 (
     ID                 int auto_increment not null primary key,
     C_ID               int not null,
-    National_Insurance int not null ,
+    National_Insurance varchar(200) not null ,
     Ethnicity          varchar(200) not null,
     Gender             varchar(200) not null,
     Age                int not null,
