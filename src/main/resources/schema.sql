@@ -1,11 +1,3 @@
-SET MODE MYSQL;
-SET IGNORECASE = TRUE;
-
--- -----------------------------------------------------
--- SCHEMA `My_DB`
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS 'My_DB';
-USE 'My_DB';
 
 DROP TABLE IF EXISTS Candidates;
 DROP TABLE IF EXISTS Personal_Information;
@@ -34,7 +26,8 @@ CREATE TABLE IF NOT EXISTS Candidates
 -- TABLE `Personal_Information`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Personal_Information (
+CREATE TABLE IF NOT EXISTS Personal_Information
+(
     ID INTEGER AUTO_INCREMENT NOT NULL,
     C_ID INTEGER NOT NULL,
     National_Insurance INTEGER,
@@ -50,14 +43,15 @@ CREATE TABLE IF NOT EXISTS Personal_Information (
 -- TABLE `Vetting_Officers`
 -- -----------------------------------------------------
 
-CREATE TABLE IF NOT EXISTS Vetting_Officers (
-    ID INTEGER AUTO_INCREMENT NOT NULL,
-    First_Name VARCHAR(200),
-    Surname VARCHAR(200),
-    Email VARCHAR(200) NOT NULL UNIQUE,
-    Password VARCHAR(200) NOT NULL UNIQUE,
-    App_ID INTEGER NOT NULL,
-    PRIMARY KEY('ID')
+CREATE TABLE IF NOT EXISTS Vetting_Officers
+(
+    ID            INTEGER AUTO_INCREMENT NOT NULL,
+    First_Name    VARCHAR(200),
+    Surname       VARCHAR(200),
+    Email         VARCHAR(200) NOT NULL UNIQUE,
+    Password      VARCHAR(200) NOT NULL UNIQUE,
+    App_ID        INTEGER NOT NULL,
+    PRIMARY KEY (`ID`)
 )
     ENGINE = INNODB;
 
@@ -70,7 +64,7 @@ CREATE TABLE IF NOT EXISTS Candidate_References (
     C_ID INTEGER NOT NULL,
     Referee VARCHAR(200),
     Referee_Number INTEGER,
-    PRIMARY KEY('ID')
+    PRIMARY KEY (`ID`)
 )
     ENGINE = INNODB;
 
@@ -83,7 +77,7 @@ CREATE TABLE IF NOT EXISTS Applications (
     App_Status VARCHAR(200),
     C_ID INTEGER NOT NULL,
     R_ID INTEGER NOT NULL,
-    PRIMARY KEY('ID')
+    PRIMARY KEY (`ID`)
 )
     ENGINE = INNODB;
 
