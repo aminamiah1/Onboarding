@@ -14,8 +14,8 @@ public class CandidateAssembler {
     }
 
     public static CandidateDTO toDto(Candidate c){
-        return new CandidateDTO(c.getId(), c.getFirstName(), c.getSurname(),
-                c.getEmail(), c.getPassword(), c.getCompanyName());
+        return new CandidateDTO(c.getId(), c.getFirst_name(), c.getSurname(),
+                c.getEmail(), c.getPassword(), c.getCompany_name());
     }
 
 

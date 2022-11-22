@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class Candidate {
         private Integer id;
-        private String firstName;
+        private String first_name;
         private String surname;
         private String email;
         private String password;
-        private String companyName;
+        private String company_name;
 }
