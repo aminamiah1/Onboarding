@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
 DROP TABLE IF EXISTS Applications;
+DROP TABLE IF EXISTS Master_Admin;
 
     -- -----------------------------------------------------
 -- TABLE `Candidates`
@@ -83,5 +84,18 @@ CREATE TABLE IF NOT EXISTS Applications (
     C_ID INTEGER NOT NULL,
     R_ID INTEGER NOT NULL,
     PRIMARY KEY('ID')
+)
+    ENGINE = INNODB;
+
+-- -----------------------------------------------------
+-- TABLE `MasterAdmin`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Master_Admin
+(
+    ID            INTEGER AUTO_INCREMENT NOT NULL,
+    Username        VARCHAR(200) NOT NULL UNIQUE,
+    Password      VARCHAR(200) NOT NULL UNIQUE,
+    PRIMARY KEY (`ID`)
 )
     ENGINE = INNODB;
