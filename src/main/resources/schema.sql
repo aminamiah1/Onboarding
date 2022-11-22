@@ -1,3 +1,5 @@
+CREATE SCHEMA IF NOT EXISTS My_Db;
+
 DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
