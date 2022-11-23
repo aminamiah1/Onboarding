@@ -32,7 +32,23 @@ public class GetCandidatesRealRepo {
         var candidateListResponse = candidateService.getCandidates(candidateListRequest);
 
         //Then the size of the candidate list should be two
-        assertEquals(3, candidateListResponse.getCandidates().size());
+        assertEquals(2, candidateListResponse.getCandidates().size());
+    }
+
+    @Test
+    public void shouldGetTerry() throws Exception {
+        //Given a list of candidates
+        List<CandidateDTO> candidates;
+
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+
+        //When the candidate with id of 2 is retrieved
+        var candidateResponse = candidateService.getCandidateByID(2);
+
+        //Then the candidate retrieved with the id of 2 should have the name terry
+        assertEquals("Terry", candidateResponse.get().getFirst_name());
     }
 
 }
