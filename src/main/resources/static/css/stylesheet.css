@@ -2,7 +2,7 @@
 
 :root {
     --header-height: 3rem;
-    --nav-width: 150px;
+    --nav-width: 160px;
     --first-color: black;
     --first-color-light: white;
     --white-color: #F7F6FB;
@@ -13,6 +13,16 @@
 
 *, ::before, ::after {
     box-sizing: border-box
+}
+
+img {
+    width: 50%;
+    height: 25%;
+    align-content: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
 }
 
 body {
@@ -82,7 +92,7 @@ a {
     overflow: hidden
 }
 
-.nav_logo, .nav_link {
+.nav_link {
     display: grid;
     grid-template-columns: max-content max-content;
     align-items: center;
@@ -92,11 +102,6 @@ a {
 
 .nav_logo {
     margin-bottom: 2rem
-}
-
-.nav_logo-icon {
-    font-size: 1.25rem;
-    color: var(--white-color)
 }
 
 .nav_logo-name {
@@ -119,25 +124,16 @@ a {
     font-size: 1.25rem
 }
 
+.nav_link:hover {
+    background-color: darkgoldenrod;
+}
+
 .show {
     left: 0
 }
 
 .body-pd {
     padding-left: calc(var(--nav-width) + 1rem)
-}
-
-.active {
-    color: var(--white-color)
-}
-
-.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 2px;
-    height: 32px;
-    background-color: var(--white-color)
 }
 
 .height-100 {
