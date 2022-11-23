@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -46,7 +47,6 @@ public class GetCandidates {
     public void shouldGetCandidatesInformation() throws Exception {
 
         //Given candidates are requested
-
         CandidateListRequest candidateListRequest = CandidateListRequest
                 .of()
                 .build();
@@ -65,6 +65,13 @@ public class GetCandidates {
 
         //Then the page should return with fragment
         assertTrue(content.contains(HTMLFragment));
+    }
+
+    @Test
+    public void shouldGet404() throws Exception {
+        //Given the candidate accesses a profile that does not exist when they visit the page they should get redirected
+        //to the 404 message page
+        mvc.perform(get("/candidate/candidate-profile/3")).andExpect(redirectedUrl("/404"));
     }
 
 }
