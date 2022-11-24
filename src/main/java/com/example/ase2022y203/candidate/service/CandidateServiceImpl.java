@@ -35,24 +35,13 @@ public class CandidateServiceImpl implements CandidateService {
     @Override
     public Optional<CandidateDTO> getCandidateByID(Integer id) {
         Optional<Candidate> aCandidate = candidateRepository.getCandidateByID(id);
-        if(aCandidate.isPresent()) {
+        if (aCandidate.isPresent()) {
             System.out.println(aCandidate.get());
             return Optional.of(CandidateAssembler.toDto(aCandidate.get()));
         } else {
             return Optional.empty();
         }
     }
-
-    @Override
-    public void addNewCandidate(CandidateDTO candidateDTO) {
-        Candidate newCandidate = new Candidate(
-                candidateDTO.getId(),
-                candidateDTO.getFirst_name(),
-                candidateDTO.getSurname(),
-                candidateDTO.getEmail(),
-                candidateDTO.getPassword()
-        );
-        candidateRepository.add(newCandidate);
-    }
-
 }
+
+
