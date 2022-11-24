@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link href="/css/stylesheet.css" th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+    <title>Registration</title>
+</head>
+
+<body class="login-page">
+<div>
+    <div th:replace="fragments/navbar"></div>
+    <main>
+        <div class="login-block">
+            <h1>Sign up</h1>
+            <form action="#">
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                        <input type="text" class="form-control" placeholder="Name">
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
+                        <input type="text" class="form-control" placeholder="Email Address">
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                        <label>
+                            <input type="password" class="form-control" placeholder="Create A Password">
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                <div class="login-links">
+                    <p class="text-center">Already have an account? <a class="txt-brand" href="/login"><u>Login</u></a></p>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>
