@@ -43,4 +43,16 @@ public class CandidateServiceImpl implements CandidateService {
         }
     }
 
+    @Override
+    public void addNewCandidate(CandidateDTO candidateDTO) {
+        Candidate newCandidate = new Candidate(
+                candidateDTO.getId(),
+                candidateDTO.getFirst_name(),
+                candidateDTO.getSurname(),
+                candidateDTO.getEmail(),
+                candidateDTO.getPassword()
+        );
+        candidateRepository.add(newCandidate);
+    }
+
 }

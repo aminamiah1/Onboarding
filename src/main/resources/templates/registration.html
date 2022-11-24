@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" dir="ltr">
 
 <head>
@@ -14,19 +14,23 @@
     <main>
         <div class="login-block">
             <h1>Sign up</h1>
-            <form action="#">
+            <form th:action="@{//add}" th:method="post" th:object="${registration}">
 
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
-                        <input type="text" class="form-control" placeholder="Name">
+                        <label class="form-control" th:field="*{First_name}">
+                            <input type="text" class="form-control" placeholder="Name">
+                        </label>
                     </div>
                 </div>
                 <hr class="hr-xs">
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
-                        <input type="text" class="form-control" placeholder="Email Address">
+                        <label>
+                            <input type="text" class="form-control" placeholder="Email Address">
+                        </label>
                     </div>
                 </div>
                 <hr class="hr-xs">

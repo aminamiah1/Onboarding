@@ -173,6 +173,7 @@ a {
         padding-left: calc(var(--nav-width) + 188px)
     }
 }
+/* registration page */
 
 .login-page {
     background-color: beige;
