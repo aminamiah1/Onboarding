@@ -20,6 +20,7 @@
         <div class="profile-info">
             <h2 class="page-text" th:text="${candidate.first_name} + ' ' + ${candidate.surname} + ' '
             + 'from ' +  ${candidate.company_name}"/>
+            <a th:href="@{/candidate/{id}/personal/edit (id=${candidate.id})}" class="btn btn-info" role="button">Update Personal Information</a>
         </div>
     </div>
 </div>

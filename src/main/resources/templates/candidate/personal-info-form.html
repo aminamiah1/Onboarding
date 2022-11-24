@@ -17,8 +17,11 @@
   <div class="card">
     <div class="card-body">
       <div class="col-md-10">
-        <form action="#"  method="post">
+        <form th:action="@{/candidate/{id}/personal/edit (id=${candidate.id})}"  method="post">
           <div class="row">
+
+            <input type="hidden" id="id">
+
             <div class="form-group col-md-8">
               <label for="NI" class="col-form-label">National Insurance Number</label>
               <input type="text" class="form-control" id="NI" placeholder="National Insurance Number"/>
@@ -44,7 +47,6 @@
               <input type="submit" class="btn btn-primary" value=" Submit ">
             </div>
 
-            <input type="hidden" id="id">
           </div>
         </form>
       </div>
