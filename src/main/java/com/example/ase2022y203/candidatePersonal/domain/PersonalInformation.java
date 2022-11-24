@@ -8,10 +8,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @Data
 @AllArgsConstructor
 @Table
-public class CandidatePersonal {
+public class PersonalInformation {
     private Integer id;
-    @MappedCollection(idColumn="C_ID")
-    private Integer c_id;
+    @MappedCollection(idColumn="CID")
+    private Integer cid;
     private String national_insurance;
     private String ethnicity;
     private String gender;

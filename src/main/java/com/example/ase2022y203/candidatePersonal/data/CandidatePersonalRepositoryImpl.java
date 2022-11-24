@@ -1,6 +1,6 @@
 package com.example.ase2022y203.candidatePersonal.data;
 
-import com.example.ase2022y203.candidatePersonal.domain.CandidatePersonal;
+import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,8 +13,8 @@ public class CandidatePersonalRepositoryImpl implements CandidatePersonalReposit
         candidatePersonalJdbcRepo = aRepo;
     }
     @Override
-    public Optional<CandidatePersonal> getCandidatePersonalInfoByCID(Integer cid) {
-        return candidatePersonalJdbcRepo.findByC_id(cid);
+    public Optional<PersonalInformation> getCandidatePersonalInfoByCID(Integer cid) {
+        return candidatePersonalJdbcRepo.findByCid(cid);
     }
 
 }

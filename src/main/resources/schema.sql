@@ -29,14 +29,14 @@ CREATE TABLE IF NOT EXISTS Candidates
 create table Personal_Information
 (
     ID                 int auto_increment not null primary key,
-    C_ID               int not null,
+    CID               int not null,
     National_Insurance varchar(200) not null ,
     Ethnicity          varchar(200) not null,
     Gender             varchar(200) not null,
     Age                int not null,
     Sexuality          varchar(200) not null,
     constraint PI_candidate_fk
-        foreign key (C_ID) references candidates (ID)
+        foreign key (CID) references candidates (ID)
 )
     ENGINE = INNODB;
 
@@ -61,11 +61,11 @@ create table Vetting_Officers
 create table Candidate_References
 (
     ID             int  auto_increment not null primary key,
-    C_ID           int not null,
+    CID           int not null,
     Referee        varchar(200) not null,
     Referee_Number int not null,
     constraint candidate_references__fk
-        foreign key (C_ID) references candidates (ID)
+        foreign key (CID) references candidates (ID)
 )
     ENGINE = INNODB;
 
@@ -77,9 +77,9 @@ create table Applications
 (
     ID         int auto_increment not null primary key,
     App_Status varchar(200) not null,
-    C_ID       int not null,
+    CID       int not null,
     constraint applications_candidates_fk
-        foreign key (C_ID) references candidates (ID)
+        foreign key (CID) references candidates (ID)
 )
     ENGINE = INNODB;
 

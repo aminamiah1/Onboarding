@@ -1,7 +1,7 @@
 package com.example.ase2022y203.candidatePersonal.service;
 
 import com.example.ase2022y203.candidatePersonal.data.CandidatePersonalRepository;
-import com.example.ase2022y203.candidatePersonal.domain.CandidatePersonal;
+import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalResponse;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
     @Override
     public SingleCandidatePersonalResponse getCandidatePersonalByRequest(SingleCandidatePersonalRequest
                                                                                     singleCandidatePersonalRequest) {
-        Optional<CandidatePersonal> aCandidatePersonal = candidatePersonalRepository.getCandidatePersonalInfoByCID(
+        Optional<PersonalInformation> aCandidatePersonal = candidatePersonalRepository.getCandidatePersonalInfoByCID(
                 singleCandidatePersonalRequest.getCid());
 
         CandidatePersonalDTO candidatePersonalDTO;
