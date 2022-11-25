@@ -4,8 +4,8 @@ import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 
 public class CandidatePersonalFormAssembler {
     public static CandidatePersonalForm toCandidatePersonalForm(CandidatePersonalDTO candidatePersonalDTO) {
-        return new CandidatePersonalForm(candidatePersonalDTO.getId(),candidatePersonalDTO.getC_id(), candidatePersonalDTO.getAge(),
+        return new CandidatePersonalForm(candidatePersonalDTO.getId(),candidatePersonalDTO.getC_id(), candidatePersonalDTO.getNational_insurance(),
                 candidatePersonalDTO.getGender(), candidatePersonalDTO.getEthnicity(),
-                candidatePersonalDTO.getNational_insurance(), candidatePersonalDTO.getSexuality());
+                candidatePersonalDTO.getAge(), candidatePersonalDTO.getSexuality());
     }
 }

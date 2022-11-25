@@ -16,5 +16,9 @@ public class CandidatePersonalRepositoryImpl implements CandidatePersonalReposit
     public Optional<PersonalInformation> getCandidatePersonalInfoByCID(Integer cid) {
         return candidatePersonalJdbcRepo.findByCid(cid);
     }
+    @Override
+    public void save(PersonalInformation personalInformation){
+        candidatePersonalJdbcRepo.save(personalInformation);
+    }
 
 }

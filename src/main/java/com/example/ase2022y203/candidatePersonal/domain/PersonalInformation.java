@@ -2,6 +2,7 @@ package com.example.ase2022y203.candidatePersonal.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -9,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 @Table
 public class PersonalInformation {
+    @Id
     private Integer id;
     @MappedCollection(idColumn="CID")
     private Integer cid;

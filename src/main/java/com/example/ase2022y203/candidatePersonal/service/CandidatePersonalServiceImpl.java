@@ -2,6 +2,8 @@ package com.example.ase2022y203.candidatePersonal.service;
 
 import com.example.ase2022y203.candidatePersonal.data.CandidatePersonalRepository;
 import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
+import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidatePersonalRequest;
+import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidatePersonalResponse;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalResponse;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,24 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
                 .candidatePersonalDTO(candidatePersonalDTO)
                 .build();
 
+    }
+
+    @Override
+    public SaveCandidatePersonalResponse process(SaveCandidatePersonalRequest saveCandidatePersonalRequest) {
+
+        Optional<PersonalInformation> personalInformation = candidatePersonalRepository
+                .getCandidatePersonalInfoByCID(saveCandidatePersonalRequest.getCandidatePersonalDTO().getC_id());
+
+        CandidatePersonalDTO candidatePersonalDTO = saveCandidatePersonalRequest.getCandidatePersonalDTO();
+
+        PersonalInformation newPersonalInformation = new PersonalInformation(candidatePersonalDTO.getId(),
+                candidatePersonalDTO.getC_id(), candidatePersonalDTO.getNational_insurance(), candidatePersonalDTO.getEthnicity(),
+                candidatePersonalDTO.getGender(), candidatePersonalDTO.getAge(),
+                candidatePersonalDTO.getSexuality());
+
+        candidatePersonalRepository.save(newPersonalInformation);
+
+        return SaveCandidatePersonalResponse.of().request(saveCandidatePersonalRequest).build();
     }
 
 }

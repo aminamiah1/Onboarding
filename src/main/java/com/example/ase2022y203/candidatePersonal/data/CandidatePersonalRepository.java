@@ -6,4 +6,7 @@ import java.util.Optional;
 
 public interface CandidatePersonalRepository{
         Optional<PersonalInformation> getCandidatePersonalInfoByCID(Integer cid);
+
+        void save(PersonalInformation newPersonalInformation);
+
 }
