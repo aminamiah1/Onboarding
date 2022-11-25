@@ -9,6 +9,4 @@ import java.util.Optional;
 public interface CandidateService {
     public CandidateListResponse getCandidates(CandidateListRequest candidateListRequest);
     Optional<CandidateDTO> getCandidateByID(Integer id);
-
-    void addNewCandidate(CandidateDTO candidateDTO);
 }

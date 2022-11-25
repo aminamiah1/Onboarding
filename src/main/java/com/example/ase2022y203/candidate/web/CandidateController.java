@@ -1,7 +1,7 @@
 package com.example.ase2022y203.candidate.web;
 
 
-import com.example.ase2022y203.candidate.domain.Register;
+import com.example.ase2022y203.register.domain.Register;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import org.springframework.stereotype.Controller;
@@ -36,28 +36,5 @@ public class CandidateController {
             return new ModelAndView("redirect:/404");
         }
 
-    }
-
-    @GetMapping("add")
-    public ModelAndView getNewRegisters(Model model) {
-        model.addAttribute("Register", new Register());
-        var mv = new ModelAndView("registration/registrationForm", model.asMap());
-        return mv;
-
-    }
-
-    @PostMapping("add")
-    public ModelAndView postRegisters(@Valid Register register, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            bindingResult.getAllErrors().forEach(System.out::println);
-            return new ModelAndView("registration/registrationForm", model.asMap());
-        } else {
-            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_name(), register.getSurname(),
-                    register.getEmail(), register.getPassword(), register.getCompany_Name());
-            candidateService.addNewCandidate(candidateDTO);
-            var mv = new ModelAndView("redirect:/successPage");
-            return mv;
-
-        }
     }
 }

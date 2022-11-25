@@ -49,12 +49,4 @@ public class CandidateRepositoryImpl implements CandidateRepository {
             return Optional.empty();
         }
     }
-
-    @Override
-    public void add(Candidate newCandidate) {
-        String addCandidateSQL = "INSERT INTO Candidates (ID, First_name, Surname, Email, Password) values (?, ?, ?, ?, ?)";
-        jdbc.update(addCandidateSQL, newCandidate.getId(), newCandidate.getFirst_name(), newCandidate.getSurname(),
-                newCandidate.getEmail(), newCandidate.getPassword());
-    }
-
 }
