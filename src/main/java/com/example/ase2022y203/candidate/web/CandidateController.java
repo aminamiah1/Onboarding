@@ -1,18 +1,16 @@
 package com.example.ase2022y203.candidate.web;
 
 
-import com.example.ase2022y203.candidate.service.CandidateDTO;
+import com.example.ase2022y203.candidate.domain.Register;
+import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
-import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -39,5 +37,27 @@ public class CandidateController {
         }
 
     }
-}
 
+    @GetMapping("add")
+    public ModelAndView getNewRegisters(Model model) {
+        model.addAttribute("Register", new Register());
+        var mv = new ModelAndView("registration/registrationForm", model.asMap());
+        return mv;
+
+    }
+
+    @PostMapping("add")
+    public ModelAndView postRegisters(@Valid Register register, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(System.out::println);
+            return new ModelAndView("registration/registrationForm", model.asMap());
+        } else {
+            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_Name(), register.getSurname(),
+                    register.getEmail(), register.getPassword(), register.getCompany_Name());
+            candidateService.addNewCandidate(candidateDTO);
+            var mv = new ModelAndView("redirect:/successPage");
+            return mv;
+
+        }
+    }
+}

@@ -2,6 +2,7 @@ package com.example.ase2022y203.candidate.service;
 
 import com.example.ase2022y203.candidate.data.CandidateRepository;
 import com.example.ase2022y203.candidate.domain.Candidate;
+import com.example.ase2022y203.candidate.domain.Register;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import org.springframework.stereotype.Service;
@@ -42,6 +43,20 @@ public class CandidateServiceImpl implements CandidateService {
             return Optional.empty();
         }
     }
+
+    @Override
+    public void addNewCandidate(CandidateDTO candidateDTO) {
+        Candidate newCandidate = new Candidate(
+                candidateDTO.getID(),
+                candidateDTO.getFirst_Name(),
+                candidateDTO.getSurname(),
+                candidateDTO.getEmail(),
+                candidateDTO.getPassword(),
+                candidateDTO.getCompany_name()
+        );
+        candidateRepository.add(newCandidate);
+    }
+
 }
 
 

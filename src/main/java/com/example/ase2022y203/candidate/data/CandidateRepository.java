@@ -10,4 +10,6 @@ public interface CandidateRepository {
     List<Candidate> getCandidates();
     Optional<Candidate> getCandidateByID(Integer id);
 
+    void add(Candidate newCandidate);
+
 }
