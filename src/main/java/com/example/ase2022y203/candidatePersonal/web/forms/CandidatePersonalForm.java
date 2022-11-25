@@ -7,10 +7,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class CandidatePersonalForm {
     private Integer id;
+    private Integer c_id;
     private String national_insurance;
     private String ethnicity;
     private String gender;
     private String age;
     private String sexuality;
-    public CandidatePersonalForm(){this(0, " ", " ", " ", " ", " ");}
+    public CandidatePersonalForm(){this(0, 0, " ", " ", " ", " ", " ");}
 }

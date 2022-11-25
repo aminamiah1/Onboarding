@@ -13,34 +13,41 @@
 <body>
 <div th:replace="fragments/navbar2.0"></div>
 <div class="container my-5">
-  <h3>Add Personal Information</h3>
+  <h3>Add Personal Information For </h3>
   <div class="card">
     <div class="card-body">
       <div class="col-md-10">
-        <form th:action="@{/personal/{id}/edit (id=${candidate.id})}"  method="post">
+        <form th:action="@{/personal/{id}/edit (id=${candidatePersonalForm.c_id})}" th:object="${candidatePersonalForm}"
+              method="post">
           <div class="row">
 
-            <input type="hidden" id="id">
+            <input type="hidden" id="id" th:field="*{id}">
+            <input type="hidden" id="cid" th:field="*{c_id}">
 
             <div class="form-group col-md-8">
               <label for="NI" class="col-form-label">National Insurance Number</label>
-              <input type="text" class="form-control" id="NI" placeholder="National Insurance Number"/>
+              <input type="text" class="form-control" id="NI" placeholder="National Insurance Number"
+                     th:field="*{national_insurance}"/>
             </div>
             <div class="form-group col-md-8">
               <label for="Ethnicity" class="col-form-label">Ethnicity</label>
-              <input type="text" class="form-control" id="Ethnicity" placeholder="Ethnicity"/>
+              <input type="text" class="form-control" id="Ethnicity" placeholder="Ethnicity"
+                     th:field="*{ethnicity}"/>
             </div>
             <div class="form-group col-md-8">
               <label for="Gender" class="col-form-label">Gender</label>
-              <input type="text" class="form-control" id="Gender" placeholder="Gender"/>
+              <input type="text" class="form-control" id="Gender" placeholder="Gender"
+                     th:field="*{gender}"/>
             </div>
             <div class="form-group col-md-8">
               <label for="Age" class="col-form-label">Age</label>
-              <input type="text" class="form-control" id="Age" placeholder="Age"/>
+              <input type="text" class="form-control" id="Age" placeholder="Age"
+                     th:field="*{age}"/>
             </div>
             <div class="form-group col-md-8">
               <label for="Sexuality" class="col-form-label">Sexuality</label>
-              <input type="text" class="form-control" id="Sexuality" placeholder="Sexuality"/>
+              <input type="text" class="form-control" id="Sexuality" placeholder="Sexuality"
+                     th:field="*{sexuality}"/>
             </div>
 
             <div class="col-md-6">
