@@ -17,6 +17,6 @@ public class PersonalInformation {
     private String national_insurance;
     private String ethnicity;
     private String gender;
-    private String age;
+    private Integer age;
     private String sexuality;
 }

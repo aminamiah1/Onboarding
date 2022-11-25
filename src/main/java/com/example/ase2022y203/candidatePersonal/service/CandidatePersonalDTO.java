@@ -11,6 +11,6 @@ public class CandidatePersonalDTO {
     private String national_insurance;
     private String ethnicity;
     private String gender;
-    private String age;
+    private Integer age;
     private String sexuality;
 }

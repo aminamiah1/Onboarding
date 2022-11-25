@@ -28,29 +28,44 @@
             <input type="hidden" id="cid" th:field="*{c_id}">
 
             <div class="form-group col-md-8">
-              <label for="NI" class="col-form-label">National Insurance Number</label>
-              <input type="text" class="form-control" id="NI" placeholder="National Insurance Number"
+              <label for="national_insurance" class="col-form-label">National Insurance Number</label>
+              <input type="text" class="form-control" id="national_insurance" placeholder="National Insurance Number"
                      th:field="*{national_insurance}"/>
+              <div class="alert alert-warning" th:errors="*{national_insurance}" th:if="${#fields.hasErrors('national_insurance')}">
+                National Insurance Number does not fit the required format
+              </div>
             </div>
             <div class="form-group col-md-8">
-              <label for="Ethnicity" class="col-form-label">Ethnicity</label>
-              <input type="text" class="form-control" id="Ethnicity" placeholder="Ethnicity"
+              <label for="ethnicity" class="col-form-label">Ethnicity</label>
+              <input type="text" class="form-control" id="ethnicity" placeholder="Ethnicity"
                      th:field="*{ethnicity}"/>
+              <div class = "alert alert-warning" th:errors="*{ethnicity}" th:if="${#fields.hasErrors('ethnicity')}">
+                Ethnicity outside of list
+              </div>
             </div>
             <div class="form-group col-md-8">
-              <label for="Gender" class="col-form-label">Gender</label>
-              <input type="text" class="form-control" id="Gender" placeholder="Gender"
+              <label for="gender" class="col-form-label">Gender</label>
+              <input type="text" class="form-control" id="gender" placeholder="Gender"
                      th:field="*{gender}"/>
+              <div class = "alert alert-warning" th:errors="*{gender}" th:if="${#fields.hasErrors('gender')}">
+                Gender outside of list
+              </div>
             </div>
             <div class="form-group col-md-8">
-              <label for="Age" class="col-form-label">Age</label>
-              <input type="text" class="form-control" id="Age" placeholder="Age"
+              <label for="age" class="col-form-label">Age</label>
+              <input type="text" class="form-control" id="age" placeholder="Age"
                      th:field="*{age}"/>
+              <div class = "alert alert-warning" th:errors="*{age}" th:if="${#fields.hasErrors('age')}">
+                Age outside of the range of 18 to 120
+              </div>
             </div>
             <div class="form-group col-md-8">
-              <label for="Sexuality" class="col-form-label">Sexuality</label>
-              <input type="text" class="form-control" id="Sexuality" placeholder="Sexuality"
+              <label for="sexuality" class="col-form-label">Sexuality</label>
+              <input type="text" class="form-control" id="sexuality" placeholder="Sexuality"
                      th:field="*{sexuality}"/>
+              <div class = "alert alert-warning" th:errors="*{sexuality}" th:if="${#fields.hasErrors('sexuality')}">
+                Sexuality outside of list
+              </div>
             </div>
 
             <div class="col-md-6">

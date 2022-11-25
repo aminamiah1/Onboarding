@@ -13,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -64,8 +61,8 @@ public class CandidatePersonalController {
     }
 
     @PostMapping("/{id}/save")
-    public ModelAndView SaveCandidatePersonalInfo(@PathVariable("id") String ID, @Valid CandidatePersonalForm
-            newCandidatePersonal, BindingResult
+    public ModelAndView SaveCandidatePersonalInfo(@PathVariable("id") Optional<Integer> cid, @Valid
+            @ModelAttribute("candidatePersonalForm") CandidatePersonalForm newCandidatePersonal, BindingResult
             bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
 
@@ -80,8 +77,11 @@ public class CandidatePersonalController {
             CandidatePersonalForm candidatePersonalForm = CandidatePersonalFormAssembler
                     .toCandidatePersonalForm(candidatePersonalDTO);
 
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
+
+            model.addAttribute("candidate", candidate.get());
             model.addAttribute("candidatePersonalForm", candidatePersonalForm);
-            return new ModelAndView("redirect:/candidate/personal-info-form");
+            return new ModelAndView("candidate/personal-info-form", model.asMap());
         } else {
             CandidatePersonalDTO candidatePersonalDTO = new CandidatePersonalDTO(
                     newCandidatePersonal.getId(), newCandidatePersonal.getC_id(),
@@ -94,7 +94,7 @@ public class CandidatePersonalController {
             SaveCandidatePersonalResponse saveCandidatePersonalResponse = candidatePersonalService
                     .process(saveCandidatePersonalRequest);
 
-            var mv = new ModelAndView("redirect:/candidate/candidate-profile/" + ID);
+            var mv = new ModelAndView("redirect:/candidate/candidate-profile/" + cid.get());
             return mv;
 
         }
