@@ -16,13 +16,16 @@ public class CandidatePersonalForm {
     private Integer id;
     private Integer c_id;
     @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z]{2}[0-9]{6}[a-zA-Z]{1}$", message = "{nationalInsurance.invalid}")
+    @Pattern(regexp = "^[a-zA-Z]{2}[0-9]{6}[a-zA-Z]{1}$", message = "National insurance number not right format")
     private String national_insurance;
+    @NotEmpty
     private String ethnicity;
+    @NotEmpty
     private String gender;
     @NotNull
     @Range(min = 18, max = 120, message = "Age must be between 18 and 120")
     private Integer age;
+    @NotEmpty
     private String sexuality;
     public CandidatePersonalForm(){this(0, 0, " ", " ", " ", 0, " ");}
 }
