@@ -1,8 +1,9 @@
 package com.example.ase2022y203.candidatePersonal.web;
 
+import com.example.ase2022y203.candidate.service.CandidateDTO;
+import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
-import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalResponse;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalForm;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalFormAssembler;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,12 @@ import java.util.Optional;
 @RequestMapping("/personal")
 public class CandidatePersonalController {
     private final CandidatePersonalService candidatePersonalService;
+    private final CandidateService candidateService;
 
-    public CandidatePersonalController(CandidatePersonalService svc) {
+
+    public CandidatePersonalController(CandidatePersonalService svc, CandidateService candidateService) {
         this.candidatePersonalService = svc;
+        this.candidateService = candidateService;
     }
 
     @GetMapping("/{id}/edit")
@@ -38,6 +42,10 @@ public class CandidatePersonalController {
 
             CandidatePersonalForm candidatePersonalForm = CandidatePersonalFormAssembler
                     .toCandidatePersonalForm(candidatePersonalDTO);
+
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
+
+            model.addAttribute("candidate", candidate.get());
 
             model.addAttribute("candidatePersonalForm", candidatePersonalForm);
 

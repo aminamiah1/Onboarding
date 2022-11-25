@@ -13,7 +13,10 @@
 <body>
 <div th:replace="fragments/navbar2.0"></div>
 <div class="container my-5">
-  <h3>Add Personal Information For </h3>
+  <h3>
+    <span>Personal information for: </span>
+    <small th:text="${candidate.first_name}">Subtitle</small>
+  </h3>
   <div class="card">
     <div class="card-body">
       <div class="col-md-10">
