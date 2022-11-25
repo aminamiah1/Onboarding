@@ -52,7 +52,7 @@ public class CandidateController {
             bindingResult.getAllErrors().forEach(System.out::println);
             return new ModelAndView("registration/registrationForm", model.asMap());
         } else {
-            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_Name(), register.getSurname(),
+            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_name(), register.getSurname(),
                     register.getEmail(), register.getPassword(), register.getCompany_Name());
             candidateService.addNewCandidate(candidateDTO);
             var mv = new ModelAndView("redirect:/successPage");

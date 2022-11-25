@@ -14,13 +14,13 @@
     <main>
         <div class="login-block">
             <h1>Sign up</h1>
-            <form class="mx-1 mx-md-4" th:action="@{candidate/add}" th:method="post" th:object="${Register}">
+            <form th:action="@{/add}" th:method="post" th:object="${Register}">
 
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
                         <label class="label" for="First_Name">
-                            <input type="text" class="form-control" id="First_Name" placeholder="Name" th:field="*{First_Name}">
+                            <input type="text" class="form-control" id="First_Name" placeholder="Name" th:field="*{First_name}">
                         </label>
                     </div>
                 </div>

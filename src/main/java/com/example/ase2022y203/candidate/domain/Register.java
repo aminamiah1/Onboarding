@@ -12,14 +12,14 @@ import javax.validation.constraints.NotEmpty;
 public class Register {
     private Integer ID;
     @NotEmpty(message = "{name.invalid}")
-    private String First_Name;
+    private String first_name;
     @NotEmpty(message = "{name.invalid}")
-    private String Surname;
+    private String surname;
     @NotEmpty(message = "{email.invalid}")
-    private String Email;
+    private String email;
     @NotEmpty(message = "{password.invalid}")
-    private String Password;
+    private String password;
     @NotEmpty(message = "{company.invalid}")
-    private String Company_Name;
+    private String company_Name;
 }
 

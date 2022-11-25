@@ -48,7 +48,7 @@ public class CandidateServiceImpl implements CandidateService {
     public void addNewCandidate(CandidateDTO candidateDTO) {
         Candidate newCandidate = new Candidate(
                 candidateDTO.getID(),
-                candidateDTO.getFirst_Name(),
+                candidateDTO.getFirst_name(),
                 candidateDTO.getSurname(),
                 candidateDTO.getEmail(),
                 candidateDTO.getPassword(),
