@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "https://thymeleaf.org/dtd/xhtml-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Candidate Personal Information Form</title>
@@ -21,7 +21,7 @@
     <div class="card-body">
       <div class="col-md-10">
         <form th:action="@{/personal/{id}/save (id=${candidatePersonalForm.c_id})}" th:object="${candidatePersonalForm}"
-              method="post">
+              th:method="post">
           <div class="row">
 
             <input type="hidden" id="id" th:field="*{id}">
@@ -55,8 +55,8 @@
               <label for="age" class="col-form-label">Age</label>
               <input type="text" class="form-control" id="age" placeholder="Age"
                      th:field="*{age}"/>
-              <div class = "alert alert-warning" th:errors="*{age}" th:if="${#fields.hasErrors('age')}">
-                Age outside of the range of 18 to 120
+              <div class="alert alert-warning" th:errors="*{age}" th:if="${#fields.hasErrors('age')}">
+                Ethnicity outside of list
               </div>
             </div>
             <div class="form-group col-md-8">
@@ -71,7 +71,11 @@
             <div class="col-md-6">
               <input type="submit" class="btn btn-primary" value=" Submit ">
             </div>
-
+          </div>
+          <div th:if="${#fields.hasAnyErrors()}">
+            <ul>
+              <li th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+            </ul>
           </div>
         </form>
       </div>

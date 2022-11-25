@@ -61,9 +61,8 @@ public class CandidatePersonalController {
     }
 
     @PostMapping("/{id}/save")
-    public ModelAndView SaveCandidatePersonalInfo(@PathVariable("id") Optional<Integer> cid, @Valid
-            @ModelAttribute("candidatePersonalForm") CandidatePersonalForm newCandidatePersonal, BindingResult
-            bindingResult, Model model) {
+    public ModelAndView SaveCandidatePersonalInfo(@Valid @ModelAttribute("candidatePersonalForm") CandidatePersonalForm newCandidatePersonal,BindingResult bindingResult, Model model,
+                                                  @PathVariable("id") Optional<Integer> cid) {
         if (bindingResult.hasErrors()) {
 
             SingleCandidatePersonalRequest singleCandidatePersonalRequest =
@@ -80,7 +79,9 @@ public class CandidatePersonalController {
             Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
 
             model.addAttribute("candidate", candidate.get());
+
             model.addAttribute("candidatePersonalForm", candidatePersonalForm);
+
             return new ModelAndView("candidate/personal-info-form", model.asMap());
         } else {
             CandidatePersonalDTO candidatePersonalDTO = new CandidatePersonalDTO(
