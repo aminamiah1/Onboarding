@@ -5,7 +5,7 @@ import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
 import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidatePersonalResponse;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
-import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalResponse;
+import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,7 +19,7 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
     }
 
     @Override
-    public SingleCandidatePersonalResponse getCandidatePersonalByRequest(SingleCandidatePersonalRequest
+    public SingleCandidatePersResponse getCandidatePersonalByRequest(SingleCandidatePersonalRequest
                                                                                     singleCandidatePersonalRequest) {
         Optional<PersonalInformation> aCandidatePersonal = candidatePersonalRepository.getCandidatePersonalInfoByCID(
                 singleCandidatePersonalRequest.getCid());
@@ -32,7 +32,7 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
             candidatePersonalDTO = null;
         }
 
-        return SingleCandidatePersonalResponse.of()
+        return SingleCandidatePersResponse.of()
                 .request(singleCandidatePersonalRequest)
                 .candidatePersonalDTO(candidatePersonalDTO)
                 .build();
