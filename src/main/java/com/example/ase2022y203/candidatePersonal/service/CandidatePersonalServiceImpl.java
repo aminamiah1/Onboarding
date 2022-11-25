@@ -57,4 +57,14 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
         return SaveCandidatePersonalResponse.of().request(saveCandidatePersonalRequest).build();
     }
 
+    @Override
+    public Optional<CandidatePersonalDTO> getCandidatePersonalByCID(Integer cid) {
+        Optional<PersonalInformation> aCandidatePersonal = candidatePersonalRepository.getCandidatePersonalInfoByCID(cid);
+        if(aCandidatePersonal.isPresent()) {
+            System.out.println(aCandidatePersonal.get());
+            return Optional.of(CandidatePersonalAssembler.toDto(aCandidatePersonal.get()));
+        } else {
+            return Optional.empty();
+        }
+    }
 }

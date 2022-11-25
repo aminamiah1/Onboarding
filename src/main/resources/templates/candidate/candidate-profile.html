@@ -27,8 +27,40 @@
 <div class="container">
     <div class="row">
         <div class="applicationStatus">
-            <h2 class="page-text">Status of applications</h2>
-            <h2 class="page-text">References you submitted</h2>
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-10">
+                            <div class="row">
+                                <div class="form-group col-md-8">
+                                    <label for="NI" class="col-form-label">National Insurance Number</label>
+                                    <input type="text" class="form-control" id="NI" placeholder="National Insurance Number"
+                                           th:field="*{candidatePersonal.national_insurance}" disabled/>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="Ethnicity" class="col-form-label">Ethnicity</label>
+                                    <input type="text" class="form-control" id="Ethnicity" placeholder="Ethnicity"
+                                           th:field="*{candidatePersonal.ethnicity}" disabled/>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="Gender" class="col-form-label">Gender</label>
+                                    <input type="text" class="form-control" id="Gender" placeholder="Gender"
+                                           th:field="*{candidatePersonal.gender}" disabled/>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="Age" class="col-form-label">Age</label>
+                                    <input type="text" class="form-control" id="Age" placeholder="Age"
+                                           th:field="*{candidatePersonal.age}" disabled/>
+                                </div>
+                                <div class="form-group col-md-8">
+                                    <label for="Sexuality" class="col-form-label">Sexuality</label>
+                                    <input type="text" class="form-control" id="Sexuality" placeholder="Sexuality"
+                                           th:field="*{candidatePersonal.sexuality}" disabled/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

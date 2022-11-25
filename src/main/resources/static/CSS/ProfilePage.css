@@ -17,5 +17,12 @@
 
 .applicationStatus{
     background-color: royalblue;
-    text-align: center;
+    padding: 1em;
+    margin: 1em;
+}
+
+.form-group{
+    background-color: white;
+    padding: 0.3em;
+    margin: 0.5em;
 }

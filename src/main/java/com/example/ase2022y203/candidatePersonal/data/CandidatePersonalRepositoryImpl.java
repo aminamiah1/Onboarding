@@ -1,6 +1,11 @@
 package com.example.ase2022y203.candidatePersonal.data;
 
+import com.example.ase2022y203.candidate.domain.Candidate;
+import com.example.ase2022y203.candidate.service.CandidateAssembler;
+import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
+import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalAssembler;
+import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
