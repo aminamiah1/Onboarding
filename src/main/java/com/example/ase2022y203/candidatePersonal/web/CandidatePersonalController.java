@@ -80,7 +80,7 @@ public class CandidatePersonalController {
 
             model.addAttribute("candidate", candidate.get());
 
-            model.addAttribute("candidatePersonalForm", candidatePersonalForm);
+            model.addAttribute("candidatePersonalForm", newCandidatePersonal);
 
             return new ModelAndView("candidate/personal-info-form", model.asMap());
         } else {
