@@ -9,9 +9,4 @@ import lombok.Value;
 public class SingleRegisterResponse {
     SingleRegisterRequest request;
     RegisterDTO registerDTO;
-
-    public Boolean hasRegisterGotAnAccount() {
-        return registerDTO != null;
-
-    }
 }

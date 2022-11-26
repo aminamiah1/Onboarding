@@ -17,4 +17,8 @@ public interface RegisterService {
     SingleRegisterResponse getRegisterByRequest(SingleRegisterRequest singleRegisterRequest);
 
     SaveRegistersResponse process(SaveRegisterRequest saveRegisterRequest);
+
+    Optional<RegisterDTO> getRegisterByID(Integer id);
+
+    Optional<RegisterDTO> getRegisterResponseByID(Integer id);
 }

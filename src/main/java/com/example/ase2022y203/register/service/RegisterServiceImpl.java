@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class RegisterServiceImpl implements RegisterService {
+public abstract class RegisterServiceImpl implements RegisterService {
     private final RegisterRepository registerRepository;
 
     public RegisterServiceImpl(RegisterRepository rRepo) {
@@ -21,31 +21,11 @@ public class RegisterServiceImpl implements RegisterService {
 
         RegisterDTO registerDTO = saveRegisterRequest.getRegisterDTO();
 
-         Register newRegister = new Register(registerDTO.getID(), registerDTO.getFirst_name(),
-                 registerDTO.getSurname(), registerDTO.getEmail(), registerDTO.getPassword());
+        Register newRegister = new Register(registerDTO.getID(), registerDTO.getFirst_name(),
+                registerDTO.getSurname(), registerDTO.getEmail(), registerDTO.getPassword());
 
         registerRepository.save(newRegister);
 
         return SaveRegistersResponse.of().request(saveRegisterRequest).build();
     }
 }
-
-/* @Override
-    public SingleRegisterResponse getRegisterByRequest(SingleRegisterRequest singleRegisterRequest) {
-        Optional<Register> aRegister = registerRepository.getRegistersResponseByID
-                (singleRegisterRequest.getId());
-
-        RegisterDTO registerDTO;
-
-        if (aRegister.isPresent()) {
-            registerDTO = RegisterAssembler.toDto(aRegister.get());
-        } else {
-            registerDTO = null;
-        }
-
-        return SingleRegisterResponse.of()
-                .request(singleRegisterRequest)
-                .registerDTO(registerDTO)
-                .build();
-    } */
-
