@@ -28,8 +28,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
                 rs.getString("email"),
                 rs.getString("password"),
                 rs.getString("company_name")
-        )
+        );
     }
+
 
     public List<Candidate> getCandidates() {
         String allCandidatesSQL = "select * from candidates";

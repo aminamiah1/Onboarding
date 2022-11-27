@@ -4,11 +4,7 @@ import com.example.ase2022y203.register.data.RegisterRepository;
 import com.example.ase2022y203.register.domain.Register;
 import com.example.ase2022y203.register.service.messages.SaveRegisterRequest;
 import com.example.ase2022y203.register.service.messages.SaveRegistersResponse;
-import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
-@Service
 public abstract class RegisterServiceImpl implements RegisterService {
     private final RegisterRepository registerRepository;
 

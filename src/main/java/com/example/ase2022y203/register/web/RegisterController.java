@@ -9,16 +9,21 @@ import com.example.ase2022y203.register.service.messages.SingleRegisterRequest;
 import com.example.ase2022y203.register.web.forms.RegistersForm;
 import com.example.ase2022y203.register.web.forms.RegistersFormAssembler;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
+@Controller
+@RequestMapping("/register")
 public class RegisterController {
     private final RegisterService registerService;
     private final CandidateService candidateService;
@@ -35,12 +40,12 @@ public class RegisterController {
             SingleRegisterRequest singleRegisterRequest =
                     SingleRegisterRequest.of().id(newRegister.getID()).build();
 
-            var singleRegisterResponse = registerService.getRegisterByRequest(singleRegisterRequest);
+            var singleRegisterResponse = registerService.getRegistersByRequest(singleRegisterRequest);
             var registerDTO = singleRegisterResponse.getRegisterDTO();
 
             RegistersForm registersForm = RegistersFormAssembler.registersForm(registerDTO);
 
-            Optional<RegisterDTO> registers = registerService.getRegistersResponseByID(id.get());
+            Optional<RegisterDTO> registers = registerService.getRegistersID(id.get());
             model.addAttribute("register", registers.get());
             model.addAttribute("registersForm", newRegister);
 

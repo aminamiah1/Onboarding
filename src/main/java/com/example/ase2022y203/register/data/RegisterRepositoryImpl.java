@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class RegisterRepositoryImpl implements RegisterRepository{
+public abstract class RegisterRepositoryImpl implements RegisterRepository{
 
     private RegisterRepoJDBC registerRepoJDBC;
     public RegisterRepositoryImpl(RegisterRepoJDBC repoJDBC){
