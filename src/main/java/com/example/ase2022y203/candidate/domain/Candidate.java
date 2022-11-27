@@ -2,9 +2,11 @@ package com.example.ase2022y203.candidate.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
+@Table
 public class Candidate {
     private Integer id;
     private String first_name;
