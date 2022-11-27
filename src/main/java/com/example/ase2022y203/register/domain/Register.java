@@ -3,9 +3,7 @@ package com.example.ase2022y203.register.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor

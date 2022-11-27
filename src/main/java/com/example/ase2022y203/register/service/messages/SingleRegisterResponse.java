@@ -9,4 +9,9 @@ import lombok.Value;
 public class SingleRegisterResponse {
     SingleRegisterRequest request;
     RegisterDTO registerDTO;
+
+    public Boolean isRegisterPresent(){
+        return registerDTO != null;
+    }
+
 }

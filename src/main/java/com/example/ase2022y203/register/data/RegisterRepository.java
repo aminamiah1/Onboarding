@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface RegisterRepository {
 
     List<Candidate> getCandidates();
-    Optional<RegisterDTO> getRegistersResponseByID(Integer Id);
+    Optional<Register> getRegistersID(Integer Id);
     void save(Register newRegisters);
 }
