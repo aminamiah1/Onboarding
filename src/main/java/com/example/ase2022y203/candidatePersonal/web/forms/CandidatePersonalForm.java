@@ -1,5 +1,6 @@
 package com.example.ase2022y203.candidatePersonal.web.forms;
 
+import com.example.ase2022y203.candidatePersonal.web.forms.validation.NationalInsuranceFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
@@ -15,8 +16,8 @@ public class CandidatePersonalForm {
 
     private Integer id;
     private Integer c_id;
-    @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z]{2}[0-9]{6}[a-zA-Z]{1}$", message = "National insurance number not right format")
+
+    @NationalInsuranceFormat
     private String national_insurance;
     @NotEmpty
     private String ethnicity;
@@ -27,5 +28,6 @@ public class CandidatePersonalForm {
     private Integer age;
     @NotEmpty
     private String sexuality;
+
     public CandidatePersonalForm(){this(0, 0, " ", " ", " ", 0, " ");}
 }
