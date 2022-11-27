@@ -28,12 +28,12 @@ public class CandidateController {
     }
 
     @GetMapping("candidate-profile/{id}")
-    public ModelAndView getCandidate(@PathVariable Integer id, Model model){
+    public ModelAndView getCandidate(@PathVariable Integer id, Model model) {
 
         Optional<CandidateDTO> candidate = candidateService.getCandidateByID(id);
         Optional<CandidatePersonalDTO> candidatePersonal = candidatePersonalService.getCandidatePersonalByCID(id);
 
-        if(candidate.isPresent()){
+        if (candidate.isPresent()) {
             model.addAttribute("candidate", candidate.get());
             model.addAttribute("candidatePersonal", candidatePersonal.get());
             var mv = new ModelAndView("candidate/candidate-profile", model.asMap());
@@ -43,5 +43,5 @@ public class CandidateController {
         }
 
     }
-
 }
+

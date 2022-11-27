@@ -8,10 +8,10 @@ import org.springframework.data.relational.core.mapping.Table;
 @AllArgsConstructor
 @Table
 public class Candidate {
-        private Integer id;
-        private String first_name;
-        private String surname;
-        private String email;
-        private String password;
-        private String company_name;
+    private Integer id;
+    private String first_name;
+    private String surname;
+    private String email;
+    private String password;
+    private String company_name;
 }

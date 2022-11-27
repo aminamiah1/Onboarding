@@ -17,6 +17,4 @@ public class CandidateAssembler {
         return new CandidateDTO(c.getId(), c.getFirst_name(), c.getSurname(),
                 c.getEmail(), c.getPassword(), c.getCompany_name());
     }
-
-
 }
