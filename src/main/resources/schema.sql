@@ -30,11 +30,11 @@ create table Personal_Information
 (
     ID                 int auto_increment not null primary key,
     CID               int not null,
-    National_Insurance varchar(200) not null ,
-    Ethnicity          varchar(200) not null,
-    Gender             varchar(200) not null,
-    Age                int not null,
-    Sexuality          varchar(200) not null,
+    National_Insurance varchar(200),
+    Ethnicity          varchar(200),
+    Gender             varchar(200),
+    Age                int,
+    Sexuality          varchar(200),
     constraint PI_candidate_fk
         foreign key (CID) references candidates (ID)
 )
