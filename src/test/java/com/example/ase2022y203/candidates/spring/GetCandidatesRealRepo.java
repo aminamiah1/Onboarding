@@ -20,7 +20,7 @@ public class GetCandidatesRealRepo {
     private CandidateService candidateService;
 
     @Test
-    public void shouldGetTwoCandidates() throws Exception {
+    public void shouldGetThreeCandidates() throws Exception {
         //Given the number of candidates in the system is two
         List<CandidateDTO> candidates;
 
@@ -32,7 +32,7 @@ public class GetCandidatesRealRepo {
         var candidateListResponse = candidateService.getCandidates(candidateListRequest);
 
         //Then the size of the candidate list should be two
-        assertEquals(2, candidateListResponse.getCandidates().size());
+        assertEquals(3, candidateListResponse.getCandidates().size());
     }
 
     @Test

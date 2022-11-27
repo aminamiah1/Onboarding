@@ -71,7 +71,7 @@ public class GetCandidates {
     public void shouldGet404() throws Exception {
         //Given the candidate accesses a profile that does not exist when they visit the page they should get redirected
         //to the 404 message page
-        mvc.perform(get("/candidate/candidate-profile/3")).andExpect(redirectedUrl("/404"));
+        mvc.perform(get("/candidate/candidate-profile/404")).andExpect(redirectedUrl("/404"));
     }
 
 }
