@@ -94,3 +94,17 @@ CREATE TABLE IF NOT EXISTS Master_Admin
     Password      varchar(200) not null unique
 )
     ENGINE = INNODB;
+
+-- -----------------------------------------------------
+-- TABLE `Registers`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Registers
+(
+    ID            int auto_increment not null primary key,
+    First_Name    varchar(200) not null,
+    Surname       varchar(200) not null,
+    Email         varchar(200) not null unique,
+    Password      varchar(200) not null unique,
+    )
+    ENGINE = INNODB;

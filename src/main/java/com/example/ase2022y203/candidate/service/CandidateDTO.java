@@ -6,7 +6,8 @@ import lombok.Value;
 @Value
 @AllArgsConstructor
 public class CandidateDTO {
-    private Integer ID;
+    private Integer id;
+    private Integer c_id;
     private String first_name;
     private String surname;
     private String email;

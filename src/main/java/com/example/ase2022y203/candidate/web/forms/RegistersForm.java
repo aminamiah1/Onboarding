@@ -1,4 +1,4 @@
-package com.example.ase2022y203.register.web.forms;
+package com.example.ase2022y203.candidate.web.forms;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class RegistersForm {
     private Integer ID;
+    private Integer c_id;
     @NotEmpty
     @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid Input")
     private String first_name;
@@ -22,6 +23,8 @@ public class RegistersForm {
     private String email;
     @NotEmpty
     private String password;
-    public RegistersForm(){this(0, "", "", "", "");
+    @NotEmpty
+    private String company_name;
+    public RegistersForm(){this(0, 0, "", "", "","","");
     }
 }

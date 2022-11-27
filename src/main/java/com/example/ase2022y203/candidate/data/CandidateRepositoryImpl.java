@@ -14,6 +14,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
     private final JdbcTemplate jdbc;
     private RowMapper<Candidate> candidateMapper;
+    private CandidateRepoJDBC candidateRepoJDBC;
 
     public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
         jdbc = jdbcTemplate;
@@ -23,6 +24,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     private void setCandidateMapper() {
         candidateMapper = (rs, i) -> new Candidate(
                 rs.getInt("id"),
+                rs.getInt("cid"),
                 rs.getString("first_name"),
                 rs.getString("surname"),
                 rs.getString("email"),
@@ -30,7 +32,6 @@ public class CandidateRepositoryImpl implements CandidateRepository {
                 rs.getString("company_name")
         );
     }
-
 
     public List<Candidate> getCandidates() {
         String allCandidatesSQL = "select * from candidates";
@@ -49,5 +50,21 @@ public class CandidateRepositoryImpl implements CandidateRepository {
         } catch (IncorrectResultSizeDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public Optional<Candidate> getCandidateByCID(Integer cid) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Candidate> getCandidateByCid(Integer cid) {
+        return candidateRepoJDBC.findByCid(cid);
+
+    }
+
+    @Override
+    public void save(Candidate candidate) {
+        candidateRepoJDBC.save(candidate);
     }
 }
