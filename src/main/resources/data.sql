@@ -18,8 +18,8 @@ VALUES(1, 'QQ123456A', 'White', 'Female', '48', 'heterosexual');
 INSERT INTO personal_information(CID, national_insurance, ethnicity, gender, age, sexuality)
 VALUES(2, 'QQ256225A', 'Asian', 'Male', '31', 'homosexual');
 
-INSERT INTO personal_information(CID, national_insurance, ethnicity, gender, age, sexuality)
-VALUES(3, '', '', '', '', '');
+INSERT INTO personal_information(CID)
+VALUES(3);
 
 INSERT INTO vetting_officers(First_name, surname, email, password)
 VALUES('Sarah', 'Radcliffe', 'SR@gmail.com', 'SR@YaDude123');
