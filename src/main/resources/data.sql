@@ -9,6 +9,9 @@ VALUES(1, 'Kerry', 'Malik', 'KMalik@gmail.com', 'IamKerry@123', 'Admiral');
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(2, 'Terry', 'Houston', 'TH@gmail.com', 'IamTerry@123', 'Farmland');
 
+INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
+VALUES(3, 'Molly', 'Jacobsen', 'MJ@gmail.com', 'IamMolly@123', 'JCB');
+
 INSERT INTO personal_information(CID, national_insurance, ethnicity, gender, age, sexuality)
 VALUES(1, 'QQ123456A', 'White', 'Female', '48', 'heterosexual');
 
