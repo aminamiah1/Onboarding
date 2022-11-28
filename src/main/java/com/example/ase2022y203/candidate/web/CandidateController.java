@@ -67,19 +67,20 @@ public class CandidateController {
         }
     }
     @PostMapping("/{id}/save")
-    public ModelAndView SaveRegisterInfo(@Valid @ModelAttribute("RegistersForm") RegistersForm newRegister,
+    public ModelAndView SaveRegisterInfo(@Valid @ModelAttribute("registersForm") RegistersForm newRegister,
                                          BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> cid) {
         if (bindingResult.hasErrors()) {
             SingleCandidateRequest singleCandidateRequest =
-                    SingleCandidateRequest.of().id(newRegister.getID()).build();
+                    SingleCandidateRequest.of().id(newRegister.getC_id()).build();
 
             var singleCandidateResponse = candidateService.getCandidatesByRequest(singleCandidateRequest);
             var registerDTO = singleCandidateResponse.getCandidateDTO();
 
             RegistersForm registersForm = RegistersFormAssembler.toRegistersForm(registerDTO);
 
-            Optional<CandidateDTO> candidateDTO = candidateService.getCandidateByID(cid.get());
-            model.addAttribute("candidate", candidateDTO.get());
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
+
+            model.addAttribute("candidate", candidate.get());
             model.addAttribute("registersForm", newRegister);
 
             return new ModelAndView("registration/registrationForm", model.asMap());
@@ -90,6 +91,7 @@ public class CandidateController {
 
             SaveCandidateRequest saveCandidateRequest = SaveCandidateRequest.of().
                     candidateDTO(candidateDTO).build();
+
             SaveCandidateResponse saveCandidateResponse = candidateService.
                     process(saveCandidateRequest);
 
