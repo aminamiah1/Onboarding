@@ -11,10 +11,8 @@ import java.util.Optional;
 
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
-
     private final JdbcTemplate jdbc;
     private RowMapper<Candidate> candidateMapper;
-    private CandidateRepoJDBC candidateRepoJDBC;
 
     public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
         jdbc = jdbcTemplate;
@@ -24,7 +22,6 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     private void setCandidateMapper() {
         candidateMapper = (rs, i) -> new Candidate(
                 rs.getInt("id"),
-                rs.getInt("cid"),
                 rs.getString("first_name"),
                 rs.getString("surname"),
                 rs.getString("email"),
@@ -53,18 +50,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Optional<Candidate> getCandidateByCID(Integer cid) {
-        return Optional.empty();
-    }
-
-    @Override
-    public Optional<Candidate> getCandidateByCid(Integer cid) {
-        return candidateRepoJDBC.findByCid(cid);
-
-    }
-
-    @Override
-    public void save(Candidate candidate) {
-        candidateRepoJDBC.save(candidate);
+    public void save(Candidate newCandidate) {
+        String addCandidateSQL = "INSERT INTO Candidates (id, first_name, surname, email, password, company_name) values (0, ?, ?, ?, ?, ?)";
+            jdbc.update(addCandidateSQL, newCandidate.getId(), newCandidate.getFirst_name(), newCandidate.getSurname(),
+                newCandidate.getEmail(), newCandidate.getPassword(), newCandidate.getCompany_name());
     }
 }

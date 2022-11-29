@@ -1,15 +1,15 @@
-package com.example.ase2022y203.candidate.service;
+package com.example.ase2022y203.candidate.service.messages;
 
 import lombok.AllArgsConstructor;
-import lombok.Value;
+import lombok.Getter;
+import lombok.ToString;
 
-@Value
+@Getter
 @AllArgsConstructor
-public class CandidateDTO {
-    private Integer id;
+@ToString
+public class RegistrationRequest {
     private String first_name;
     private String surname;
     private String email;
     private String password;
-    private String company_name;
 }

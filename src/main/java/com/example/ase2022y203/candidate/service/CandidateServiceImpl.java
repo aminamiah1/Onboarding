@@ -43,46 +43,18 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public SaveCandidateResponse process(SaveCandidateRequest saveCandidateRequest) {
-
-        CandidateDTO candidateDTO = saveCandidateRequest.getCandidateDTO();
-
-        Candidate newCandidate = new Candidate(candidateDTO.getId(), candidateDTO.getC_id(), candidateDTO.getFirst_name(),
-                candidateDTO.getSurname(), candidateDTO.getEmail(), candidateDTO.getPassword(), candidateDTO.getCompany_name());
-
+    public void addNewCandidate(CandidateDTO candidateDTO) {
+        Candidate newCandidate = new Candidate(
+                candidateDTO.getId(),
+                candidateDTO.getFirst_name(),
+                candidateDTO.getSurname(),
+                candidateDTO.getEmail(),
+                candidateDTO.getPassword(),
+                candidateDTO.getCompany_name()
+        );
         candidateRepository.save(newCandidate);
-
-        return SaveCandidateResponse.of().request(saveCandidateRequest).build();
-    }
-
-    @Override
-    public SingleCandidateResponse getCandidatesByRequest(SingleCandidateRequest singleCandidateRequest) {
-        Optional<Candidate> aCandidate = candidateRepository.getCandidateByCID(singleCandidateRequest.getCid());
-
-        CandidateDTO candidateDTO;
-
-        if (aCandidate.isPresent()) {
-            candidateDTO = CandidateAssembler.toDto(aCandidate.get());
-        } else {
-            candidateDTO = null;
-        }
-
-        return SingleCandidateResponse.of()
-                .request(singleCandidateRequest)
-                .candidateDTO(candidateDTO)
-                .build();
-    }
-
-    @Override
-    public Optional<CandidateDTO> getCandidatesByCID(Integer cid) {
-        Optional<Candidate> aCandidate = candidateRepository.getCandidateByCID(cid);
-        if (aCandidate.isPresent()) {
-            System.out.println(aCandidate.get());
-            return Optional.of(CandidateAssembler.toDto(aCandidate.get()));
-        } else {
-            return Optional.empty();
-        }
     }
 }
+
 
 

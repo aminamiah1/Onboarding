@@ -10,9 +10,5 @@ public interface CandidateRepository {
     List<Candidate> getCandidates();
     Optional<Candidate> getCandidateByID(Integer id);
 
-    Optional<Candidate> getCandidateByCID(Integer cid);
-
-    Optional<Candidate> getCandidateByCid(Integer cid);
-
-    void save(Candidate newRegister);
+    void save(Candidate newCandidate);
 }

@@ -1,14 +1,9 @@
 package com.example.ase2022y203.candidate.web;
 
 
-import com.example.ase2022y203.candidate.service.messages.SaveCandidateRequest;
-import com.example.ase2022y203.candidate.service.messages.SaveCandidateResponse;
-import com.example.ase2022y203.candidate.service.messages.SingleCandidateRequest;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
-import com.example.ase2022y203.candidate.web.forms.RegistersFormAssembler;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,60 +37,25 @@ public class CandidateController {
         }
     }
 
-    @GetMapping("/{id}/get")
-    public ModelAndView getRegisterInfo(@PathVariable("id") Optional<Integer> cid, Model model) {
+    @GetMapping("add")
+    public ModelAndView getNewRegisters(Model model) {
+        model.addAttribute("RegistersForm", new RegistersForm());
+        var mv = new ModelAndView("registration/registrationForm", model.asMap());
+        return mv;
 
-        SingleCandidateRequest singleCandidateRequest = SingleCandidateRequest.of()
-                .cid(cid.get()).build();
-
-        var singleCandidateResponse = candidateService
-                .getCandidatesByRequest(singleCandidateRequest);
-
-        if (singleCandidateResponse.isCandidatePresent()) {
-            var candidatesDTO = singleCandidateResponse.getCandidateDTO();
-            RegistersForm registersForm = RegistersFormAssembler
-                    .toRegistersForm(candidatesDTO);
-
-            Optional<CandidateDTO> candidateDTO = candidateService.getCandidateByID(cid.get());
-            model.addAttribute("candidate", candidateDTO.get());
-            model.addAttribute("Register Form", registersForm);
-
-            var mv = new ModelAndView("redirect:/registration/registrationForm" + model.asMap());
-            return mv;
-        } else {
-            return new ModelAndView("redirect/404", HttpStatus.NOT_FOUND);
-        }
     }
-    @PostMapping("/{id}/save")
-    public ModelAndView SaveRegisterInfo(@Valid @ModelAttribute("registersForm") RegistersForm newRegister,
-                                         BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> cid) {
+
+    @PostMapping("save")
+    public ModelAndView postNewRegisters(@Valid RegistersForm register, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            SingleCandidateRequest singleCandidateRequest =
-                    SingleCandidateRequest.of().id(newRegister.getC_id()).build();
-
-            var singleCandidateResponse = candidateService.getCandidatesByRequest(singleCandidateRequest);
-            var registerDTO = singleCandidateResponse.getCandidateDTO();
-
-            RegistersForm registersForm = RegistersFormAssembler.toRegistersForm(registerDTO);
-
-            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
-
-            model.addAttribute("candidate", candidate.get());
-            model.addAttribute("registersForm", newRegister);
-
+            bindingResult.getAllErrors().forEach(System.out::println);
+            model.addAttribute("RegistersForm", new RegistersForm());
             return new ModelAndView("registration/registrationForm", model.asMap());
         } else {
-            CandidateDTO candidateDTO = new CandidateDTO(
-                    newRegister.getID(), newRegister.getC_id(), newRegister.getFirst_name(),
-                    newRegister.getSurname(), newRegister.getEmail(), newRegister.getPassword(), newRegister.getCompany_name());
-
-            SaveCandidateRequest saveCandidateRequest = SaveCandidateRequest.of().
-                    candidateDTO(candidateDTO).build();
-
-            SaveCandidateResponse saveCandidateResponse = candidateService.
-                    process(saveCandidateRequest);
-
-            var mv = new ModelAndView("redirect:/registration/successPage/" + cid.get());
+            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_name(), register.getSurname(),
+                    register.getEmail(), register.getPassword(), register.getCompany_name());
+            candidateService.addNewCandidate(candidateDTO);
+            var mv = new ModelAndView("redirect:/successPage");
             return mv;
         }
     }
