@@ -18,18 +18,26 @@ import java.util.Optional;
 public class CandidateController {
 
     private final CandidateService candidateService;
+    private final CandidatePersonalService candidatePersonalService;
 
-    public CandidateController(CandidateService svc) {
+    public CandidateController(CandidateService svc, CandidatePersonalService cps){
         this.candidateService = svc;
+        this.candidatePersonalService = cps;
     }
 
-    @GetMapping("candidate-profile/{id}")
-    public ModelAndView getCandidate(@PathVariable Integer id, Model model) {
+    @GetMapping("candidate-profile")
+    public ModelAndView getCandidate(Model model) {
 
-        Optional<CandidateDTO> candidate = candidateService.getCandidateByID(id);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+        Optional<CandidatePersonalDTO> candidatePersonal = candidatePersonalService
+                .getCandidatePersonalByCID(candidate.get().getId());
 
         if (candidate.isPresent()) {
             model.addAttribute("candidate", candidate.get());
+            model.addAttribute("candidatePersonal", candidatePersonal.get());
             var mv = new ModelAndView("candidate/candidate-profile", model.asMap());
             return mv;
         } else {
