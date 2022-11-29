@@ -22,7 +22,7 @@
                         <label class="label" for="first_name"></label>
                         <input type="text" class="form-control" id="first_name" placeholder="First Name"
                                th:field="*{first_name}">
-                        <div class="alert alert-warning" th:errors="*{First_name}"
+                        <div class="alert alert-warning" th:errors="*{first_name}"
                              th:if="${#fields.hasErrors('first_name')}">
                             First Name does not fit the required format
                         </div>
@@ -60,9 +60,9 @@
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
+                        <span class="input-group-addon"><i class="fa fa-envelope ti-user"></i></span>
                         <label class="label" for="Company"></label>
-                        <input type="text" class="form-control" id="Company" placeholder="Email Address"
+                        <input type="text" class="form-control" id="Company" placeholder="Company"
                                th:field="*{company_name}">
                     </div>
                 </div>

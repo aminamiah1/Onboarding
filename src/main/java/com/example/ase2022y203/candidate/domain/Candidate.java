@@ -4,11 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Table
-public class Candidate {
+public class Candidate implements UserDetails {
     @Id
     private Integer id;
     private String first_name;
@@ -16,6 +22,9 @@ public class Candidate {
     private String email;
     private String password;
     private String company_name;
+
+    public Candidate(String first_name, String surname, String email, String password, String company_name) {
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

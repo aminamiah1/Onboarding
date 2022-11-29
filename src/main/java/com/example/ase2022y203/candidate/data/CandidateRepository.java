@@ -9,6 +9,6 @@ import java.util.Optional;
 public interface CandidateRepository {
     List<Candidate> getCandidates();
     Optional<Candidate> getCandidateByID(Integer id);
-
+    Optional<Candidate> getCandidateByEmail(String email);
     void save(Candidate newCandidate);
 }

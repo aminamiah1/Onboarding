@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS Master_Admin;
 
 CREATE TABLE IF NOT EXISTS Candidates
 (
-    ID            int auto_increment not null primary key,
+    ID            int not null auto_increment primary key,
     First_Name    varchar(200) not null,
     Surname       varchar(200) not null,
     Email         varchar(200) not null unique,

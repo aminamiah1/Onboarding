@@ -1,9 +1,16 @@
 package com.example.ase2022y203.candidate.web;
 
 
+import com.example.ase2022y203.candidate.domain.Candidate;
+import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
+import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
+import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -60,9 +67,11 @@ public class CandidateController {
             model.addAttribute("RegistersForm", new RegistersForm());
             return new ModelAndView("registration/registrationForm", model.asMap());
         } else {
-            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_name(), register.getSurname(),
-                    register.getEmail(), register.getPassword(), register.getCompany_name());
-            candidateService.addNewCandidate(candidateDTO);
+            BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
+
+            CandidateDTOReg candidate = new CandidateDTOReg(register.getFirst_name(), register.getSurname(),
+                    register.getEmail(), bCryptPasswordEncoder.encode(register.getPassword()), register.getCompany_name());
+            candidateService.addNewCandidate(candidate);
             var mv = new ModelAndView("redirect:/successPage");
             return mv;
         }

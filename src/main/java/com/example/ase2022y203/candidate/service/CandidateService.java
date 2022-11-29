@@ -7,6 +7,7 @@ import java.util.Optional;
 public interface CandidateService {
     CandidateListResponse getCandidates(CandidateListRequest candidateListRequest);
     Optional<CandidateDTO> getCandidateByID(Integer id);
-    void addNewCandidate(CandidateDTO candidateDTO);
+    void addNewCandidate(CandidateDTOReg candidateDTO);
+    Optional<CandidateDTO> getCandidateByEmail(String email);
 }
 

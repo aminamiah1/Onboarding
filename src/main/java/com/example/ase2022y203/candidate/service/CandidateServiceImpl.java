@@ -43,9 +43,11 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public void addNewCandidate(CandidateDTO candidateDTO) {
+    public void addNewCandidate(CandidateDTOReg candidateDTO) {
         Candidate newCandidate = new Candidate(
-                candidateDTO.getId(),
+                candidateRepository.getCandidates()
+                        .get(candidateRepository.getCandidates().size() - 1)
+                        .getId() + 1,
                 candidateDTO.getFirst_name(),
                 candidateDTO.getSurname(),
                 candidateDTO.getEmail(),
@@ -54,6 +56,19 @@ public class CandidateServiceImpl implements CandidateService {
         );
         candidateRepository.save(newCandidate);
     }
+
+
+    @Override
+    public Optional<CandidateDTO> getCandidateByEmail(String email) {
+        Optional<Candidate> aCandidate = candidateRepository.getCandidateByEmail(email);
+        if (aCandidate.isPresent()) {
+            System.out.println(aCandidate.get());
+            return Optional.of(CandidateAssembler.toDto(aCandidate.get()));
+        } else {
+            return Optional.empty();
+        }
+    }
+
 }
 
 
