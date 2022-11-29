@@ -17,6 +17,9 @@
     <a th:href="@{/personal/edit}" class="btn btn-dark">Update Personal Information</a>
 </div>
 <div class="container">
+    <a th:href="@{/logout}" class="btn btn-dark">Logout</a>
+</div>
+<div class="container">
     <div class="row">
         <div class="profile-info">
             <h2 class="page-text" th:text="${candidate.first_name} + ' ' + ${candidate.surname} + ' '
