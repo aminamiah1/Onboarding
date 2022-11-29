@@ -10,6 +10,8 @@ import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidat
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalForm;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalFormAssembler;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,11 +33,15 @@ public class CandidatePersonalController {
         this.candidateService = candidateService;
     }
 
-    @GetMapping("/{id}/edit")
-    public ModelAndView getEditCandidatePersonalInfoForm(@PathVariable("id") Optional<Integer> cid, Model model) {
+    @GetMapping("/edit")
+    public ModelAndView getEditCandidatePersonalInfoForm(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
 
         SingleCandidatePersonalRequest singleCandidatePersonalRequest = SingleCandidatePersonalRequest.of()
-                .cid(cid.get()).build();
+                .cid(candidate.get().getId()).build();
 
         var singleCandidatePersonalResponse = candidatePersonalService
                 .getCandidatePersonalByRequest(singleCandidatePersonalRequest);
@@ -46,9 +52,9 @@ public class CandidatePersonalController {
             CandidatePersonalForm candidatePersonalForm = CandidatePersonalFormAssembler
                     .toCandidatePersonalForm(candidatePersonalDTO);
 
-            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
+            Optional<CandidateDTO> candidateDTO = candidateService.getCandidateByID(candidate.get().getId());
 
-            model.addAttribute("candidate", candidate.get());
+            model.addAttribute("candidate", candidateDTO.get());
 
             model.addAttribute("candidatePersonalForm", candidatePersonalForm);
 
@@ -95,7 +101,7 @@ public class CandidatePersonalController {
             SaveCandidatePersonalResponse saveCandidatePersonalResponse = candidatePersonalService
                     .process(saveCandidatePersonalRequest);
 
-            var mv = new ModelAndView("redirect:/candidate/candidate-profile/" + cid.get());
+            var mv = new ModelAndView("redirect:/candidate/candidate-profile");
             return mv;
 
         }
