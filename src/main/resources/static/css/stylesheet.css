@@ -175,6 +175,69 @@ a {
 }
 /* registration page */
 
+.about-us{
+    background-color: bisque;
+}
+
+.text-container {
+    text-align: center;
+    background-color: #191919;
+    padding: 40px;
+    -webkit-box-shadow: 0 3px 50px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 3px 50px 0 rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    color: white;
+}
+
+.title-container-1 {
+    font-size: 30px;
+}
+
+.product-details-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.card {
+    height: 280px;
+    width: 335px;
+    padding: 20px 50px;
+    background: #191919;
+    border-radius: 20px;
+    margin: 15px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+.product-details-1 h5 {
+    font-size: 14px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.card .button {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 9px 22px;
+    transition: .4s;
+    background-color: bisque;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    color: black;
+}
+
+.card .button:hover{
+    background-color: transparent;
+    border: 2px solid bisque;
+    cursor: pointer;
+    color: white;
+}
+
 .login-page {
     background-color: beige;
 }
@@ -284,4 +347,5 @@ a {
     .login-block {
         padding: 20px
     }
+
 }
