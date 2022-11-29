@@ -2,18 +2,14 @@ package com.example.ase2022y203.candidate.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
 @Table
-public class Candidate implements UserDetails {
+public class Candidate {
+    @Id
     private Integer id;
     private String first_name;
     private String surname;

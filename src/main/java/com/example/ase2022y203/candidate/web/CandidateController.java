@@ -1,21 +1,16 @@
 package com.example.ase2022y203.candidate.web;
 
 
-import com.example.ase2022y203.candidate.service.CandidateDTO;
+import com.example.ase2022y203.candidate.web.forms.RegistersForm;
+import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
-import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
-import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
-import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
@@ -48,7 +43,28 @@ public class CandidateController {
         } else {
             return new ModelAndView("redirect:/404");
         }
+    }
+
+    @GetMapping("add")
+    public ModelAndView getNewRegisters(Model model) {
+        model.addAttribute("RegistersForm", new RegistersForm());
+        var mv = new ModelAndView("registration/registrationForm", model.asMap());
+        return mv;
 
     }
-}
 
+    @PostMapping("save")
+    public ModelAndView postNewRegisters(@Valid RegistersForm register, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().forEach(System.out::println);
+            model.addAttribute("RegistersForm", new RegistersForm());
+            return new ModelAndView("registration/registrationForm", model.asMap());
+        } else {
+            CandidateDTO candidateDTO = new CandidateDTO(register.getID(), register.getFirst_name(), register.getSurname(),
+                    register.getEmail(), register.getPassword(), register.getCompany_name());
+            candidateService.addNewCandidate(candidateDTO);
+            var mv = new ModelAndView("redirect:/successPage");
+            return mv;
+        }
+    }
+}

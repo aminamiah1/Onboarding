@@ -2,8 +2,7 @@ package com.example.ase2022y203.candidate.service;
 
 import com.example.ase2022y203.candidate.data.CandidateRepository;
 import com.example.ase2022y203.candidate.domain.Candidate;
-import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
-import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
+import com.example.ase2022y203.candidate.service.messages.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,15 +43,18 @@ public class CandidateServiceImpl implements CandidateService {
     }
 
     @Override
-    public Optional<CandidateDTO> getCandidateByEmail(String email) {
-        Optional<Candidate> aCandidate = candidateRepository.getCandidateByEmail(email);
-        if (aCandidate.isPresent()) {
-            System.out.println(aCandidate.get());
-            return Optional.of(CandidateAssembler.toDto(aCandidate.get()));
-        } else {
-            return Optional.empty();
-        }
+    public void addNewCandidate(CandidateDTO candidateDTO) {
+        Candidate newCandidate = new Candidate(
+                candidateDTO.getId(),
+                candidateDTO.getFirst_name(),
+                candidateDTO.getSurname(),
+                candidateDTO.getEmail(),
+                candidateDTO.getPassword(),
+                candidateDTO.getCompany_name()
+        );
+        candidateRepository.save(newCandidate);
     }
 }
+
 
 

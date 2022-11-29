@@ -1,7 +1,6 @@
 package com.example.ase2022y203.candidate.data;
 
 import com.example.ase2022y203.candidate.domain.Candidate;
-import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
-
     private final JdbcTemplate jdbc;
     private RowMapper<Candidate> candidateMapper;
 
@@ -52,16 +50,9 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public Optional<Candidate> getCandidateByEmail(String email) {
-        String candidateByEmailSql = "select * from candidates where email = ?";
-
-        Optional<Candidate> theCandidate;
-
-        try {
-            theCandidate = Optional.of(jdbc.queryForObject(candidateByEmailSql, candidateMapper, email));
-            return theCandidate;
-        } catch (IncorrectResultSizeDataAccessException e) {
-            return Optional.empty();
-        }
+    public void save(Candidate newCandidate) {
+        String addCandidateSQL = "INSERT INTO Candidates (id, first_name, surname, email, password, company_name) values (0, ?, ?, ?, ?, ?)";
+            jdbc.update(addCandidateSQL, newCandidate.getId(), newCandidate.getFirst_name(), newCandidate.getSurname(),
+                newCandidate.getEmail(), newCandidate.getPassword(), newCandidate.getCompany_name());
     }
 }
