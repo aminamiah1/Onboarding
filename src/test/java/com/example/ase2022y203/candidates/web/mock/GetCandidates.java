@@ -46,17 +46,13 @@ public class GetCandidates {
     @Test
     public void shouldGetCandidatesInformation() throws Exception {
 
-        //Given candidates are requested
-        CandidateListRequest candidateListRequest = CandidateListRequest
-                .of()
-                .build();
-
-        //When the profile page is called it should contain this fragment
+        //Given the candidate loads the homepage
+        //When the index page is called it should contain this fragment
         String HTMLFragment = """
-                <h2 class="page-text">Terry Houston from Farmland</h2>""";
+               <h5 class="title-container-1">WHAT MAKES INITIA UNIQUE?</h5>""";
 
         MvcResult result =
-                mvc.perform(get("/candidate/candidate-profile/2"))
+                mvc.perform(get("/index"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn();
@@ -69,9 +65,9 @@ public class GetCandidates {
 
     @Test
     public void shouldGet404() throws Exception {
-        //Given the candidate accesses a profile that does not exist when they visit the page they should get redirected
+        //Given the use accesses a page that does not exist when they visit the page they should get redirected
         //to the 404 message page
-        mvc.perform(get("/candidate/candidate-profile/404")).andExpect(redirectedUrl("/404"));
+        mvc.perform(get("/notFound")).andExpect(status().isNotFound());
     }
 
 }
