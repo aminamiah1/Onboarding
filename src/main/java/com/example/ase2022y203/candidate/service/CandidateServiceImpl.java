@@ -42,6 +42,17 @@ public class CandidateServiceImpl implements CandidateService {
             return Optional.empty();
         }
     }
+
+    @Override
+    public Optional<CandidateDTO> getCandidateByEmail(String email) {
+        Optional<Candidate> aCandidate = candidateRepository.getCandidateByEmail(email);
+        if (aCandidate.isPresent()) {
+            System.out.println(aCandidate.get());
+            return Optional.of(CandidateAssembler.toDto(aCandidate.get()));
+        } else {
+            return Optional.empty();
+        }
+    }
 }
 
 

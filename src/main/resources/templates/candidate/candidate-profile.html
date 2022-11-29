@@ -14,7 +14,10 @@
 <div th:replace="fragments/navbar2.0"></div>
 <div class="container">
     <h2 class="title">Profile Overview</h2>
-    <a th:href="@{/personal/{id}/edit (id=${candidate.id})}" class="btn btn-dark">Update Personal Information</a>
+    <a th:href="@{/personal/edit}" class="btn btn-dark">Update Personal Information</a>
+</div>
+<div class="container">
+    <a th:href="@{/logout}" class="btn btn-dark">Logout</a>
 </div>
 <div class="container">
     <div class="row">
