@@ -4,7 +4,7 @@ INSERT INTO master_admin(username, password)
 VALUES('MADMIN', 'MasterAdmin@123');
 
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
-VALUES(1, 'Kerry', 'Malik', 'KMalik@gmail.com', 'IamKerry@123', 'Admiral');
+VALUES(1, 'Kerry', 'Malik', 'KMalik@gmail.com', '$2a$12$1bYa79yXePS4DdQiOtW8quDj2HMlzClpcHnAJdkRDlGe/vIYxvBB2', 'Admiral');
 
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(2, 'Terry', 'Houston', 'TH@gmail.com', 'IamTerry@123', 'Farmland');
