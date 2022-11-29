@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface CandidateService {
     public CandidateListResponse getCandidates(CandidateListRequest candidateListRequest);
     Optional<CandidateDTO> getCandidateByID(Integer id);
+    Optional<CandidateDTO> getCandidateByEmail(String email);
 }

@@ -50,4 +50,18 @@ public class CandidateRepositoryImpl implements CandidateRepository {
             return Optional.empty();
         }
     }
+
+    @Override
+    public Optional<Candidate> getCandidateByEmail(String email) {
+        String candidateByEmailSql = "select * from candidates where email = ?";
+
+        Optional<Candidate> theCandidate;
+
+        try {
+            theCandidate = Optional.of(jdbc.queryForObject(candidateByEmailSql, candidateMapper, email));
+            return theCandidate;
+        } catch (IncorrectResultSizeDataAccessException e) {
+            return Optional.empty();
+        }
+    }
 }
