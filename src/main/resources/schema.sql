@@ -14,11 +14,11 @@ DROP TABLE IF EXISTS Master_Admin;
 CREATE TABLE IF NOT EXISTS Candidates
 (
     ID            int not null auto_increment primary key,
-    First_Name    varchar(200) not null,
-    Surname       varchar(200) not null,
+    First_Name    varchar(100) not null,
+    Surname       varchar(100) not null,
     Email         varchar(200) not null unique,
-    Password      varchar(200) not null unique,
-    Company_Name  varchar(200) not null
+    Password      varchar(100) not null unique,
+    Company_Name  varchar(100) not null
 )
     ENGINE = INNODB;
 
@@ -30,11 +30,11 @@ create table Personal_Information
 (
     ID                 int auto_increment not null primary key,
     CID               int not null,
-    National_Insurance varchar(200) unique,
-    Ethnicity          varchar(200),
-    Gender             varchar(200),
+    National_Insurance varchar(9) unique,
+    Ethnicity          varchar(50),
+    Gender             varchar(50),
     Age                int,
-    Sexuality          varchar(200),
+    Sexuality          varchar(50),
     constraint PI_candidate_fk
         foreign key (CID) references candidates (ID)
 )
@@ -47,10 +47,10 @@ create table Personal_Information
 create table Vetting_Officers
 (
     ID         int auto_increment not null primary key,
-    First_Name varchar(200) not null,
-    Surname    varchar(200) not null,
+    First_Name varchar(100) not null,
+    Surname    varchar(100) not null,
     Email      varchar(200) not null unique,
-    Password   varchar(200) not null
+    Password   varchar(100) not null
 )
     ENGINE = INNODB;
 
@@ -62,7 +62,7 @@ create table Candidate_References
 (
     ID             int  auto_increment not null primary key,
     CID           int not null,
-    Referee_Name        varchar(200) not null,
+    Referee_Name        varchar(100) not null,
     Referee_Phone_Number text not null unique,
     constraint candidate_references__fk
         foreign key (CID) references candidates (ID)
@@ -76,7 +76,7 @@ create table Candidate_References
 create table Applications
 (
     ID         int auto_increment not null primary key,
-    App_Status varchar(200) not null,
+    App_Status varchar(100) not null,
     CID       int not null,
     constraint applications_candidates_fk
         foreign key (CID) references candidates (ID)
@@ -91,6 +91,6 @@ CREATE TABLE IF NOT EXISTS Master_Admin
 (
     ID            int auto_increment not null primary key,
     Email         varchar(200) not null unique,
-    Password      varchar(200) not null
+    Password      varchar(100) not null
 )
     ENGINE = INNODB;
