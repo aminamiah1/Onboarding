@@ -47,6 +47,10 @@
                         <label class="label" for="Email"></label>
                         <input type="text" class="form-control" id="Email" placeholder="Email Address"
                                th:field="*{email}">
+                        <div class="alert alert-warning" th:errors="*{email}"
+                             th:if="${#fields.hasErrors('email')}">
+                            Email does not fit the required format
+                        </div>
                     </div>
                 </div>
                 <hr class="hr-xs">
@@ -56,6 +60,10 @@
                         <label class="label" for="password"></label>
                         <input type="password" class="form-control" id="password" placeholder="Create A Password"
                                th:field="*{password}">
+                        <div class="alert alert-warning" th:errors="*{password}"
+                             th:if="${#fields.hasErrors('password')}">
+                            Password does not fit the required format of 2 to 100 characters
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,6 +72,10 @@
                         <label class="label" for="Company"></label>
                         <input type="text" class="form-control" id="Company" placeholder="Company"
                                th:field="*{company_name}">
+                        <div class="alert alert-warning" th:errors="*{company_name}"
+                             th:if="${#fields.hasErrors('company_name')}">
+                            Password does not fit the required format of 2 to 100 characters
+                        </div>
                     </div>
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">Sign up</button>
