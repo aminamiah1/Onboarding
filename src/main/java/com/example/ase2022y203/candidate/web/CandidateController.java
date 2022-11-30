@@ -61,17 +61,24 @@ public class CandidateController {
     }
 
     @PostMapping("save")
-    public ModelAndView postNewRegisters(@Valid RegistersForm register, BindingResult bindingResult, Model model) {
+    public ModelAndView postNewRegisters(@Valid @ModelAttribute("RegistersForm") RegistersForm register, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(System.out::println);
-            model.addAttribute("RegistersForm", new RegistersForm());
+            model.addAttribute("RegistersForm", register);
             return new ModelAndView("registration/registrationForm", model.asMap());
         } else {
             BCryptPasswordEncoder bCryptPasswordEncoder=new BCryptPasswordEncoder();
 
             CandidateDTOReg candidate = new CandidateDTOReg(register.getFirst_name(), register.getSurname(),
                     register.getEmail(), bCryptPasswordEncoder.encode(register.getPassword()), register.getCompany_name());
-            candidateService.addNewCandidate(candidate);
+            try{
+                candidateService.addNewCandidate(candidate);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                model.addAttribute("RegistersForm", register);
+                return new ModelAndView("registration/registrationForm", model.asMap());
+            }
+
             var mv = new ModelAndView("redirect:/successPage");
             return mv;
         }
