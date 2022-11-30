@@ -30,5 +30,8 @@ VALUES(1, 1, 'Angela Mooring', '+447975777666');
 INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
 VALUES(2, 2, 'Katherine Hudson', '+442345666234');
 
+INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
+VALUES(3, 2, 'Louise Johnson', '+443423454325');
+
 INSERT INTO applications(ID, App_Status, CID)
 VALUES(1, 'Ongoing', 1);

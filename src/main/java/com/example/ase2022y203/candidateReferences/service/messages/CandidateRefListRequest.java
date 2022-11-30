@@ -11,7 +11,5 @@ import java.util.Optional;
 @AllArgsConstructor
 @Builder(builderMethodName = "of")
 public class CandidateRefListRequest {
-    private Optional<String> searchTerm;
-    private List<String> orderBy;
-    private Integer limit;
+    private final Integer cid;
 }
