@@ -30,7 +30,7 @@ create table Personal_Information
 (
     ID                 int auto_increment not null primary key,
     CID               int not null,
-    National_Insurance varchar(200),
+    National_Insurance varchar(200) unique,
     Ethnicity          varchar(200),
     Gender             varchar(200),
     Age                int,
@@ -50,7 +50,7 @@ create table Vetting_Officers
     First_Name varchar(200) not null,
     Surname    varchar(200) not null,
     Email      varchar(200) not null unique,
-    Password   varchar(200) not null unique
+    Password   varchar(200) not null
 )
     ENGINE = INNODB;
 
@@ -62,8 +62,8 @@ create table Candidate_References
 (
     ID             int  auto_increment not null primary key,
     CID           int not null,
-    Referee        varchar(200) not null,
-    Referee_Number int not null,
+    Referee_Name        varchar(200) not null,
+    Referee_Phone_Number text not null unique,
     constraint candidate_references__fk
         foreign key (CID) references candidates (ID)
 )
@@ -90,7 +90,7 @@ create table Applications
 CREATE TABLE IF NOT EXISTS Master_Admin
 (
     ID            int auto_increment not null primary key,
-    Username      varchar(200) not null unique,
-    Password      varchar(200) not null unique
+    Email         varchar(200) not null unique,
+    Password      varchar(200) not null
 )
     ENGINE = INNODB;
