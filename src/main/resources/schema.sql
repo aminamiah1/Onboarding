@@ -69,7 +69,7 @@ create table Candidate_References
     ID             int  auto_increment not null primary key,
     CID           int not null,
     Referee_Name        varchar(100) not null,
-    Referee_Phone_Number text not null unique,
+    Referee_Phone_Number varchar(20) not null unique,
     constraint refereePhoneNumberFormatCheck
         check(LENGTH(Referee_Phone_Number) > 9 AND LENGTH(Referee_Phone_Number) <= 13),
     constraint candidate_references__fk
