@@ -33,7 +33,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     public List<Candidate> getCandidates() {
-        String allCandidatesSQL = "select * from candidates";
+        String allCandidatesSQL = "select * from Candidates";
         return jdbc.query(allCandidatesSQL, candidateMapper);
     }
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <title>Candidates</title>
+</head>
+
+<body>
+<div class="container">
+    <div th:replace="fragments/navbar"></div>
+    <table>
+        <thead>
+        <th class="table-header">First Name</th>
+        <th class="table-header">Surname</th>
+        <th class="table-header">ID</th>
+        <th class="table-header">Email</th>
+        <th class="table-header">Company Name</th>
+        </thead>
+        <tbody>
+        <tr th:each="candidates : ${candidates}">
+            <td th:text="${candidate.first_name}">First Name</td>
+            <td th:text="${candidate.surname}">Surname</td>
+            <td th:text="${candidate.id}">ID</td>
+            <td th:text="${candidate.email}">Email</td>
+            <td th:text="${candidate.company_name}">Company Name</td>
+            <td>
+                <a th:href="@{/candidates/candidate-profile/{id} (id=${candidate.id})}" th:text="${candidate.name}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

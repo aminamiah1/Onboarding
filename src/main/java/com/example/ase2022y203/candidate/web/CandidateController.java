@@ -1,8 +1,5 @@
 package com.example.ase2022y203.candidate.web;
 
-
-import com.example.ase2022y203.candidate.domain.Candidate;
-import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
@@ -50,6 +47,12 @@ public class CandidateController {
         } else {
             return new ModelAndView("redirect:/404");
         }
+    }
+
+    @GetMapping("all-candidates")
+    public ModelAndView getCandidates(Model model){
+        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
+        return mv;
     }
 
     @GetMapping("add")
