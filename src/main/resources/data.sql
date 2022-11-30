@@ -1,7 +1,7 @@
 USE my_db;
 
-INSERT INTO master_admin(username, password)
-VALUES('MADMIN', 'MasterAdmin@123');
+INSERT INTO master_admin(Email, password)
+VALUES('MADMIN@gmail.com', 'MasterAdmin@123');
 
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(1, 'Kerry', 'Malik', 'KMalik@gmail.com', '$2a$12$1bYa79yXePS4DdQiOtW8quDj2HMlzClpcHnAJdkRDlGe/vIYxvBB2', 'Admiral');
