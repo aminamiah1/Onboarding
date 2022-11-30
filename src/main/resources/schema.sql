@@ -18,7 +18,9 @@ CREATE TABLE IF NOT EXISTS Candidates
     Surname       varchar(100) not null,
     Email         varchar(200) not null unique,
     Password      varchar(100) not null unique,
-    Company_Name  varchar(100) not null
+    Company_Name  varchar(100) not null,
+    constraint candidateEmailAndPasswordLengthOver1CharacterCheck
+        check(LENGTH(Email) > 1 AND LENGTH(Password) > 1)
 )
     ENGINE = INNODB;
 
@@ -36,7 +38,9 @@ create table Personal_Information
     Age                int,
     Sexuality          varchar(50),
     constraint PI_candidate_fk
-        foreign key (CID) references candidates (ID)
+        foreign key (CID) references candidates (ID),
+    constraint personalInfoAgeBetween18And120Check
+        check(Age > 18 AND Age < 120)
 )
     ENGINE = INNODB;
 
@@ -50,7 +54,9 @@ create table Vetting_Officers
     First_Name varchar(100) not null,
     Surname    varchar(100) not null,
     Email      varchar(200) not null unique,
-    Password   varchar(100) not null
+    Password   varchar(100) not null,
+    constraint vettingOfficerEmailAndPasswordLengthOver1CharacterCheck
+        check(LENGTH(Email) > 1 AND LENGTH(Password) > 1)
 )
     ENGINE = INNODB;
 
@@ -64,6 +70,8 @@ create table Candidate_References
     CID           int not null,
     Referee_Name        varchar(100) not null,
     Referee_Phone_Number text not null unique,
+    constraint refereePhoneNumberFormatCheck
+        check(LENGTH(Referee_Phone_Number) > 9 AND LENGTH(Referee_Phone_Number) <= 13),
     constraint candidate_references__fk
         foreign key (CID) references candidates (ID)
 )
@@ -78,6 +86,8 @@ create table Applications
     ID         int auto_increment not null primary key,
     App_Status varchar(100) not null,
     CID       int not null,
+    constraint appStatusLength
+        check(LENGTH(App_Status) > 1 AND LENGTH(App_Status) < 30),
     constraint applications_candidates_fk
         foreign key (CID) references candidates (ID)
 )
@@ -91,6 +101,8 @@ CREATE TABLE IF NOT EXISTS Master_Admin
 (
     ID            int auto_increment not null primary key,
     Email         varchar(200) not null unique,
-    Password      varchar(100) not null
+    Password      varchar(100) not null,
+    constraint masterAdminEmailAndPasswordLengthOver1CharacterCheck
+        check(LENGTH(Email) > 1 AND LENGTH(Password) > 1)
 )
     ENGINE = INNODB;
