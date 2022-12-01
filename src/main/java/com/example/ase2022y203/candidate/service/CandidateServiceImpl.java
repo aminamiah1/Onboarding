@@ -30,6 +30,12 @@ public class CandidateServiceImpl implements CandidateService {
                 .build();
     }
 
+    @Override
+    public List<CandidateDTO> getAllCandidates() {
+        List<Candidate> candidates;
+        candidates = candidateRepository.getAllCandidates();
+        return getCandidates();
+    }
 
     @Override
     public Optional<CandidateDTO> getCandidateByID(Integer id) {

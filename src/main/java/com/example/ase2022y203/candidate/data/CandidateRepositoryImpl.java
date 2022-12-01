@@ -7,8 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Stack;
 
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
@@ -35,6 +37,11 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     public List<Candidate> getCandidates() {
         String allCandidatesSQL = "select * from Candidates";
         return jdbc.query(allCandidatesSQL, candidateMapper);
+    }
+
+    public List<Candidate> getAllCandidates() {
+        String allCandidatesSQL = "select * from Candidates";
+        return  jdbc.query(allCandidatesSQL, candidateMapper);
     }
 
     @Override

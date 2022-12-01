@@ -1,5 +1,6 @@
 package com.example.ase2022y203.candidate.web;
 
+import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -50,11 +52,11 @@ public class CandidateController {
     }
 
     @GetMapping("all-candidates")
-    public ModelAndView getCandidates(Model model){
+    public ModelAndView getCandidates(Model model) {
+        model.addAttribute("candidates", candidateService.getAllCandidates());
         var mv = new ModelAndView("candidate/all-candidates", model.asMap());
         return mv;
     }
-
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
         model.addAttribute("RegistersForm", new RegistersForm());
