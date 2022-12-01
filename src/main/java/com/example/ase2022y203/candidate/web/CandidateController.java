@@ -52,7 +52,6 @@ public class CandidateController {
             return new ModelAndView("redirect:/404");
         }
     }
-
     @GetMapping("all-candidates")
     public ModelAndView getAllCandidates(Model model) {
         CandidateListRequest candidateListRequest = CandidateListRequest
@@ -61,7 +60,8 @@ public class CandidateController {
         CandidateListResponse candidateListResponse = candidateService.getAllCandidates(candidateListRequest);
         System.out.println(candidateListResponse);
         model.addAttribute("candidate", candidateListResponse.getAllCandidates());
-        return new ModelAndView("candidate/all-candidates", model.asMap());
+        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
+        return mv;
     }
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
@@ -69,7 +69,6 @@ public class CandidateController {
         var mv = new ModelAndView("registration/registrationForm", model.asMap());
         return mv;
     }
-
     @PostMapping("save")
     public ModelAndView postNewRegisters(@Valid @ModelAttribute("RegistersForm") RegistersForm register, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {

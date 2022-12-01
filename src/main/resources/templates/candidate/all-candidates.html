@@ -11,25 +11,15 @@
 <div class="container">
     <div th:replace="fragments/navbar"></div>
     <table>
-        <thead>
-        <th class="table-header">First Name</th>
-        <th class="table-header">Surname</th>
-        <th class="table-header">ID</th>
-        <th class="table-header">Email</th>
-        <th class="table-header">Company Name</th>
-        </thead>
-        <tbody>
         <tr th:each="candidate : ${candidates}">
-            <td th:text="${candidate.id}">ID</td>
-            <td th:text="${candidate.first_name}">First Name</td>
-            <td th:text="${candidate.surname}">Surname</td>
-            <td th:text="${candidate.email}">Email</td>
-            <td th:text="${candidate.company_name}">Company Name</td>
+            <td th:text="${candidates.first_name}">First Name</td>
+            <td th:text="${candidates.surname}">Surname</td>
+            <td th:text="${candidates.email}">Email</td>
+            <td th:text="${candidates.company_name}">Company Name</td>
             <td>
                 <a th:href="@{/candidate/candidate-profile/{id} (id=${candidate.id})}" th:text="${candidate.first_name}"></a>
             </td>
         </tr>
-        </tbody>
     </table>
 </div>
 </body>
