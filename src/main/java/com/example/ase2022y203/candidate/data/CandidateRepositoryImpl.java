@@ -34,9 +34,13 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     public List<Candidate> getCandidates() {
-        List<Candidate> candidates = new ArrayList<>();
-        repoJDBC.findAll().forEach(candidates::add);
-        return candidates;
+        String allCandidatesSQL = "select * from Candidates";
+        return jdbc.query(allCandidatesSQL, candidateMapper);
+    }
+
+    public List<Candidate> getAllCandidates() {
+        String allCandidatesSQL = "select * from Candidates";
+        return jdbc.query(allCandidatesSQL, candidateMapper);
     }
     @Override
     public Optional<Candidate> getCandidateByID(Integer id) {

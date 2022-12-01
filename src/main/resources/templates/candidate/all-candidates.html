@@ -19,14 +19,14 @@
         <th class="table-header">Company Name</th>
         </thead>
         <tbody>
-        <tr th:each="candidates : ${candidates}">
+        <tr th:each="candidate : ${candidates}">
+            <td th:text="${candidate.id}">ID</td>
             <td th:text="${candidate.first_name}">First Name</td>
             <td th:text="${candidate.surname}">Surname</td>
-            <td th:text="${candidate.id}">ID</td>
             <td th:text="${candidate.email}">Email</td>
             <td th:text="${candidate.company_name}">Company Name</td>
             <td>
-                <a th:href="@{/candidate/candidate-profile/{id} (id=${candidate.id})}" th:text="${candidate.name}"></a>
+                <a th:href="@{/candidate/candidate-profile/{id} (id=${candidate.id})}" th:text="${candidate.first_name}"></a>
             </td>
         </tr>
         </tbody>

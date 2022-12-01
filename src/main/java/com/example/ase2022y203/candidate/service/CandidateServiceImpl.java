@@ -21,12 +21,25 @@ public class CandidateServiceImpl implements CandidateService {
         return CandidateAssembler.toDto(candidates);
     }
 
+    private List<CandidateDTOReg> getAllCandidates() {
+        List<Candidate> allCandidates = candidateRepository.getAllCandidates();
+        return CandidateAssembler.toDTO(allCandidates);
+    }
     public CandidateListResponse getCandidates(CandidateListRequest candidateListRequest) {
         List<CandidateDTO> candidates;
         candidates = getCandidates();
         return CandidateListResponse.of()
                 .request(candidateListRequest)
                 .candidates(candidates)
+                .build();
+    }
+
+    public CandidateListResponse getAllCandidates(CandidateListRequest candidateListRequest) {
+        List<CandidateDTOReg> allCandidates;
+        allCandidates = getAllCandidates();
+        return CandidateListResponse.of()
+                .request(candidateListRequest)
+                .allCandidates(allCandidates)
                 .build();
     }
     @Override

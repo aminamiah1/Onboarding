@@ -58,8 +58,9 @@ public class CandidateController {
         CandidateListRequest candidateListRequest = CandidateListRequest
                 .of()
                 .build();
-        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
-        model.addAttribute("candidate", candidateListResponse.getCandidates());
+        CandidateListResponse candidateListResponse = candidateService.getAllCandidates(candidateListRequest);
+        System.out.println(candidateListResponse);
+        model.addAttribute("candidate", candidateListResponse.getAllCandidates());
         return new ModelAndView("candidate/all-candidates", model.asMap());
     }
     @GetMapping("add")
