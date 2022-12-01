@@ -29,14 +29,6 @@ public class CandidateServiceImpl implements CandidateService {
                 .candidates(candidates)
                 .build();
     }
-
-    @Override
-    public List<CandidateDTO> getAllCandidates() {
-        List<Candidate> candidates;
-        candidates = candidateRepository.getAllCandidates();
-        return getCandidates();
-    }
-
     @Override
     public Optional<CandidateDTO> getCandidateByID(Integer id) {
         Optional<Candidate> aCandidate = candidateRepository.getCandidateByID(id);

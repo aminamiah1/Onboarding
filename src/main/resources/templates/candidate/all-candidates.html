@@ -19,7 +19,7 @@
         <th class="table-header">Company Name</th>
         </thead>
         <tbody>
-        <tr th:each="candidates : ${candidate}">
+        <tr th:each="candidates : ${candidates}">
             <td th:text="${candidate.first_name}">First Name</td>
             <td th:text="${candidate.surname}">Surname</td>
             <td th:text="${candidate.id}">ID</td>

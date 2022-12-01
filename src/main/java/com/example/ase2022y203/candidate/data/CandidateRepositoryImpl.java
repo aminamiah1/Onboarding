@@ -10,15 +10,14 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Stack;
-
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
     private final JdbcTemplate jdbc;
-
     private RowMapper<Candidate> candidateMapper;
 
-    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    private CandidateRepoJDBC repoJDBC;
+    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate, CandidateRepoJDBC aRepo) {
+        repoJDBC = aRepo;
         jdbc = jdbcTemplate;
         setCandidateMapper();
     }
@@ -35,15 +34,10 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     public List<Candidate> getCandidates() {
-        String allCandidatesSQL = "select * from Candidates";
-        return jdbc.query(allCandidatesSQL, candidateMapper);
+        List<Candidate> candidates = new ArrayList<>();
+        repoJDBC.findAll().forEach(candidates::add);
+        return candidates;
     }
-
-    public List<Candidate> getAllCandidates() {
-        String allCandidatesSQL = "select * from Candidates";
-        return  jdbc.query(allCandidatesSQL, candidateMapper);
-    }
-
     @Override
     public Optional<Candidate> getCandidateByID(Integer id) {
         String candidateByIDSql = "select * from candidates where ID = ?";

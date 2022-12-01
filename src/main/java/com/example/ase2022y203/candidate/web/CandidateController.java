@@ -1,6 +1,8 @@
 package com.example.ase2022y203.candidate.web;
 
+import com.example.ase2022y203.candidate.domain.Candidate;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
+import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
@@ -52,17 +54,19 @@ public class CandidateController {
     }
 
     @GetMapping("all-candidates")
-    public ModelAndView getCandidates(Model model) {
-        model.addAttribute("candidates", candidateService.getAllCandidates());
-        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
-        return mv;
+    public ModelAndView getAllCandidates(Model model) {
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
+        model.addAttribute("candidate", candidateListResponse.getCandidates());
+        return new ModelAndView("candidate/all-candidates", model.asMap());
     }
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
         model.addAttribute("RegistersForm", new RegistersForm());
         var mv = new ModelAndView("registration/registrationForm", model.asMap());
         return mv;
-
     }
 
     @PostMapping("save")
