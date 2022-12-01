@@ -42,14 +42,13 @@ public class ReferencesWebTestSuite{
     @Autowired
     private MockMvc mockMvc;
 
-
     @Test
     public void shouldNotBeAbleToAccessReferencePathWithoutLogin() throws Exception {
 
         //Given a user tries to access the reference page without logging in
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
                 .addFilters(filterChainProxy).build();
-        //When the user accesses the reference url they should get an error
+        //When the user accesses the reference url then they should get an error
         mockMvc.perform(get("/reference")).andExpect(status().is4xxClientError());
     }
 }

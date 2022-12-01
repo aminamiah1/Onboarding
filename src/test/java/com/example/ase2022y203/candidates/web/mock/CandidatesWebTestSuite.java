@@ -44,7 +44,7 @@ public class CandidatesWebTestSuite {
 
     @Test
     public void shouldGet404() throws Exception {
-        //Given the user accesses a page that does not exist when they visit the page they should get redirected
+        //Given the user accesses a page that does not exist when they visit the page then they should get redirected
         //to the 404 message page
         mvc.perform(get("/notFound")).andExpect(status().isNotFound());
     }
