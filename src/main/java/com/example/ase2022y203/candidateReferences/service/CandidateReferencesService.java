@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface CandidateReferencesService {
     List<CandidateReferencesDTO> getCandidateReferencesByCID(Integer cid);
+    void addNewReference(CandidateReferencesDTOSave referenceDTO);
 }

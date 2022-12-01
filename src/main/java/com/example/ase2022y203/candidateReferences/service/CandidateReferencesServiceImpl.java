@@ -26,4 +26,17 @@ public class CandidateReferencesServiceImpl implements CandidateReferencesServic
         return candidateReferences.stream().map(cr -> CandidateReferencesAssembler.toDto(cr)).collect(Collectors.toList());
     }
 
+    @Override
+    public void addNewReference(CandidateReferencesDTOSave referenceDTO) {
+        CandidateReferences newReference = new CandidateReferences(
+                candidateReferencesRepository.getReferences()
+                        .get(candidateReferencesRepository.getReferences().size() - 1)
+                        .getId() + 1,
+                referenceDTO.getC_id(),
+                referenceDTO.getReferee_name(),
+                referenceDTO.getReferee_phone_number()
+        );
+        candidateReferencesRepository.save(newReference);
+    }
+
 }

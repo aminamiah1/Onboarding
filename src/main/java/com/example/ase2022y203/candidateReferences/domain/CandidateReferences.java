@@ -16,4 +16,5 @@ public class CandidateReferences {
     private Integer cid;
     private String referee_name;
     private String referee_phone_number;
+
 }
