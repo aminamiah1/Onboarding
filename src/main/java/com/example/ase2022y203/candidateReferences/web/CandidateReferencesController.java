@@ -6,6 +6,7 @@ import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesDTO;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
+import com.example.ase2022y203.candidateReferences.web.forms.ReferenceForm;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -59,6 +60,17 @@ public class CandidateReferencesController {
 
     }
 
+    @GetMapping("/add")
+    public ModelAndView getNewReference(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+
+        model.addAttribute("candidate", candidate.get());
+        model.addAttribute("reference", new ReferenceForm(candidate.get().getId()));
+        var mv = new ModelAndView("references/referenceForm", model.asMap());
+        return mv;
+    }
 
 }
 

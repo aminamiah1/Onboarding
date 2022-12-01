@@ -17,7 +17,6 @@ public class CandidateReferencesServiceImpl implements CandidateReferencesServic
         this.candidateReferencesRepository = crRepo;
     }
 
-
     @Override
     public List<CandidateReferencesDTO> getCandidateReferencesByCID(Integer cid) {
         List<CandidateReferences> candidateReferences;
@@ -26,6 +25,5 @@ public class CandidateReferencesServiceImpl implements CandidateReferencesServic
 
         return candidateReferences.stream().map(cr -> CandidateReferencesAssembler.toDto(cr)).collect(Collectors.toList());
     }
-
 
 }
