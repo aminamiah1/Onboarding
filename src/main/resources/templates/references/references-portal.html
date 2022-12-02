@@ -42,7 +42,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                      <tr th:each="reference: ${references}">
+                      <tr th:each="reference, iterStat: ${references}">
                           <td>
                               <p th:text="${reference.referee_name}"></p>
                           </td>
@@ -50,7 +50,7 @@
                               <p th:text="${reference.referee_phone_number}"></p>
                           </td>
                           <td>
-                              <a href="#link" class="btn btn-secondary" role="button">Edit reference</a>
+                              <a th:href="@{/reference/edit/{id} (id=${iterStat.index})}" class="btn btn-secondary" role="button">Edit reference</a>
                           </td>
                           <td>
                               <a href="#link" class="btn btn-secondary" role="button">Delete reference</a>
