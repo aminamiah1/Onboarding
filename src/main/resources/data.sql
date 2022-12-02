@@ -22,7 +22,7 @@ INSERT INTO personal_information(CID)
 VALUES(3);
 
 INSERT INTO vetting_officers(First_name, surname, email, password)
-VALUES('Sarah', 'Radcliffe', 'SR@gmail.com', '$2a$12$XtsALptCis8fIemfX88Ka./wfXf/gC71NZR3U0GzBbtN4oMQkkqfG');
+VALUES('Sarah', 'Radcliffe', 'SR@gmail.com', '$2a$12$u8rpeK5sRXjUuGxASxtHEeLIAqXtCLrosyjAh2sNHoo93ovm.8qZS');
 
 INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
 VALUES(1, 1, 'Angela Mooring', '+447975777666');
