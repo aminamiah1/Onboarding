@@ -95,6 +95,10 @@
     opacity: .9;
 }
 
+input{
+    color: white;
+}
+
 @media (max-width: 767px) {
     .login-page main {
         position: static;

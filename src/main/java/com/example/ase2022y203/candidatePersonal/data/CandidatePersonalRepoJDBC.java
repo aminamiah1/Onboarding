@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface CandidatePersonalRepoJDBC extends CrudRepository<PersonalInformation, Integer> {
     Iterable<PersonalInformation> findAll();
     Optional<PersonalInformation> findByCid(Integer cid);
-
 }

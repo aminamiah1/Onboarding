@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface CandidateReferencesRepoJDBC extends CrudRepository<CandidateReferences, Integer> {
     List<CandidateReferences> findAll();
     List<CandidateReferences> findAllByCid(Integer cid);
+    @Override
+    void delete(CandidateReferences entity);
 }
