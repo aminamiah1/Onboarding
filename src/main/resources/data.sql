@@ -1,7 +1,7 @@
 USE my_db;
 
 INSERT INTO master_admin(Email, password)
-VALUES('MADMIN@gmail.com', 'MasterAdmin@123');
+VALUES('MADMIN@gmail.com', '$2a$12$6d5hHGhjB9bnQNe.ndjyo.VN6fPm9FVBAIF4.ae4GD3dkZP2MiBgS');
 
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(1, 'Kerry', 'Malik', 'KMalik@gmail.com', '$2a$12$1bYa79yXePS4DdQiOtW8quDj2HMlzClpcHnAJdkRDlGe/vIYxvBB2', 'Admiral');
@@ -22,7 +22,7 @@ INSERT INTO personal_information(CID)
 VALUES(3);
 
 INSERT INTO vetting_officers(First_name, surname, email, password)
-VALUES('Sarah', 'Radcliffe', 'SR@gmail.com', 'SR@YaDude123');
+VALUES('Sarah', 'Radcliffe', 'SR@gmail.com', '$2a$12$XtsALptCis8fIemfX88Ka./wfXf/gC71NZR3U0GzBbtN4oMQkkqfG');
 
 INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
 VALUES(1, 1, 'Angela Mooring', '+447975777666');
