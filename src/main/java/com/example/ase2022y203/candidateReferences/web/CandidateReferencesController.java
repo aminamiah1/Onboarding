@@ -133,12 +133,46 @@ public class CandidateReferencesController {
 
             model.addAttribute("reference", candidateRefListResponse.get(index));
 
-            var mv = new ModelAndView("references/referenceForm", model.asMap());
+            var mv = new ModelAndView("references/editReferenceForm", model.asMap());
             return mv;
         } else {
             return new ModelAndView("redirect/404", HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @PostMapping("/save/{id}")
+    public ModelAndView postNewReference(@PathVariable("id") Integer index, @Valid @ModelAttribute("reference") ReferenceForm reference, BindingResult bindingResult, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+
+        if(bindingResult.hasErrors()){
+            bindingResult.getAllErrors().forEach(System.out::println);
+            model.addAttribute("reference", reference);
+            model.addAttribute("candidate", candidate.get());
+            return new ModelAndView("references/editReferenceForm");
+        } else {
+            CandidateReferencesDTO referenceDTO = new CandidateReferencesDTO(
+                    reference.getId(),
+                    candidate.get().getId(), reference.getReferee_name(),
+                    reference.getReferee_phone_number()
+            );
+
+            try{
+                candidateReferencesService.updateReference(referenceDTO);
+            } catch(Exception e){
+                System.out.println(e.getMessage());
+                model.addAttribute("reference", reference);
+                model.addAttribute("candidate", candidate.get());
+                return new ModelAndView("references/editReferenceForm", model.asMap());
+            }
+
+            return new ModelAndView("redirect:/reference/reference-portal");
+        }
+    }
+
 
 }
 

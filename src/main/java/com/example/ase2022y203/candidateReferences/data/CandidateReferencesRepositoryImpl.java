@@ -30,6 +30,11 @@ public class CandidateReferencesRepositoryImpl implements CandidateReferencesRep
     }
 
     @Override
+    public void update(CandidateReferences updatedReference) {
+        candidateRefRepoJDBC.save(updatedReference);
+    }
+
+    @Override
     public List<CandidateReferences> getReferences() {
         return candidateRefRepoJDBC.findAll();
     }

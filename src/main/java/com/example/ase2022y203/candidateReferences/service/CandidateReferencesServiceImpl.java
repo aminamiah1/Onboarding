@@ -39,4 +39,16 @@ public class CandidateReferencesServiceImpl implements CandidateReferencesServic
         candidateReferencesRepository.save(newReference);
     }
 
+    @Override
+    public void updateReference(CandidateReferencesDTO referenceDTO) {
+        CandidateReferences updatedReference = new CandidateReferences(
+                referenceDTO.getId(),
+                referenceDTO.getC_id(),
+                referenceDTO.getReferee_name(),
+                referenceDTO.getReferee_phone_number()
+        );
+        candidateReferencesRepository.update(updatedReference);
+    }
+
+
 }
