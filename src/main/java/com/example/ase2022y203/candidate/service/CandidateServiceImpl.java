@@ -21,6 +21,10 @@ public class CandidateServiceImpl implements CandidateService {
         return CandidateAssembler.toDto(candidates);
     }
 
+    private List<CandidateDTOReg> getAllCandidates() {
+        List<Candidate> allCandidates = candidateRepository.getAllCandidates();
+        return CandidateAssembler.toDTO(allCandidates);
+    }
     public CandidateListResponse getCandidates(CandidateListRequest candidateListRequest) {
         List<CandidateDTO> candidates;
         candidates = getCandidates();
@@ -30,7 +34,14 @@ public class CandidateServiceImpl implements CandidateService {
                 .build();
     }
 
-
+    public CandidateListResponse getAllCandidates(CandidateListRequest candidateListRequest) {
+        List<CandidateDTOReg> allCandidates;
+        allCandidates = getAllCandidates();
+        return CandidateListResponse.of()
+                .request(candidateListRequest)
+                .allCandidates(allCandidates)
+                .build();
+    }
     @Override
     public Optional<CandidateDTO> getCandidateByID(Integer id) {
         Optional<Candidate> aCandidate = candidateRepository.getCandidateByID(id);

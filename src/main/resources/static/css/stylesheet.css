@@ -172,4 +172,17 @@ a {
     .body-pd {
         padding-left: calc(var(--nav-width) + 188px)
     }
+
+    /* all candidates page */
+
+    .candidatesPage {
+        background-color: floralwhite;
+    }
+
+    .candidatesHeader {
+        margin-bottom: 2.5rem;
+        color: darkgoldenrod;
+        text-align: center;
+        font-weight: bold;
+    }
 }
