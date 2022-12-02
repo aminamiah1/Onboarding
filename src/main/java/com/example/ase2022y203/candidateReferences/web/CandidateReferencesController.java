@@ -10,7 +10,10 @@ import com.example.ase2022y203.candidateReferences.service.CandidateReferencesDT
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesDTOSave;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
+import com.example.ase2022y203.candidateReferences.service.messages.DeleteRefRequest;
+import com.example.ase2022y203.candidateReferences.service.messages.DeleteRefResponse;
 import com.example.ase2022y203.candidateReferences.web.forms.ReferenceForm;
+import org.springframework.data.web.JsonPath;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -140,9 +143,36 @@ public class CandidateReferencesController {
         }
     }
 
+    @PostMapping("delete/{id}")
+    public ModelAndView deleteReference(@PathVariable("id") Integer index, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+
+
+        if (candidate.isPresent()) {
+
+            CandidateRefListRequest candidateRefListRequest = CandidateRefListRequest
+                    .of()
+                    .cid(candidate.get().getId())
+                    .build();
+
+            var candidateRefListResponse = candidateReferencesService
+                    .getCandidateReferencesByCID(candidateRefListRequest.getCid());
+
+
+           candidateReferencesService.deleteReference(candidateRefListResponse.get(index));
+        } else{
+
+        }
+        var mv = new ModelAndView("redirect:/reference/reference-portal", model.asMap());
+        return mv;
+    }
+
 
     @PostMapping("/save/{id}")
-    public ModelAndView postNewReference(@PathVariable("id") Integer index, @Valid @ModelAttribute("reference") ReferenceForm reference, BindingResult bindingResult, Model model){
+    public ModelAndView postEditReference(@PathVariable("id") Integer index, @Valid @ModelAttribute("reference") ReferenceForm reference, BindingResult bindingResult, Model model){
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleEmail  = authentication.getName();

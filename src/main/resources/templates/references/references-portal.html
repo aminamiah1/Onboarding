@@ -53,7 +53,10 @@
                               <a th:href="@{/reference/edit/{id} (id=${iterStat.index})}" class="btn btn-secondary" role="button">Edit reference</a>
                           </td>
                           <td>
-                              <a href="#link" class="btn btn-secondary" role="button">Delete reference</a>
+                              <form th:action="@{/reference/delete/{id} (id=${iterStat.index})}" th:object="${reference}"
+                                    th:method="post">
+                                  <button class="btn btn-secondary" type="submit">Delete reference</button>
+                              </form>
                           </td>
                       </tr>
                   </tbody>

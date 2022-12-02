@@ -35,6 +35,11 @@ public class CandidateReferencesRepositoryImpl implements CandidateReferencesRep
     }
 
     @Override
+    public void delete(CandidateReferences deleteReference) {
+        candidateRefRepoJDBC.delete(deleteReference);
+    }
+
+    @Override
     public List<CandidateReferences> getReferences() {
         return candidateRefRepoJDBC.findAll();
     }
