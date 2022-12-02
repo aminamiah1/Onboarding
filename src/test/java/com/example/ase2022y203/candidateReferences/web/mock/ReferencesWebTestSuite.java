@@ -51,4 +51,24 @@ public class ReferencesWebTestSuite{
         //When the user accesses the reference url then they should get an error
         mockMvc.perform(get("/reference")).andExpect(status().is4xxClientError());
     }
+
+    @Test
+    public void shouldNotBeAbleToAccessReferenceDeletePathWithoutLogin() throws Exception {
+
+        //Given a user tries to delete a reference without logging in
+        mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
+                .addFilters(filterChainProxy).build();
+        //When the user accesses the reference delete url then they should get an error
+        mockMvc.perform(get("/reference/delete/1")).andExpect(status().is4xxClientError());
+    }
+
+    @Test
+    public void shouldNotBeAbleToAccessReferenceEditPathWithoutLogin() throws Exception {
+
+        //Given a user tries to edit a reference without logging in
+        mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
+                .addFilters(filterChainProxy).build();
+        //When the user accesses the edit reference url then they should get an error
+        mockMvc.perform(get("/reference/edit/2")).andExpect(status().is4xxClientError());
+    }
 }
