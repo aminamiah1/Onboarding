@@ -37,6 +37,8 @@
                     <tr>
                         <th class="table-header">Referee Name</th>
                         <th class="table-header">Referee Telephone Number</th>
+                        <th class="table-header">Edit</th>
+                        <th class="table-header">Delete</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -46,6 +48,12 @@
                           </td>
                           <td>
                               <p th:text="${reference.referee_phone_number}"></p>
+                          </td>
+                          <td>
+                              <a href="#link" class="btn btn-secondary" role="button">Edit reference</a>
+                          </td>
+                          <td>
+                              <a href="#link" class="btn btn-secondary" role="button">Delete reference</a>
                           </td>
                       </tr>
                   </tbody>
