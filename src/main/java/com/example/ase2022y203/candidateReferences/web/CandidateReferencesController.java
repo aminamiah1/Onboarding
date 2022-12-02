@@ -139,7 +139,7 @@ public class CandidateReferencesController {
             var mv = new ModelAndView("references/editReferenceForm", model.asMap());
             return mv;
         } else {
-            return new ModelAndView("redirect/404", HttpStatus.NOT_FOUND);
+            return new ModelAndView("error/404", HttpStatus.NOT_FOUND);
         }
     }
 
