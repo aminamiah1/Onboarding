@@ -1,7 +1,6 @@
 package com.example.ase2022y203.candidate.data;
 
 import com.example.ase2022y203.candidate.domain.Candidate;
-import com.example.ase2022y203.candidatePersonal.data.CandidatePersonalRepoJDBC;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
+
     private final JdbcTemplate jdbc;
     private RowMapper<Candidate> candidateMapper;
 

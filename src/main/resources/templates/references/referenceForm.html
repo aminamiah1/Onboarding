@@ -1,0 +1,59 @@
+<!DOCTYPE html SYSTEM "https://thymeleaf.org/dtd/xhtml-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Personal Information Form</title>
+    <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/css/stylesheet.css" th:href="@{/css/stylesheet.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="fragments/navbar2.0"></div>
+<div class="container my-5">
+    <h3>
+        <span>Add reference for: </span>
+        <small th:text="${candidate.first_name}">Subtitle</small>
+    </h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form th:action="@{/reference/save}" th:object="${reference}"
+                      th:method="post">
+                    <div class="row">
+
+                        <input type="hidden" id="id" th:field="*{id}">
+                        <input type="hidden" id="cid" th:field="*{c_id}">
+
+                        <div class="form-group col-md-8">
+                            <label for="referee_name" class="col-form-label">Referee Name</label>
+                            <input type="text" class="form-control" id="referee_name"
+                                   th:field="*{referee_name}"/>
+                            <div class="alert alert-warning" th:errors="*{referee_name}" th:if="${#fields.hasErrors('referee_name')}">
+                                Referee name does not fit the required format
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="referee_phone_number" class="col-form-label">Referee Phone Number</label>
+                            <input type="text" class="form-control" id="referee_phone_number"
+                                   th:field="*{referee_phone_number}"/>
+                            <div class="alert alert-warning" th:errors="*{referee_phone_number}" th:if="${#fields.hasErrors('referee_phone_number')}">
+                                Referee phone number does not fit the required format
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
