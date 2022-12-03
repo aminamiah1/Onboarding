@@ -16,6 +16,12 @@
 <body class="candidatesPage">
 <div class="container">
     <div th:replace="fragments/navbar"></div>
+    <div sec:authorize="hasRole('ROLE_OFFICER')">
+        <div th:replace="fragments/navbar3.0"></div>
+    </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <div th:replace="fragments/navbar4.0"></div>
+    </div>
     <h1 class="candidatesHeader"><u> C A N D I D A T E S </u></h1>
     <table class="table table-bordered table-striped table-dark">
         <thead>
