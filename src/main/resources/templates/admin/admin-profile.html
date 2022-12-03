@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your profile</title>
+    <link th:href="@{/CSS/ProfilePage.css}" rel="stylesheet"/>
+    <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfile.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/navbar4.0"></div>
+<div class="container">
+    <a th:href="@{/logout}" class="btn btn-dark">Logout</a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="profile-info">
+            <h2 class="page-text">Welcome back: Master Admin</h2>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="applicationStatus">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <button onclick="location.href='/admin/add-officer'">Add a vetting officer</button>
+                            <button onclick="location.href='/officer/view-candidates'">View candidates</button>
+                            <button onclick="location.href='/officer/view-applications'">View applications</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
