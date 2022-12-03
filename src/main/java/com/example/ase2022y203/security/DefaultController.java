@@ -9,7 +9,7 @@ public class DefaultController {
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin/";
+            return "redirect:/admin/admin-profile";
         } else if (request.isUserInRole("ROLE_USER")) {
             return "redirect:/candidate/candidate-profile";
         } else if (request.isUserInRole("ROLE_OFFICER")) {
