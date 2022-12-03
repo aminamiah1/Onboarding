@@ -9,14 +9,38 @@
   <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
   <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
-
+  <link href="/CSS/ContactUs.css" th:href="@{/CSS/ContactUs.css}" rel="stylesheet"/>
 </head>
 
-<body>
+<body class="contact">
 <div>
   <div th:replace="fragments/navbar"></div>
-  <span>Contact Page</span>
-  <span>test</span>
+  <div class="container paddingContact-container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="white">
+          Any questions!
+        </h1>
+        <p>
+          Contact us today to discuss using our service.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-5 contact-right-info">
+      <h3>Newport Office</h3>
+      <p style="color: #000000">
+        Kingsway<br />
+        Newport, NP20 1HG<br />
+        Wales, UK<br />
+      </p>
+      <h3>EMAIL ADDRESS</h3>
+      <a href="mailto:alacrityuk@alacrityfoundation.com">alacrityuk@alacrityfoundation.com</a>
+      <h3>SUPPORT</h3>
+      <a href="mailto:support@alacrity.com">support@alacrity.com</a>
+      <h3>PHONE NUMBER</h3>
+      <a href="tel:+441633259512">+441633259517</a>
+    </div>
+  </div>
 </div>
 </body>
 </html>
