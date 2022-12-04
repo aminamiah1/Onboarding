@@ -9,7 +9,10 @@ import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidateP
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalForm;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalFormAssembler;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Controller
@@ -31,11 +35,15 @@ public class CandidatePersonalController {
         this.candidateService = candidateService;
     }
 
-    @GetMapping("/{id}/edit")
-    public ModelAndView getEditCandidatePersonalInfoForm(@PathVariable("id") Optional<Integer> cid, Model model) {
+    @GetMapping("/edit")
+    public ModelAndView getEditCandidatePersonalInfoForm(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail  = authentication.getName();
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
 
         SingleCandidatePersonalRequest singleCandidatePersonalRequest = SingleCandidatePersonalRequest.of()
-                .cid(cid.get()).build();
+                .cid(candidate.get().getId()).build();
 
         var singleCandidatePersonalResponse = candidatePersonalService
                 .getCandidatePersonalByRequest(singleCandidatePersonalRequest);
@@ -46,9 +54,9 @@ public class CandidatePersonalController {
             CandidatePersonalForm candidatePersonalForm = CandidatePersonalFormAssembler
                     .toCandidatePersonalForm(candidatePersonalDTO);
 
-            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(cid.get());
+            Optional<CandidateDTO> candidateDTO = candidateService.getCandidateByID(candidate.get().getId());
 
-            model.addAttribute("candidate", candidate.get());
+            model.addAttribute("candidate", candidateDTO.get());
 
             model.addAttribute("candidatePersonalForm", candidatePersonalForm);
 
@@ -92,10 +100,14 @@ public class CandidatePersonalController {
             SaveCandidatePersonalRequest saveCandidatePersonalRequest = SaveCandidatePersonalRequest.of()
                     .candidatePersonalDTO(candidatePersonalDTO).build();
 
-            SaveCandidatePersonalResponse saveCandidatePersonalResponse = candidatePersonalService
-                    .process(saveCandidatePersonalRequest);
+            try{
+                SaveCandidatePersonalResponse saveCandidatePersonalResponse = candidatePersonalService
+                        .process(saveCandidatePersonalRequest);
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
+            };
 
-            var mv = new ModelAndView("redirect:/candidate/candidate-profile/" + cid.get());
+            var mv = new ModelAndView("redirect:/candidate/candidate-profile");
             return mv;
 
         }

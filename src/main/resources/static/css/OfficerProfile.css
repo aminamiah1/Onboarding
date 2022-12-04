@@ -1,0 +1,10 @@
+.card{
+    display: flex;
+    margin: 0em;
+    padding: 0em;
+    justify-content: center;
+}
+
+button{
+    padding: 4em;
+}

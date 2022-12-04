@@ -8,6 +8,8 @@ import java.util.Optional;
 
 public interface CandidateRepository {
     List<Candidate> getCandidates();
+    List<Candidate> getAllCandidates();
     Optional<Candidate> getCandidateByID(Integer id);
-
+    Optional<Candidate> getCandidateByEmail(String email);
+    void save(Candidate newCandidate);
 }
