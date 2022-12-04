@@ -1,5 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS My_Db;
 
+USE My_Db;
+
 DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
@@ -40,7 +42,7 @@ create table Personal_Information
     constraint PI_candidate_fk
         foreign key (CID) references candidates (ID),
     constraint personalInfoAgeBetween18And120Check
-        check(Age > 18 AND Age < 120)
+        check(Age >= 18 AND Age < 120)
 )
     ENGINE = INNODB;
 
