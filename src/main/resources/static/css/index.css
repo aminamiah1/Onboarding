@@ -3,7 +3,7 @@
 /* registration page */
 
 .about-us{
-    background-color: beige;
+    background-color: floralwhite;
 }
 
 .text-container {
@@ -52,7 +52,7 @@
     font-weight: bold;
     padding: 9px 22px;
     transition: .4s;
-    background-color: beige;
+    background-color: floralwhite;
     border: 2px solid transparent;
     border-radius: 30px;
     color: black;
@@ -60,13 +60,13 @@
 
 .card .button:hover{
     background-color: transparent;
-    border: 2px solid bisque;
+    border: 2px solid floralwhite;
     cursor: pointer;
     color: white;
 }
 
 .login-page {
-    background-color: beige;
+    background-color: floralwhite;
 }
 
 .login-page main {

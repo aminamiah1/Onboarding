@@ -1,8 +1,8 @@
 package com.example.ase2022y203.candidate.web;
 
-
 import com.example.ase2022y203.candidate.domain.Candidate;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
+import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -51,15 +52,23 @@ public class CandidateController {
             return new ModelAndView("redirect:/404");
         }
     }
-
+    @GetMapping("all-candidates")
+    public ModelAndView getAllCandidates(Model model) {
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
+        System.out.println(candidateListResponse.getCandidates());
+        model.addAttribute("candidates", candidateListResponse.getCandidates());
+        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
+        return mv;
+    }
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
         model.addAttribute("RegistersForm", new RegistersForm());
         var mv = new ModelAndView("registration/registrationForm", model.asMap());
         return mv;
-
     }
-
     @PostMapping("save")
     public ModelAndView postNewRegisters(@Valid @ModelAttribute("RegistersForm") RegistersForm register, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {

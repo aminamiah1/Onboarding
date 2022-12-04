@@ -1,7 +1,7 @@
 /* registration page */
 
 .login-page {
-    background-color: beige;
+    background-color: floralwhite;
 }
 
 .login-page main {
@@ -93,6 +93,10 @@
 .login-links a {
     color: white;
     opacity: .9;
+}
+
+input{
+    color: white;
 }
 
 @media (max-width: 767px) {

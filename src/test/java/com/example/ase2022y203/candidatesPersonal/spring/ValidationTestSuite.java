@@ -30,12 +30,15 @@ public class ValidationTestSuite {
 
         validatorFactory.close();
 
+        //Given the candidate gives a national insurance number in the wrong format
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("678987");
 
+        //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
 
+        //Then there should be violations
         assertFalse(violations.isEmpty());
     }
 
@@ -47,12 +50,15 @@ public class ValidationTestSuite {
 
         validatorFactory.close();
 
+        //Given the candidate gives their age in the wrong format
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setNational_insurance("QQ567893A");
         candidatePersonalForm.setAge(140);
 
+        //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
 
+        //Then there should be violations
         assertFalse(violations.isEmpty());
     }
 
@@ -64,12 +70,15 @@ public class ValidationTestSuite {
 
         validatorFactory.close();
 
+        //Given the candidate gives the age and national insurance number in the correct format
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("QQ567893A");
 
+        //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
 
+        //Then there should be no violations
         assertTrue(violations.isEmpty());
     }
 
@@ -81,6 +90,7 @@ public class ValidationTestSuite {
 
         validatorFactory.close();
 
+        //Given the candidate provides empty data
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("QQ567893A");
@@ -88,8 +98,10 @@ public class ValidationTestSuite {
         candidatePersonalForm.setSexuality("");
         candidatePersonalForm.setEthnicity("");
 
+        //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
 
+        //Then there should be violations
         assertFalse(violations.isEmpty());
     }
 
@@ -101,6 +113,7 @@ public class ValidationTestSuite {
 
         validatorFactory.close();
 
+        //Given the candidate provides all correct data
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("QQ567893A");
@@ -108,8 +121,10 @@ public class ValidationTestSuite {
         candidatePersonalForm.setEthnicity("White");
         candidatePersonalForm.setSexuality("Heterosexual");
 
+        //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
 
+        //Then there should be no violations
         assertTrue(violations.isEmpty());
     }
 

@@ -32,7 +32,7 @@ public class GetCandidates {
 
         candidateRepository = mock(CandidateRepositoryImpl.class);
 
-        //Given the number of candidates added the system is three
+        //Given the number of candidates added to the system is three
         given(candidateRepository.getCandidates()).willReturn(List.of(c1, c2, c3));
 
         candidateService = new CandidateServiceImpl(candidateRepository);

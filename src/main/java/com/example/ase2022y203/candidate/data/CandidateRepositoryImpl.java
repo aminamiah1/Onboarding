@@ -1,22 +1,23 @@
 package com.example.ase2022y203.candidate.data;
 
 import com.example.ase2022y203.candidate.domain.Candidate;
-import com.example.ase2022y203.candidatePersonal.data.CandidatePersonalRepoJDBC;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 @Repository
 public class CandidateRepositoryImpl implements CandidateRepository {
-    private final JdbcTemplate jdbc;
 
+    private final JdbcTemplate jdbc;
     private RowMapper<Candidate> candidateMapper;
 
-    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate) {
+    private CandidateRepoJDBC repoJDBC;
+    public CandidateRepositoryImpl(JdbcTemplate jdbcTemplate, CandidateRepoJDBC aRepo) {
+        repoJDBC = aRepo;
         jdbc = jdbcTemplate;
         setCandidateMapper();
     }
@@ -33,10 +34,14 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     public List<Candidate> getCandidates() {
-        String allCandidatesSQL = "select * from candidates";
+        String allCandidatesSQL = "select * from Candidates";
         return jdbc.query(allCandidatesSQL, candidateMapper);
     }
 
+    public List<Candidate> getAllCandidates() {
+        String allCandidatesSQL = "select * from Candidates";
+        return jdbc.query(allCandidatesSQL, candidateMapper);
+    }
     @Override
     public Optional<Candidate> getCandidateByID(Integer id) {
         String candidateByIDSql = "select * from candidates where ID = ?";
