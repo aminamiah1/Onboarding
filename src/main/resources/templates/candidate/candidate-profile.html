@@ -22,19 +22,45 @@
         </div>
         <div class="Profile--Bar">
             <table>
-                <tbody>
+                <tbody class="profile-bar-table">
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Contact us</th>
-                        <th>ID</th>
+                        <th class="profile-image-holder">
+                            <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
+                        </th>
+                        <th>
+                            Tony Styles
+                        </th>
+                        <th>Contact</th>
+                        <th>Unique ID</th>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div class="Personal-Details">Personal Details Table</div>
-    <div class="References">References Table</div>
+    <div class="Personal-Details">
+        <table>
+            <tbody class="profile-bar-table">
+            <tr>
+                <th>
+                    <h5>Personal Details</h5>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Age:</p>
+                    <p class="table-text table-text-left">18</p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">National Insurance Number:</p>
+                    <p class="table-text table-text-left">QQ345653A</p>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="References">References</div>
 </div>
 </body>
 </html>
