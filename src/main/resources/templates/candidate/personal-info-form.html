@@ -24,7 +24,6 @@
         <form th:action="@{/personal/{id}/save (id=${candidatePersonalForm.c_id})}" th:object="${candidatePersonalForm}"
               th:method="post">
           <div class="row">
-
             <input type="hidden" id="id" th:field="*{id}">
             <input type="hidden" id="cid" th:field="*{c_id}">
 
