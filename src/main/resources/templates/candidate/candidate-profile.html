@@ -34,7 +34,7 @@
                         </th>
                         <th>
                             <p class="table-text">Contact</p>
-                            <p class="table-text table-text-left" th:text="${candidate.email}"></p>
+                            <p class="table-text table-text-left" th:text="${candidatePersonal.telephone_number}"></p>
                         </th>
                         <th>
                             <p class="table-text">Unique ID</p>
@@ -86,6 +86,12 @@
                 <th>
                     <p class="table-text">Company Name:</p>
                     <p class="table-text table-text-left" th:text="*{candidate.company_name}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Email:</p>
+                    <p class="table-text table-text-left" th:text="*{candidate.email}"></p>
                 </th>
             </tr>
             </tbody>
