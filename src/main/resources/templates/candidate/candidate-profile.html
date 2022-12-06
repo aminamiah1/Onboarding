@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="Personal-Details">
-        <table>
+        <table class="personal-table">
             <tbody class="profile-bar-table">
             <tr>
                 <th>
@@ -124,14 +124,14 @@
                 <td>
                     <form th:action="@{/reference/delete/{id} (id=${iterStat.index})}" th:object="${reference}"
                           th:method="post">
-                        <button class="btn btn-dark" type="submit">Delete</button>
+                        <button class="btn btn-dark btn-gold" type="submit">Delete</button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
 
-        <a th:href="@{/reference/add}" class="btn btn-dark">Add reference</a>
+        <a th:href="@{/reference/add}" class="btn btn-dark btn-gold">Add reference</a>
     </div>
 </div>
 </body>
