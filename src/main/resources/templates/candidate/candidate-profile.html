@@ -98,7 +98,8 @@
         </table>
     </div>
     <div class="References">
-        <table class="table table-bordered table-striped references-table">
+        <h4 th:if="${references.size() == 0}">Please add references</h4>
+        <table class="table table-bordered table-striped references-table" th:if="${references.size() >= 1}">
             <thead>
             <tr>
                 <th class="table-header">Referee Name</th>
