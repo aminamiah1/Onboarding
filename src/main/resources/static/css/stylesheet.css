@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 :root {
-    --header-height: 3rem;
     --nav-width: 160px;
     --first-color: black;
     --first-color-light: white;
@@ -11,11 +10,7 @@
     --z-fixed: 100
 }
 
-*, ::before, ::after {
-    box-sizing: border-box
-}
-
-img {
+img.nav_logo {
     width: 50%;
     height: 25%;
     align-content: center;
@@ -27,11 +22,10 @@ img {
 
 body {
     position: relative;
-    margin: var(--header-height) 0 0 0;
-    padding: 0 1rem;
     font-family: var(--body-font);
     font-size: var(--normal-font-size);
-    transition: .5s
+    transition: .5s;
+    margin: 0;
 }
 
 a {
@@ -40,7 +34,6 @@ a {
 
 .header {
     width: 100%;
-    height: var(--header-height);
     position: fixed;
     top: 0;
     left: 0;
@@ -142,12 +135,10 @@ a {
 
 @media screen and (min-width: 768px) {
     body {
-        margin: calc(var(--header-height) + 1rem) 0 0 0;
-        padding-left: calc(var(--nav-width) + 2rem)
+        padding-left: calc(var(--nav-width) + 0rem)
     }
 
     .header {
-        height: calc(var(--header-height) + 1rem);
         padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
     }
 
@@ -173,8 +164,6 @@ a {
         padding-left: calc(var(--nav-width) + 188px)
     }
 
-    /* all candidates page */
-
     .candidatesPage {
         background-color: floralwhite;
     }
@@ -184,5 +173,10 @@ a {
         color: darkgoldenrod;
         text-align: center;
         font-weight: bold;
+    }
+
+    .bg {
+        width: 100%;
+        height: auto;
     }
 }

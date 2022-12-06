@@ -123,7 +123,7 @@ USE mysql;
 
 SHOW tables;
 
-SELECT * FROM user; -- user table acceps and rejects a connection from a host --
+SELECT * FROM user; -- user table accepts and rejects a connection from a host --
 SELECT * FROM db; -- contains database level privileges --
 SELECT * FROM tables_priv;
 SELECT * FROM columns_priv;
