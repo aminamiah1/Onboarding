@@ -131,15 +131,12 @@ SELECT * FROM procs_priv;
 
 SELECT user(); -- checks the current user --
 
-DROP USER 'miah9'@'localhost'; -- drops users so we can create them--
-DROP USER 'milliganec'@'localhost';
-
-CREATE USER 'miaha9'@'localhost' IDENTIFIED BY 'comsc'; -- creates a new user who can connect from a local host ONLY --
-SHOW GRANTS FOR 'miaha9'@'localhost';
-GRANT ALL PRIVILEGES ON * . * TO 'miaha9'; -- grants user privileges --
+# DROP USER 'miah9'@'localhost'; -- drops users so we can create them--
+DROP USER IF EXISTS 'milliganec'@'localhost';
 
 CREATE USER 'milliganec'@'localhost' IDENTIFIED BY 'comsc';
 SHOW GRANTS FOR 'milliganec'@'localhost'; -- grants user privileges --
+GRANT ALL PRIVILEGES ON * . * TO 'milliganec'@'localhost';
 
 USE mysql;
 

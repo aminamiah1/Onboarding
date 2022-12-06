@@ -1,28 +1,66 @@
-.profile-info{
-    padding-top: 1em;
-    padding-bottom: 1em;
-    text-align: center;
-    border-radius: 25px;
-    border: 5px;
-    background-color: royalblue;
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Profile-Overview Profile-Overview Profile-Overview"
+    "Personal-Details Personal-Details References"
+    "Personal-Details Personal-Details References";
 }
 
-.page-text{
-    color: white;
+.Profile-Overview {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Profile-Overview-Title Profile-Overview-Title Profile-Overview-Title"
+    "Profile--Bar Profile--Bar Profile--Bar"
+    "Profile--Bar Profile--Bar Profile--Bar";
+    grid-area: Profile-Overview;
 }
 
-.container{
-    padding-top: 1em;
+.Profile-Overview-Title { grid-area: Profile-Overview-Title; }
+
+.Profile--Bar { grid-area: Profile--Bar; }
+
+.Personal-Details { grid-area: Personal-Details; }
+
+.References { grid-area: References; }
+
+
+html, body , .container {
+    height: 100%;
+    margin: 0;
 }
 
-.applicationStatus{
-    background-color: royalblue;
-    padding: 1em;
-    margin: 1em;
+/* For presentation only, no need to copy the code below */
+
+.container * {
+    position: relative;
+    height: 100%;
+    width: -moz-available;
+    width: -webkit-fill-available;
 }
 
-.form-group{
-    background-color: white;
-    padding: 0.3em;
-    margin: 0.5em;
+.container *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.table{
+    width: 100%;
+    height: 100%;
+}
+
+.tbody{
+    width: 100%;
+    height: 100%;
 }
