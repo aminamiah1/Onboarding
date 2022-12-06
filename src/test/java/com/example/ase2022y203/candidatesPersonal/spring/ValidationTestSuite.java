@@ -83,7 +83,7 @@ public class ValidationTestSuite {
     }
 
     @Test
-    public void emptyGenderAndSexualityAndEthnicityShouldReturnViolations() {
+    public void emptyGenderAndTelephoneNumberAndEthnicityShouldReturnViolations() {
 
         validatorFactory = Validation.buildDefaultValidatorFactory();
         validator = validatorFactory.getValidator();
@@ -95,7 +95,7 @@ public class ValidationTestSuite {
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("QQ567893A");
         candidatePersonalForm.setGender("");
-        candidatePersonalForm.setSexuality("");
+        candidatePersonalForm.setTelephone_number("");
         candidatePersonalForm.setEthnicity("");
 
         //When they submit the form
@@ -119,7 +119,7 @@ public class ValidationTestSuite {
         candidatePersonalForm.setNational_insurance("QQ567893A");
         candidatePersonalForm.setGender("Male");
         candidatePersonalForm.setEthnicity("White");
-        candidatePersonalForm.setSexuality("Heterosexual");
+        candidatePersonalForm.setTelephone_number("+441314960624");
 
         //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);

@@ -1,5 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS My_Db;
 
+USE My_Db;
+
 DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
@@ -36,7 +38,7 @@ create table Personal_Information
     Ethnicity          varchar(50),
     Gender             varchar(50),
     Age                int,
-    Sexuality          varchar(50),
+    Telephone_Number          varchar(50),
     constraint PI_candidate_fk
         foreign key (CID) references candidates (ID),
     constraint personalInfoAgeBetween18And120Check
@@ -111,7 +113,7 @@ SHOW VARIABLES; -- returns all system variable --
 
 SHOW VARIABLES WHERE Variable_name = 'port';
 
-SELECT @@port; 
+SELECT @@port;
 
 SHOW VARIABLES WHERE Variable_name = 'hostname';
 
@@ -140,10 +142,10 @@ GRANT ALL PRIVILEGES ON * . * TO 'milliganec'@'localhost';
 
 USE mysql;
 
-Set @authstring = (SELECT authentication_string 
+Set @authstring = (SELECT authentication_string
 					FROM user WHERE User='miaha9' and Host='localhost');
 -- the authentication string has been hashed using mysql-native-password
-                    
+
 SELECT plugin FROM user WHERE User='miaha9' and Host='localhost';
 SELECT plugin FROM user WHERE User='milliganec' and Host='localhost';
 -- password passes it to the authentication plugin --
