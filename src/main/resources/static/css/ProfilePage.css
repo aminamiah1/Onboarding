@@ -33,11 +33,6 @@
     padding-right: 1em;
 }
 
-.References {
-    grid-area: References;
-}
-
-
 html, body , .container {
     height: 100%;
     margin: 0;
@@ -80,6 +75,11 @@ html, body , .container {
 }
 
 .profile-bar-table{
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+.references-table {
     border: 2px solid #dadada;
     border-radius: 7px;
 }
