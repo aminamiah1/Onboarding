@@ -28,10 +28,18 @@
                             <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
                         </th>
                         <th>
-                            Tony Styles
+                            <p class="table-text">Name</p>
+                            <p class="table-text table-text-left" th:text="${candidate.first_name} + ' ' + ${candidate.surname}">
+                            </p>
                         </th>
-                        <th>Contact</th>
-                        <th>Unique ID</th>
+                        <th>
+                            <p class="table-text">Contact</p>
+                            <p class="table-text table-text-left" th:text="${candidate.email}"></p>
+                        </th>
+                        <th>
+                            <p class="table-text">Unique ID</p>
+                            <p class="table-text table-text-left" th:text="${candidate.id}"></p>
+                        </th>
                     </tr>
                 </tbody>
             </table>
@@ -44,17 +52,40 @@
                 <th>
                     <h5>Personal Details</h5>
                 </th>
-            </tr>
-            <tr>
                 <th>
-                    <p class="table-text">Age:</p>
-                    <p class="table-text table-text-left">18</p>
+                    <a th:href="@{/personal/edit}" class="nav_link_profile">
+                        <i class="fas fa-edit" ></i>
+                    </a>
                 </th>
             </tr>
             <tr>
                 <th>
                     <p class="table-text">National Insurance Number:</p>
-                    <p class="table-text table-text-left">QQ345653A</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.national_insurance}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Ethnicity:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.ethnicity}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Gender:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.gender}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Age:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.age}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Company Name:</p>
+                    <p class="table-text table-text-left" th:text="*{candidate.company_name}"></p>
                 </th>
             </tr>
             </tbody>

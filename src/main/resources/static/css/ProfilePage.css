@@ -23,11 +23,19 @@
 
 .Profile-Overview-Title { grid-area: Profile-Overview-Title; }
 
-.Profile--Bar { grid-area: Profile--Bar; }
+.Profile--Bar {
+    grid-area: Profile--Bar;
+    padding-bottom: 1em;
+}
 
-.Personal-Details { grid-area: Personal-Details; }
+.Personal-Details {
+    grid-area: Personal-Details;
+    padding-right: 1em;
+}
 
-.References { grid-area: References; }
+.References {
+    grid-area: References;
+}
 
 
 html, body , .container {
@@ -39,7 +47,6 @@ html, body , .container {
 
 .container * {
     position: relative;
-    height: 100%;
     width: -moz-available;
     width: -webkit-fill-available;
 }
@@ -63,4 +70,43 @@ html, body , .container {
 .tbody{
     width: 100%;
     height: 100%;
+}
+
+.profile-img{
+    height: 4em;
+    width: 4em;
+    border: 1px solid black;
+    border-radius: 50%
+}
+
+.profile-bar-table{
+    border: 2px solid #dadada;
+    border-radius: 7px;
+}
+
+.profile-image-holder{
+    padding-top: 1em;
+}
+
+.table-text{
+    display: inline-block;
+    height: fit-content;
+    width: fit-content;
+}
+
+.table-text-left{
+    padding-left: 0.5em;
+    color: grey;
+}
+
+.nav_link_profile{
+    position: relative;
+    color: black;
+    margin-bottom: 1.5rem;
+    transition: .3s;
+}
+
+.nav_link_profile:hover {
+    background-color: darkgoldenrod;
+    color: black;
 }
