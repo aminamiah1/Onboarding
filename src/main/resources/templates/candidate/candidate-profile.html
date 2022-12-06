@@ -97,7 +97,41 @@
             </tbody>
         </table>
     </div>
-    <div class="References">References</div>
+    <div class="References">
+        <table class="table table-bordered table-striped references-table">
+            <thead>
+            <tr>
+                <th class="table-header">Referee Name</th>
+                <th class="table-header">Referee Telephone Number</th>
+                <th class="table-header">Edit</th>
+                <th class="table-header">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reference, iterStat: ${references}">
+                <td>
+                    <p th:text="${reference.referee_name}"></p>
+                </td>
+                <td>
+                    <p th:text="${reference.referee_phone_number}"></p>
+                </td>
+                <td>
+                    <a th:href="@{/reference/edit/{id} (id=${iterStat.index})}" class="nav_link_profile">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <form th:action="@{/reference/delete/{id} (id=${iterStat.index})}" th:object="${reference}"
+                          th:method="post">
+                        <button class="btn btn-secondary" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a th:href="@{/reference/add}" class="btn btn-dark">Add reference</a>
+    </div>
 </div>
 </body>
 </html>
