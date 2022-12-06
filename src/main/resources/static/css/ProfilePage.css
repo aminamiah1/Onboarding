@@ -1,6 +1,6 @@
 .container {  display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    GRID-TEMPLATE-ROWS: MAX-CONTENT;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas:
@@ -59,7 +59,8 @@ html, body , .container {
 
 .table{
     width: 100%;
-    height: 100%;
+    height: auto;
+    box-shadow: #dadada;
 }
 
 .tbody{
@@ -77,11 +78,13 @@ html, body , .container {
 .profile-bar-table{
     border: 2px solid #dadada;
     border-radius: 7px;
+    background-color: black;
 }
 
 .references-table {
     border: 2px solid #dadada;
     border-radius: 7px;
+    background-color: black;
 }
 
 .profile-image-holder{
@@ -92,21 +95,46 @@ html, body , .container {
     display: inline-block;
     height: fit-content;
     width: fit-content;
+    color: white;
 }
 
 .table-text-left{
     padding-left: 0.5em;
-    color: grey;
+    color: white;
 }
 
 .nav_link_profile{
     position: relative;
-    color: black;
+    color: white;
     margin-bottom: 1.5rem;
     transition: .3s;
 }
 
 .nav_link_profile:hover {
     background-color: darkgoldenrod;
-    color: black;
+    color: white;
+}
+
+h5{
+    color: white;
+}
+
+.personal-table{
+    background-color: black;
+}
+
+th{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+#body-pd{
+    background-color: floralwhite;
+}
+
+.btn-gold{
+    background-color: darkgoldenrod  !important;
 }
