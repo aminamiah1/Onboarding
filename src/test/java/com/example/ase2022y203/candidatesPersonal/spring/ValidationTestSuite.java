@@ -74,6 +74,7 @@ public class ValidationTestSuite {
         CandidatePersonalForm candidatePersonalForm = new CandidatePersonalForm();
         candidatePersonalForm.setAge(20);
         candidatePersonalForm.setNational_insurance("QQ567893A");
+        candidatePersonalForm.setTelephone_number("+442344342423");
 
         //When they submit the form
         Set<ConstraintViolation<CandidatePersonalForm>> violations = validator.validate(candidatePersonalForm);
