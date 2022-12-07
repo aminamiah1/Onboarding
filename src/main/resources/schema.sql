@@ -1,5 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS My_Db;
 
+USE My_Db;
+
 DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
@@ -36,7 +38,7 @@ create table Personal_Information
     Ethnicity          varchar(50),
     Gender             varchar(50),
     Age                int,
-    Sexuality          varchar(50),
+    Telephone_Number          varchar(50),
     constraint PI_candidate_fk
         foreign key (CID) references candidates (ID),
     constraint personalInfoAgeBetween18And120Check
@@ -111,7 +113,7 @@ SHOW VARIABLES; -- returns all system variable --
 
 SHOW VARIABLES WHERE Variable_name = 'port';
 
-SELECT @@port; 
+SELECT @@port;
 
 SHOW VARIABLES WHERE Variable_name = 'hostname';
 
@@ -131,22 +133,19 @@ SELECT * FROM procs_priv;
 
 SELECT user(); -- checks the current user --
 
-DROP USER 'miah9'@'localhost'; -- drops users so we can create them--
-DROP USER 'milliganec'@'localhost';
-
-CREATE USER 'miaha9'@'localhost' IDENTIFIED BY 'comsc'; -- creates a new user who can connect from a local host ONLY --
-SHOW GRANTS FOR 'miaha9'@'localhost';
-GRANT ALL PRIVILEGES ON * . * TO 'miaha9'; -- grants user privileges --
+# DROP USER 'miah9'@'localhost'; -- drops users so we can create them--
+DROP USER IF EXISTS 'milliganec'@'localhost';
 
 CREATE USER 'milliganec'@'localhost' IDENTIFIED BY 'comsc';
 SHOW GRANTS FOR 'milliganec'@'localhost'; -- grants user privileges --
+GRANT ALL PRIVILEGES ON * . * TO 'milliganec'@'localhost';
 
 USE mysql;
 
-Set @authstring = (SELECT authentication_string 
+Set @authstring = (SELECT authentication_string
 					FROM user WHERE User='miaha9' and Host='localhost');
 -- the authentication string has been hashed using mysql-native-password
-                    
+
 SELECT plugin FROM user WHERE User='miaha9' and Host='localhost';
 SELECT plugin FROM user WHERE User='milliganec' and Host='localhost';
 -- password passes it to the authentication plugin --

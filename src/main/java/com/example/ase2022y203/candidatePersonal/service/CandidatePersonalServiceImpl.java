@@ -50,7 +50,7 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
         PersonalInformation newPersonalInformation = new PersonalInformation(candidatePersonalDTO.getId(),
                 candidatePersonalDTO.getC_id(), candidatePersonalDTO.getNational_insurance(), candidatePersonalDTO.getEthnicity(),
                 candidatePersonalDTO.getGender(), candidatePersonalDTO.getAge(),
-                candidatePersonalDTO.getSexuality());
+                candidatePersonalDTO.getTelephone_number());
 
         candidatePersonalRepository.save(newPersonalInformation);
 
