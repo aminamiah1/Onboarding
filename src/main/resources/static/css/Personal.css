@@ -14,6 +14,7 @@ input:-webkit-autofill:active{
     background-color: black;
     padding: 1em;
     box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+    width: 520px;
 }
 
 #body-pd{
@@ -37,3 +38,4 @@ small{
 label{
     color: white;
 }
+
