@@ -38,8 +38,15 @@ public class VettingOfficerController {
 
         Optional<VettingOfficersDTO> vettingOfficer =  vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
 
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+
+        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
+
         if(vettingOfficer.isPresent()){
             model.addAttribute("officer", vettingOfficer.get());
+            model.addAttribute("candidates", candidateListResponse.getCandidates());
             var mv = new ModelAndView("officer/officer-profile", model.asMap());
             return mv;
         } else {

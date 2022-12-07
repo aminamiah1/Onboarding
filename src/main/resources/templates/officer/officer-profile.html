@@ -21,9 +21,6 @@
                 <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
                 <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
                 <h3 th:text="${officer.email}"></h3>
-                <div class="submit">
-                    <input type="submit" class="btn btn-dark btn-gold" value=" View all candidates ">
-                </div>
             </div>
         </div>
         <div class="Table">
@@ -32,22 +29,14 @@
         <div class="Panel">
             <h3>Viewing options</h3>
             <div class="center-panel">
-                <label for="candidateSelect">Choose a candidate:</label>
-                <select name="candidateSelect" id="candidateSelect">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
-                <label for="candidateSelect">Choose to view: </label>
-                <select name="candidateSelect" id="candidateSelect">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                </select>
                 <div class="submit">
-                    <input type="submit" class="btn btn-dark btn-gold" value=" Update table ">
+                    <a class="btn btn-dark btn-gold" href="/officer/view-candidates">View all candidates </a>
+                </div>
+                <div class="submit">
+                    <a class="btn btn-dark btn-gold" href="/officer/view-references">View all references </a>
+                </div>
+                <div class="submit">
+                    <a class="btn btn-dark btn-gold" href="/officer/view-details">View all details</a>
                 </div>
             </div>
         </div>
