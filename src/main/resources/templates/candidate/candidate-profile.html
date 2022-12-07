@@ -28,16 +28,16 @@
                             <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
                         </th>
                         <th>
-                            <p class="table-text">Name</p>
+                            <p class="table-text">Name:</p>
                             <p class="table-text table-text-left" th:text="${candidate.first_name} + ' ' + ${candidate.surname}">
                             </p>
                         </th>
                         <th>
-                            <p class="table-text">Contact</p>
+                            <p class="table-text">Contact:</p>
                             <p class="table-text table-text-left" th:text="${candidatePersonal.telephone_number}"></p>
                         </th>
                         <th>
-                            <p class="table-text">Unique ID</p>
+                            <p class="table-text">Unique ID:</p>
                             <p class="table-text table-text-left" th:text="${candidate.id}"></p>
                         </th>
                     </tr>
