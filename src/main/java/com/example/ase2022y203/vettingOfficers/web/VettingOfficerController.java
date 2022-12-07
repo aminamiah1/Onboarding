@@ -57,13 +57,17 @@ public class VettingOfficerController {
     @GetMapping("view-candidates")
     public ModelAndView getAllCandidates(Model model, HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+            Optional<VettingOfficersDTO> vettingOfficer =  vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
             CandidateListRequest candidateListRequest = CandidateListRequest
                     .of()
                     .build();
             CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
-            System.out.println(candidateListResponse.getCandidates());
+            System.out.println(candidateListResponse.getCandidates().size());
             model.addAttribute("candidates", candidateListResponse.getCandidates());
-            var mv = new ModelAndView("candidate/all-candidates", model.asMap());
+            model.addAttribute("officer", vettingOfficer.get());
+            var mv = new ModelAndView("officer/officer-candidates", model.asMap());
             return mv;
         } else {
             return new ModelAndView("redirect:/404");
