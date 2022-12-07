@@ -33,10 +33,7 @@
             </thead>
             <tbody>
             <tr th:each="candidate : ${candidates}">
-                <td>
-                    <a th:href="@{/candidate/candidate-profile/{id} (id=${candidate.id})}"
-                       th:text="${candidate.first_name}"></a>
-                </td>
+                <td  th:text="${candidate.first_name}">First Name</td>
                 <td th:text="${candidate.surname}">Surname</td>
                 <td th:text="${candidate.email}">Email</td>
                 <td th:text="${candidate.company_name}">Company Name</td>
