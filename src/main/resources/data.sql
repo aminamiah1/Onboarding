@@ -13,10 +13,10 @@ INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(3, 'Molly', 'Jacobsen', 'MJ@gmail.com', '$2a$12$NOK89HvHvh3ou.XBvE7KreC74YFy8wKl35WXE68OMzEHXBnuQ.EaO', 'JCB');
 
 INSERT INTO personal_information(CID, National_Insurance, Ethnicity, Gender, Age, Telephone_Number)
-VALUES(1, 'QQ123456A', 'White', 'Female', '48', '+441214960839');
+VALUES(1, 'QQ123456A', 'White', 'Woman', '48', '+441214960839');
 
 INSERT INTO personal_information(CID, National_insurance, Ethnicity, Gender, Age, Telephone_number)
-VALUES(2, 'QQ256225A', 'Asian', 'Male', '31', '+441164960799');
+VALUES(2, 'QQ256225A', 'Asian', 'Man', '31', '+441164960799');
 
 INSERT INTO personal_information(CID)
 VALUES(3);
@@ -28,10 +28,13 @@ INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
 VALUES(1, 1, 'Angela Mooring', '+447975777666');
 
 INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
-VALUES(2, 2, 'Katherine Hudson', '+442345666234');
+VALUES(2, 1, 'Brad Lewis', '+446532535353');
 
 INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
-VALUES(3, 2, 'Louise Johnson', '+443423454325');
+VALUES(3, 2, 'Katherine Hudson', '+442345666234');
+
+INSERT INTO candidate_references(ID, CID, Referee_Name, Referee_Phone_Number)
+VALUES(4, 2, 'Louise Johnson', '+443423454325');
 
 INSERT INTO applications(ID, App_Status, CID)
 VALUES(1, 'Ongoing', 1);
