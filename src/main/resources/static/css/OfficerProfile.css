@@ -53,6 +53,7 @@ p{
 label{
     color: white;
     padding-top: 1em;
+    font-size: larger;
 }
 
 .container *:after {
@@ -73,4 +74,14 @@ label{
 
 .submit{
     padding-top: 1em;
+}
+
+.profile-img{
+    width: 5em;
+    height: 5em;
+}
+
+h3{
+    text-align: center;
+    color: white;
 }

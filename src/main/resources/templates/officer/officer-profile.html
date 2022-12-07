@@ -19,15 +19,18 @@
         <div class="Profile">
             <div class="center-panel">
                 <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
-                <h2 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h2>
-                <h2 th:text="${officer.email}"></h2>
+                <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
+                <h3 th:text="${officer.email}"></h3>
+                <div class="submit">
+                    <input type="submit" class="btn btn-dark btn-gold" value=" View all candidates ">
+                </div>
             </div>
         </div>
         <div class="Table">
             <p>Table</p>
         </div>
         <div class="Panel">
-            <p>View candidates options</p>
+            <h3>Viewing options</h3>
             <div class="center-panel">
                 <label for="candidateSelect">Choose a candidate:</label>
                 <select name="candidateSelect" id="candidateSelect">
@@ -44,7 +47,7 @@
                     <option value="audi">Audi</option>
                 </select>
                 <div class="submit">
-                    <input type="submit" class="btn btn-dark btn-gold" value=" Submit ">
+                    <input type="submit" class="btn btn-dark btn-gold" value=" Update table ">
                 </div>
             </div>
         </div>
