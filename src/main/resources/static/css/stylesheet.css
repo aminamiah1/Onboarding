@@ -22,9 +22,10 @@ img.nav_logo {
 
 .contact {
     width: 100%;
-    height: 25%;
+    height: auto;
     align-content: center;
     display: block;
+    margin: 0;
 }
 
 body {
