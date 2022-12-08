@@ -11,8 +11,8 @@
 
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
 
+    <!-- Vetting Officer Navbar -->
 </head>
-
 <body id="body-pd">
 <div th:fragments="navbar">
     <nav class=navbar>
@@ -27,6 +27,10 @@
                             <i class="fa-solid fa-file"></i>
                             <span class="nav_name">References</span> </a>
 
+                        <a href="/officer/view-candidates" class="nav_link"> <!-- views all candidates -->
+                            <i class="fa-solid fa-file"></i>
+                            <span class="nav_name">Candidates</span> </a>
+
                         <a href="/officer/view-applications" class="nav_link">
                             <i class="fa-solid fa-file"></i>
                             <span class="nav_name">Applications</span> </a>
@@ -35,9 +39,6 @@
                             <i class="fa fa-fw fa-user"></i>
                             <span class="nav_name">Profile</span> </a>
 
-                        <a href="/officer/view-candidates" class="nav_link">
-                            <i class="fa-solid fa-file"></i>
-                            <span class="nav_name">Candidates</span> </a>
                     </div>
                 </div>
             </nav>
