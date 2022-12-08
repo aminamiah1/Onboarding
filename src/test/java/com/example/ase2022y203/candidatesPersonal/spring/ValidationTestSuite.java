@@ -2,6 +2,7 @@ package com.example.ase2022y203.candidatesPersonal.spring;
 
 
 
+import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalForm;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -129,4 +130,33 @@ public class ValidationTestSuite {
         assertTrue(violations.isEmpty());
     }
 
+    @Test
+    public void emptyEmailShouldReturnViolations() {
+
+        validatorFactory = Validation.buildDefaultValidatorFactory();
+        validator = validatorFactory.getValidator();
+        validatorFactory.close();
+        //Given the candidate gives the email in the incorrect format
+        RegistersForm registersForm = new RegistersForm();
+        registersForm.setEmail("");
+        //When they submit the form
+        Set<ConstraintViolation<RegistersForm>> violations = validator.validate(registersForm);
+        //Then there should be violations
+        assertFalse(violations.isEmpty());
+    }
+
+    @Test
+    public void nameShouldNotReturnViolations() {
+        validatorFactory = Validation.buildDefaultValidatorFactory();
+        validator = validatorFactory.getValidator();
+        validatorFactory.close();
+        //Given the candidate gives the email in the correct format
+        RegistersForm registersForm = new RegistersForm();
+        registersForm.setFirst_name("Kerry");
+        registersForm.setSurname("Malik");
+        //When they submit the form
+        Set<ConstraintViolation<RegistersForm>> violations = validator.validate(registersForm);
+        //Then there should be not violations
+        assertTrue(violations.isEmpty());
+    }
 }

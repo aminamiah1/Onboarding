@@ -51,4 +51,16 @@ public class GetCandidatesRealRepo {
         assertEquals("Terry", candidateResponse.get().getFirst_name());
     }
 
+    @Test
+    public void shouldGetAllCandidates() throws Exception {
+        //Given the number of candidates are 4
+        List<CandidateDTO> candidates;
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+        //When the candidates are retrieved
+        var candidateListResponse = candidateService.getCandidates(candidateListRequest);
+        //Then the size of the candidate list should be 4
+        assertEquals(4, candidateListResponse.getCandidates().size());
+    }
 }
