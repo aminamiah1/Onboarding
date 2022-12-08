@@ -76,17 +76,7 @@ public class CandidateController {
             return new ModelAndView("redirect:/404");
         }
     }
-    @GetMapping("all-candidates")
-    public ModelAndView getAllCandidates(Model model) {
-        CandidateListRequest candidateListRequest = CandidateListRequest
-                .of()
-                .build();
-        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
-        System.out.println(candidateListResponse.getCandidates());
-        model.addAttribute("candidates", candidateListResponse.getCandidates());
-        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
-        return mv;
-    }
+
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
         model.addAttribute("RegistersForm", new RegistersForm());
