@@ -2,12 +2,9 @@ package com.example.ase2022y203.candidateReferences.service;
 
 import com.example.ase2022y203.candidateReferences.data.CandidateReferencesRepository;
 import com.example.ase2022y203.candidateReferences.domain.CandidateReferences;
-import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
-import com.example.ase2022y203.candidateReferences.service.messages.DeleteRefResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,6 +58,15 @@ public class CandidateReferencesServiceImpl implements CandidateReferencesServic
                 referenceDTO.getReferee_phone_number()
         );
         candidateReferencesRepository.delete(deleteReference);
+    }
+
+    @Override
+    public List<CandidateReferences> getAllReferences() {
+        List<CandidateReferences> candidateReferences;
+
+        candidateReferences = candidateReferencesRepository.getReferences();
+
+        return candidateReferences;
     }
 
 

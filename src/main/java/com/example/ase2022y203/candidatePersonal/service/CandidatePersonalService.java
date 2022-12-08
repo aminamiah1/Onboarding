@@ -5,6 +5,7 @@ import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidateP
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersResponse;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CandidatePersonalService {
@@ -13,4 +14,6 @@ public interface CandidatePersonalService {
     SaveCandidatePersonalResponse process(SaveCandidatePersonalRequest newCandidatePersonalRequest);
 
     Optional<CandidatePersonalDTO> getCandidatePersonalByCID(Integer cid);
+
+    List<CandidatePersonalDTO> findAllPersonal();
 }

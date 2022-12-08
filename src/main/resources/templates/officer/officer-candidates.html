@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
-    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfile.css}" rel="stylesheet"/>
+    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfileTable.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/navbar3.0"></div>
@@ -19,23 +19,36 @@
     <div class="Profile">
         <div class="center-panel">
             <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
-            <h3 th:text="${admin.email}"></h3>
+            <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
+            <h3 th:text="${officer.email}"></h3>
         </div>
     </div>
     <div class="Table">
-        <p>Select a option</p>
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+            <th class="table-header">First Name</th>
+            <th class="table-header">Surname</th>
+            <th class="table-header">Email</th>
+            <th class="table-header">Company Name</th>
+            </thead>
+            <tbody>
+            <tr th:each="candidate : ${candidates}">
+                <td  th:text="${candidate.first_name}">First Name</td>
+                <td th:text="${candidate.surname}">Surname</td>
+                <td th:text="${candidate.email}">Email</td>
+                <td th:text="${candidate.company_name}">Company Name</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <div class="Panel">
-        <h3>Viewing Options</h3>
+        <h3>Viewing options</h3>
         <div class="center-panel">
             <div class="submit">
-                <a class="btn btn-dark btn-gold" href="/admin/view-candidates">View all candidates </a>
+                <a class="btn btn-dark btn-gold" href="/officer/view-candidates">View all candidates </a>
             </div>
             <div class="submit">
-                <a class="btn btn-dark btn-gold" href="/admin/view-details">View all details</a>
-            </div>
-            <div class="submit">
-                <a class="btn btn-dark btn-gold" href="/todo">Add vetting officer</a>
+                <a class="btn btn-dark btn-gold" href="/officer/view-details">View all details</a>
             </div>
         </div>
     </div>

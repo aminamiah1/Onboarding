@@ -8,6 +8,7 @@ import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalAssemb
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -24,6 +25,11 @@ public class CandidatePersonalRepositoryImpl implements CandidatePersonalReposit
     @Override
     public void save(PersonalInformation personalInformation){
         candidatePersonalJdbcRepo.save(personalInformation);
+    }
+
+    @Override
+    public List<PersonalInformation> findAll() {
+        return candidatePersonalJdbcRepo.findAll();
     }
 
 }

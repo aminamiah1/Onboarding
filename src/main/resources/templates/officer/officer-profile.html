@@ -15,25 +15,27 @@
 </head>
 <body>
     <div th:replace="fragments/navbar3.0"></div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="profile-info">
-                    <h2 class="page-text" th:text="'Welcome back: ' + ${officer.first_name} + ' ' + ${officer.surname}"></h2>
-                </div>
-                <div>
-                    <button onclick="location.href='/officer/view-candidates'">View candidates</button>
-                    <button onclick="location.href='/officer/view-references'">View references</button>
-                    <button onclick="location.href='/officer/view-applications'">View applications</button>
-                </div>
-            </div>
-            <div class="col-md-6">
+    <div class="container">
+        <div class="Profile">
+            <div class="center-panel">
+                <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
+                <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
+                <h3 th:text="${officer.email}"></h3>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
+        <div class="Table">
+            <p>Select a option</p>
+        </div>
+        <div class="Panel">
+            <h3>Viewing Options</h3>
+            <div class="center-panel">
+                <div class="submit">
+                    <a class="btn btn-dark btn-gold" href="/officer/view-candidates">View all candidates </a>
+                </div>
+                <div class="submit">
+                    <a class="btn btn-dark btn-gold" href="/officer/view-details">View all details</a>
+                </div>
             </div>
         </div>
     </div>
-
 </body>

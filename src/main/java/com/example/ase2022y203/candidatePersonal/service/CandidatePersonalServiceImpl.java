@@ -1,5 +1,7 @@
 package com.example.ase2022y203.candidatePersonal.service;
 
+import com.example.ase2022y203.candidate.domain.Candidate;
+import com.example.ase2022y203.candidate.service.CandidateAssembler;
 import com.example.ase2022y203.candidatePersonal.data.CandidatePersonalRepository;
 import com.example.ase2022y203.candidatePersonal.domain.PersonalInformation;
 import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidatePersonalRequest;
@@ -8,6 +10,7 @@ import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidat
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersResponse;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -66,5 +69,11 @@ public class CandidatePersonalServiceImpl implements CandidatePersonalService{
         } else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<CandidatePersonalDTO> findAllPersonal() {
+        List<PersonalInformation> allPersonal = candidatePersonalRepository.findAll();
+        return CandidatePersonalAssembler.toDto(allPersonal);
     }
 }

@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
-    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfile.css}" rel="stylesheet"/>
+    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfileTable.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/navbar3.0"></div>
@@ -23,10 +23,31 @@
         </div>
     </div>
     <div class="Table">
-        <p>Select a option</p>
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+            <th class="table-header">First Name</th>
+            <th class="table-header">Surname</th>
+            <th class="table-header">NI Number</th>
+            <th class="table-header">Ethnicity</th>
+            <th class="table-header">Gender</th>
+            <th class="table-header">Age</th>
+            <th class="table-header">Telephone Number</th>
+            </thead>
+            <tbody>
+            <tr th:each="candidate, iterStat : ${candidates}">
+                <td th:text="${candidate.first_name}">First Name</td>
+                <td th:text="${candidate.surname}">Surname</td>
+                <td th:text="${candidatePersonal[__${iterStat.index}__].national_insurance}">National Insurance</td>
+                <td th:text="${candidatePersonal[__${iterStat.index}__].ethnicity}">Ethnicity</td>
+                <td th:text="${candidatePersonal[__${iterStat.index}__].gender}">Gender</td>
+                <td th:text="${candidatePersonal[__${iterStat.index}__].age}">Age</td>
+                <td th:text="${candidatePersonal[__${iterStat.index}__].telephone_number}">Telephone Number</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <div class="Panel">
-        <h3>Viewing Options</h3>
+        <h3>Viewing options</h3>
         <div class="center-panel">
             <div class="submit">
                 <a class="btn btn-dark btn-gold" href="/admin/view-candidates">View all candidates </a>
