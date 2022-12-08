@@ -110,26 +110,35 @@ public class VettingOfficerController {
     }
 
     @GetMapping("all-officers")
-    public ModelAndView getOfficers(Model model) {
-        OfficersListRequest officersListRequest = OfficersListRequest
-                .of()
-                .build();
-        OfficersListResponse officersListResponse = vettingOfficersService.getOfficers(officersListRequest);
-        System.out.println(officersListResponse.getOfficersDTOS());
-        model.addAttribute("officers", officersListResponse.getOfficersDTOS());
-        var mv = new ModelAndView("officer/all-officers", model.asMap());
-        return mv;
+    public ModelAndView getOfficers(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            OfficersListRequest officersListRequest = OfficersListRequest
+                    .of()
+                    .build();
+            OfficersListResponse officersListResponse = vettingOfficersService.getOfficers(officersListRequest);
+            System.out.println(officersListResponse.getOfficersDTOS());
+            model.addAttribute("officers", officersListResponse.getOfficersDTOS());
+            var mv = new ModelAndView("officer/all-officers", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
     }
 
-    @GetMapping("addOfficer")
-    public ModelAndView getNewOfficers(Model model) {
-        model.addAttribute("VettingOfficerForm", new VettingOfficerForm());
-        var mv = new ModelAndView("admin/addOfficers", model.asMap());
-        return mv;
+    @GetMapping("add")
+    public ModelAndView getNewOfficers(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            model.addAttribute("VettingOfficerForm", new VettingOfficerForm());
+            var mv = new ModelAndView("admin/addOfficers", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
     }
 
     @PostMapping("saveNewOfficers")
-    public ModelAndView postNewOfficers(@Valid @ModelAttribute("VettingOfficerForm") VettingOfficerForm officerForm, BindingResult bindingResult, Model model) {
+    public ModelAndView postNewOfficers(@Valid @ModelAttribute("VettingOfficerForm") VettingOfficerForm
+                                                officerForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(System.out::println);
             model.addAttribute("VettingOfficerForm", officerForm);
