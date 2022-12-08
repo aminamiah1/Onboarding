@@ -56,27 +56,27 @@ public class CandidateController {
         var candidateRefListResponse =  candidateReferencesService
                 .getCandidateReferencesByCID(candidateRefListRequest.getCid());
 
-        if (candidate.isPresent()) {
+        if (candidate.isPresent() & candidatePersonal.get().getAge() != null &
+                candidatePersonal.get().getEthnicity() != null
+              & candidatePersonal.get().getGender() != null
+              & candidatePersonal.get().getNational_insurance() != null
+              & candidatePersonal.get().getTelephone_number() != null) {
             model.addAttribute("candidate", candidate.get());
             model.addAttribute("candidatePersonal", candidatePersonal.get());
             model.addAttribute("references", candidateRefListResponse);
             var mv = new ModelAndView("candidate/candidate-profile", model.asMap());
             return mv;
+        } else if(candidate.isPresent() & candidatePersonal.get().getAge() == null
+          & candidatePersonal.get().getGender() == null
+          & candidatePersonal.get().getEthnicity() == null
+          & candidatePersonal.get().getTelephone_number() == null
+          & candidatePersonal.get().getNational_insurance() == null) {
+            return new ModelAndView("redirect:/personal/edit");
         } else {
             return new ModelAndView("redirect:/404");
         }
     }
-    @GetMapping("all-candidates")
-    public ModelAndView getAllCandidates(Model model) {
-        CandidateListRequest candidateListRequest = CandidateListRequest
-                .of()
-                .build();
-        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
-        System.out.println(candidateListResponse.getCandidates());
-        model.addAttribute("candidates", candidateListResponse.getCandidates());
-        var mv = new ModelAndView("candidate/all-candidates", model.asMap());
-        return mv;
-    }
+
     @GetMapping("add")
     public ModelAndView getNewRegisters(Model model) {
         model.addAttribute("RegistersForm", new RegistersForm());

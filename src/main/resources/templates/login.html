@@ -8,12 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link href="/CSS/stylesheet.css" th:href="@{CSS}" rel="stylesheet"/>
+    <link href="/css/stylesheet.css" th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
 <body class="login-background" style="background-color: floralwhite">
 <div>
     <div th:replace="fragments/navbar"></div>
-</div>
+    <main>
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
@@ -28,35 +28,37 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Login Form</h2>
+                        <h2 class="text-center">Login</h2>
                     </div>
-                    <div class="card-body">
-                        <form method="post" role="form" th:action="@{/login}" class="form-horizontal">
+                        <div class="card-body">
+                            <form method="post" role="form" th:action="@{/login}" class="form-horizontal">
 
-                            <div class="form-group mb-3">
-                                <label class="control-label" for="username">Email</label>
-                                <input type="text" id="username" name="username" class="form-control"
-                                       placeholder="Enter email address"/>
-                            </div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label" for="username"></label>
+                                    <input type="text" id="username" name="username" class="form-control"
+                                        placeholder="Enter email address"/>
+                                </div>
 
-                            <div class="form-group mb-3">
-                                <label class="control-label" for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control"
-                                       placeholder="Enter password"/>
-                            </div>
+                                <div class="form-group mb-3">
+                                    <label class="control-label" for="password"></label>
+                                    <input type="password" id="password" name="password" class="form-control"
+                                        placeholder="Enter password"/>
+                                </div>
 
-                            <div class="form-group mb-3">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <span> Not registered?
-                                    <a th:href="@{/candidate/add}">Sign up here</a>
-                                </span>
-                            </div>
+                                <div class="submit-sec">
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <span class="center-text"> Not registered?
+                                        <a th:href="@{/candidate/add}">Sign up here</a>
+                                    </span>
+                                </div>
 
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
+</div>
 </body>
 </html>
