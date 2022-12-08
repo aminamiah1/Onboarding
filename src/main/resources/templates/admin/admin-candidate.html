@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Candidate Profile</title>
+    <link th:href="@{/CSS/ProfilePage.css}" rel="stylesheet"/>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          rel="stylesheet">
+    <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/navbar3.0"></div>
+<div class="container">
+    <div class="Profile-Overview">
+        <div class="Profile-Overview-Title">
+            <h2>Profile Overview</h2>
+        </div>
+        <div class="Profile--Bar">
+            <table>
+                <tbody class="profile-bar-table">
+                <tr>
+                    <th class="profile-image-holder">
+                        <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
+                    </th>
+                    <th>
+                        <p class="table-text">Name:</p>
+                        <p class="table-text table-text-left" th:text="${candidate.first_name} + ' ' + ${candidate.surname}">
+                        </p>
+                    </th>
+                    <th>
+                        <p class="table-text">Contact:</p>
+                        <p class="table-text table-text-left" th:text="${candidatePersonal.telephone_number}"></p>
+                    </th>
+                    <th>
+                        <p class="table-text">Unique ID:</p>
+                        <p class="table-text table-text-left" th:text="${candidate.id}"></p>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="Personal-Details">
+        <table class="personal-table">
+            <tbody class="profile-bar-table">
+            <tr>
+                <th>
+                    <h5>Personal Details</h5>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">National Insurance Number:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.national_insurance}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Ethnicity:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.ethnicity}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Gender:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.gender}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Age:</p>
+                    <p class="table-text table-text-left" th:text="*{candidatePersonal.age}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Company Name:</p>
+                    <p class="table-text table-text-left" th:text="*{candidate.company_name}"></p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p class="table-text">Email:</p>
+                    <p class="table-text table-text-left" th:text="*{candidate.email}"></p>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="References">
+        <h4 th:if="${references.size() == 0}">They have no references</h4>
+        <table class="table table-bordered table-striped references-table" th:if="${references.size() >= 1}">
+            <thead>
+            <tr>
+                <th class="table-header">Referee Name</th>
+                <th class="table-header">Referee Telephone Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reference, iterStat: ${references}">
+                <td>
+                    <p th:text="${reference.referee_name}"></p>
+                </td>
+                <td>
+                    <p th:text="${reference.referee_phone_number}"></p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/admin/view-candidates}" class="btn btn-dark btn-gold">Back to dashboard</a>
+    </div>
+</div>
+</body>
+</html>

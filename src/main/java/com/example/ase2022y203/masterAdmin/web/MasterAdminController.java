@@ -1,18 +1,20 @@
 package com.example.ase2022y203.masterAdmin.web;
 
+import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
+import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminDTO;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminService;
-import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,10 +32,13 @@ public class MasterAdminController {
 
     private final CandidatePersonalService candidatePersonalService;
 
-    public MasterAdminController(MasterAdminService masterAdminService, CandidateService candidateService, CandidatePersonalService candidatePersonalService) {
+    private final CandidateReferencesService candidateReferencesService;
+
+    public MasterAdminController(MasterAdminService masterAdminService, CandidateService candidateService, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService) {
         this.masterAdminService = masterAdminService;
         this.candidateService = candidateService;
         this.candidatePersonalService = candidatePersonalService;
+        this.candidateReferencesService = candidateReferencesService;
     }
 
     @GetMapping("admin-profile")
@@ -89,6 +94,27 @@ public class MasterAdminController {
             model.addAttribute("admin", masterAdmin.get());
             var mv = new ModelAndView("admin/admin-candidates", model.asMap());
             return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("view-profile/{id}")
+    public ModelAndView getCandidate(@PathVariable Integer id, Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(id);
+            Optional<CandidatePersonalDTO> candidatePersonal = candidatePersonalService.getCandidatePersonalByCID(id);
+            var candidateRefListResponse =  candidateReferencesService
+                    .getCandidateReferencesByCID(id);
+            if (candidate.isPresent()) {
+                model.addAttribute("candidate", candidate.get());
+                model.addAttribute("candidatePersonal", candidatePersonal.get());
+                model.addAttribute("references", candidateRefListResponse);
+                var mv = new ModelAndView("admin/admin-candidate", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
         } else {
             return new ModelAndView("redirect:/404");
         }
