@@ -8,6 +8,7 @@ import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
+import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -100,5 +101,4 @@ public class VettingOfficerController {
             return new ModelAndView("redirect:/404");
         }
     }
-
 }

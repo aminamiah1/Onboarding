@@ -78,4 +78,21 @@ public class GetCandidatesMockRepo {
         assertEquals("Karen", candidateResponse.get().getFirst_name());
     }
 
+    @Test
+    public void shouldGetAllCandidates() throws Exception {
+        //Given that there are 2 candidates
+        Candidate c1 = new Candidate(1, "Karen", "Long", "KL@gmail.com",
+                "KLPass@123", "Admiral");
+        Candidate c2 = new Candidate(2, "Michael", "Shell", "MS@gmail.com",
+                "MSPass@123", "Alacrity");
+        given(candidateRepository.getCandidates()).willReturn(List.of(c1, c2));
+        List<CandidateDTO> candidates;
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+        //When the candidates are retrieved
+        var candidateListResponse = candidateService.getCandidates(candidateListRequest);
+        //Then the size of the candidate list should be 2
+        assertEquals(2, candidateListResponse.getCandidates().size());
+    }
 }
