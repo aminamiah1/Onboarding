@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/4758d798c2.js" crossorigin="anonymous"></script>
 
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link href="/CSS/SmallerImageNav.css" th:href="@{/CSS/SmallerImageNav.css}" rel="stylesheet"/>
 
     <!-- Master Admin's navbar -->
 </head>
@@ -21,17 +22,13 @@
                     <a href="/index" class="nav_logo">
                         <img src="/images/logo.JPG" th:src="@{/images/logo.JPG}" alt="logo"> </a>
 
-                        <a href="/officer/view-candidates" class="nav_link">
-                            <i class="fa-solid fa-file"></i>
-                            <span class="nav_name">Candidates</span> </a>
-
                         <a href="/admin/admin-profile" class="nav_link">
                             <i class="fa fa-fw fa-user"></i>
                             <span class="nav_name">Profile</span> </a>
 
-                        <a href="/admin/add-officer" class="nav_link">
-                            <i class="fa-solid fa-file"></i>
-                            <span class="nav_name">Add Officer</span> </a>
+                        <a th:href="@{/logout}" class="nav_link">
+                            <i class="fa fa-sign-out"></i>
+                            <span class="nav_name">Log out</span> </a>
                     </div>
                 </div>
             </nav>
