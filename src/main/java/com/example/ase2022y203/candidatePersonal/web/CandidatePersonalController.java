@@ -9,7 +9,6 @@ import com.example.ase2022y203.candidatePersonal.service.messages.SaveCandidateP
 import com.example.ase2022y203.candidatePersonal.service.messages.SingleCandidatePersonalRequest;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalForm;
 import com.example.ase2022y203.candidatePersonal.web.forms.CandidatePersonalFormAssembler;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Optional;
 
 @Controller
@@ -95,7 +93,7 @@ public class CandidatePersonalController {
             CandidatePersonalDTO candidatePersonalDTO = new CandidatePersonalDTO(
                     newCandidatePersonal.getId(), newCandidatePersonal.getC_id(),
                     newCandidatePersonal.getNational_insurance(), newCandidatePersonal.getEthnicity(),
-                    newCandidatePersonal.getGender(), newCandidatePersonal.getAge(), newCandidatePersonal.getSexuality());
+                    newCandidatePersonal.getGender(), newCandidatePersonal.getAge(), newCandidatePersonal.getTelephone_number());
 
             SaveCandidatePersonalRequest saveCandidatePersonalRequest = SaveCandidatePersonalRequest.of()
                     .candidatePersonalDTO(candidatePersonalDTO).build();

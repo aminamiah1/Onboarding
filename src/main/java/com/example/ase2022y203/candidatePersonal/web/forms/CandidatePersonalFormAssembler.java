@@ -6,6 +6,6 @@ public class CandidatePersonalFormAssembler {
     public static CandidatePersonalForm toCandidatePersonalForm(CandidatePersonalDTO candidatePersonalDTO) {
         return new CandidatePersonalForm(candidatePersonalDTO.getId(),candidatePersonalDTO.getC_id(), candidatePersonalDTO.getNational_insurance(),
                 candidatePersonalDTO.getGender(), candidatePersonalDTO.getEthnicity(),
-                candidatePersonalDTO.getAge(), candidatePersonalDTO.getSexuality());
+                candidatePersonalDTO.getAge(), candidatePersonalDTO.getTelephone_number());
     }
 }

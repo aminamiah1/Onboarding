@@ -1,0 +1,41 @@
+.form-control:focus {
+    border-color: #ffffff;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(203, 173, 12, 0.6);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+.container{
+    background-color: black;
+    padding: 1em;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+    width: 520px;
+}
+
+#body-pd{
+    background-color: white;
+}
+
+.btn-dark{
+    background-color: darkgoldenrod; !important;
+    color: white !important;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+}
+
+h3{
+    color: white;
+}
+
+small{
+    color: white !important;
+}
+
+label{
+    color: white;
+}
+

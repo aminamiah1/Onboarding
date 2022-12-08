@@ -40,34 +40,6 @@ public class CandidateReferencesController {
         this.candidateReferencesService = candidateReferencesService;
     }
 
-    @GetMapping("reference-portal")
-    public ModelAndView getReferences(Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipleEmail  = authentication.getName();
-
-        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
-
-        List<CandidateReferencesDTO> candidateReferencesDTOS;
-
-        CandidateRefListRequest candidateRefListRequest = CandidateRefListRequest
-                .of()
-                .cid(candidate.get().getId())
-                .build();
-
-        var candidateRefListResponse =  candidateReferencesService
-                .getCandidateReferencesByCID(candidateRefListRequest.getCid());
-
-        if (candidate.isPresent()) {
-            model.addAttribute("candidate", candidate.get());
-            model.addAttribute("references", candidateRefListResponse);
-            var mv = new ModelAndView("references/references-portal", model.asMap());
-            return mv;
-        } else {
-            return new ModelAndView("redirect:/404");
-        }
-
-    }
 
     @GetMapping("/add")
     public ModelAndView getNewReference(Model model){
@@ -108,7 +80,7 @@ public class CandidateReferencesController {
                 return new ModelAndView("references/referenceForm", model.asMap());
             }
 
-            return new ModelAndView("redirect:/reference/reference-portal");
+            return new ModelAndView("redirect:/candidate/candidate-profile");
         }
     }
 
@@ -166,7 +138,7 @@ public class CandidateReferencesController {
         } else{
 
         }
-        var mv = new ModelAndView("redirect:/reference/reference-portal", model.asMap());
+        var mv = new ModelAndView("redirect:/candidate/candidate-profile", model.asMap());
         return mv;
     }
 
@@ -199,7 +171,7 @@ public class CandidateReferencesController {
                 return new ModelAndView("references/editReferenceForm", model.asMap());
             }
 
-            return new ModelAndView("redirect:/reference/reference-portal");
+            return new ModelAndView("redirect:/candidate/candidate-profile");
         }
     }
 

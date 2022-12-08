@@ -12,11 +12,11 @@ VALUES(2, 'Terry', 'Houston', 'TH@gmail.com', '$2a$12$KONcg/S5POa162hjUWH0I.p6SR
 INSERT INTO candidates(ID, First_Name, Surname, Email, Password, Company_Name)
 VALUES(3, 'Molly', 'Jacobsen', 'MJ@gmail.com', '$2a$12$NOK89HvHvh3ou.XBvE7KreC74YFy8wKl35WXE68OMzEHXBnuQ.EaO', 'JCB');
 
-INSERT INTO personal_information(CID, national_insurance, ethnicity, gender, age, sexuality)
-VALUES(1, 'QQ123456A', 'White', 'Female', '48', 'heterosexual');
+INSERT INTO personal_information(CID, National_Insurance, Ethnicity, Gender, Age, Telephone_Number)
+VALUES(1, 'QQ123456A', 'White', 'Female', '48', '+441214960839');
 
-INSERT INTO personal_information(CID, national_insurance, ethnicity, gender, age, sexuality)
-VALUES(2, 'QQ256225A', 'Asian', 'Male', '31', 'homosexual');
+INSERT INTO personal_information(CID, National_insurance, Ethnicity, Gender, Age, Telephone_number)
+VALUES(2, 'QQ256225A', 'Asian', 'Male', '31', '+441164960799');
 
 INSERT INTO personal_information(CID)
 VALUES(3);
