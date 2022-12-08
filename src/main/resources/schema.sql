@@ -117,6 +117,19 @@ SELECT @@port;
 
 SHOW VARIABLES WHERE Variable_name = 'hostname';
 
+SELECT @@hostname;
+
+SELECT CONNECTION_ID();
+
+USE mysql;
+
+SHOW tables;
+
+SELECT * FROM user; -- user table accepts and rejects a connection from a host --
+SELECT * FROM db; -- contains database level privileges --
+SELECT * FROM tables_priv;
+SELECT * FROM columns_priv;
+SELECT * FROM procs_priv;
 
 SELECT user(); -- checks the current user --
 

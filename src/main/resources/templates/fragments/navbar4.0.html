@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +10,8 @@
 
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
 
+    <!-- Master Admin's navbar -->
 </head>
-
 <body id="body-pd">
 <div th:fragments="navbar">
     <nav class=navbar>
@@ -21,15 +20,6 @@
                 <div>
                     <a href="/index" class="nav_logo">
                         <img src="/images/logo.JPG" th:src="@{/images/logo.JPG}" alt="logo"> </a>
-
-                    <div class="nav_list">
-                        <a href="/officer/view-applications" class="nav_link active">
-                            <i class="fa-solid fa-file"></i>
-                            <span class="nav_name">Applications</span> </a>
-
-                        <a href="/officer/view-references" class="nav_link active">
-                            <i class="fa-solid fa-file"></i>
-                            <span class="nav_name">References</span> </a>
 
                         <a href="/officer/view-candidates" class="nav_link">
                             <i class="fa-solid fa-file"></i>
