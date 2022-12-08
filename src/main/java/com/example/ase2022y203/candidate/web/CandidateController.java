@@ -56,13 +56,21 @@ public class CandidateController {
         var candidateRefListResponse =  candidateReferencesService
                 .getCandidateReferencesByCID(candidateRefListRequest.getCid());
 
-        if (candidate.isPresent() & candidatePersonal.get().getAge() != null) {
+        if (candidate.isPresent() & candidatePersonal.get().getAge() != null &
+                candidatePersonal.get().getEthnicity() != null
+              & candidatePersonal.get().getGender() != null
+              & candidatePersonal.get().getNational_insurance() != null
+              & candidatePersonal.get().getTelephone_number() != null) {
             model.addAttribute("candidate", candidate.get());
             model.addAttribute("candidatePersonal", candidatePersonal.get());
             model.addAttribute("references", candidateRefListResponse);
             var mv = new ModelAndView("candidate/candidate-profile", model.asMap());
             return mv;
-        } else if(candidate.isPresent() & candidatePersonal.get().getAge() == null) {
+        } else if(candidate.isPresent() & candidatePersonal.get().getAge() == null
+          & candidatePersonal.get().getGender() == null
+          & candidatePersonal.get().getEthnicity() == null
+          & candidatePersonal.get().getTelephone_number() == null
+          & candidatePersonal.get().getNational_insurance() == null) {
             return new ModelAndView("redirect:/personal/edit");
         } else {
             return new ModelAndView("redirect:/404");
