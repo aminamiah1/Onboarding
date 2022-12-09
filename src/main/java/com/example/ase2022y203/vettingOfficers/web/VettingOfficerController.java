@@ -185,4 +185,21 @@ public class VettingOfficerController {
         }
     }
 
+    @GetMapping("view-applications")
+    public ModelAndView getApplicationDashboard(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+
+        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+        if (vettingOfficer.isPresent()) {
+            model.addAttribute("officer", vettingOfficer.get());
+            var mv = new ModelAndView("officer/officer-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
 }
