@@ -76,6 +76,11 @@ label{
 .profile-img{
     width: 5em;
     height: 5em;
+    position: relative;
+}
+
+.center-panel{
+    text-align: center;
 }
 
 h3{
