@@ -313,7 +313,7 @@ public class VettingOfficerController {
                 var applicationDTO = application.get();
                 ApplicationsForm applicationsForm = ApplicationsFormAssembler.toApplicationsForm(applicationDTO);
                 model.addAttribute("vettingOfficer", vettingOfficer.get());
-                model.addAttribute("app", application.get());
+                model.addAttribute("app", applicationDTO);
                 model.addAttribute("applicationsForm", applicationsForm);
                 var mv = new ModelAndView("officer/officer-edit-status", model.asMap());
                 return mv;
@@ -323,6 +323,41 @@ public class VettingOfficerController {
 
         } else {
             return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @PostMapping("savestatus/{id}")
+    public ModelAndView saveApplicationStatus(@Valid @ModelAttribute("applicationsForm") ApplicationsForm applicationsForm
+    , BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> id) {
+        if(bindingResult.hasErrors()) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+            var applicationDTO = application.get();
+
+            model.addAttribute("vettingOfficer", vettingOfficer.get());
+            model.addAttribute("app", applicationDTO);
+            model.addAttribute("applicationsForm", applicationsForm);
+
+            return new ModelAndView("officer/officer-edit-status", model.asMap());
+        } else {
+            ApplicationsDTO applicationsDTO = new ApplicationsDTO(
+                    applicationsForm.getId(), applicationsForm.getAppstatus(), applicationsForm.getCid()
+            );
+
+            try{
+                applicationsService.updateStatus(applicationsDTO);
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                model.addAttribute("app", applicationsDTO);
+                model.addAttribute("ApplicationsForm", applicationsForm);
+                return new ModelAndView("officer/officer-edit-status", model.asMap());
+            }
+
+            var mv = new ModelAndView("redirect:/officer/all-applications");
+            return mv;
         }
     }
 

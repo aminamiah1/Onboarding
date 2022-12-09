@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-    <link href="/CSS/stylesheet.css" th:href="@{CSS}" rel="stylesheet"/>
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link href="/CSS/Personal.css" th:href="@{/CSS/Personal.css}" rel="stylesheet"/>
 </head>
@@ -21,7 +21,7 @@
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form th:action="@{/officer/savestatus/{id} (id=${app.id})}" th:object="${applicationsForm}"
+                <form th:action="@{/officer/savestatus/{id} (id=${applicationsForm.id})}" th:object="${applicationsForm}"
                       th:method="post">
                     <div class="row">
 
@@ -29,8 +29,8 @@
                         <input type="hidden" id="cid" th:field="*{cid}">
 
                         <div class="form-group col-md-8">
-                            <label for="app_status" class="col-form-label">Application Status</label>
-                            <select class="form-control" id="app_status" name="app_status" required>
+                            <label for="appstatus" class="col-form-label">Application Status</label>
+                            <select class="form-control" id="appstatus" name="appstatus" required>
                                 <option value="">Select Application Status</option>
                                 <option value="Pending" th:field="*{appstatus}">Pending</option>
                                 <option value="Approved" th:field="*{appstatus}">Approved</option>

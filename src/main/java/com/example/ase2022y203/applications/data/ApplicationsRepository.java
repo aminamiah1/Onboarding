@@ -11,4 +11,6 @@ public interface ApplicationsRepository {
     List<Applications> getDeniedApplications();
     List<Applications> getApprovedApplications();
     Optional<Applications> findApplicationById(Optional<Integer> id);
+    void save(Applications newApplications);
+    void updateStatus(Applications newApplications);
 }

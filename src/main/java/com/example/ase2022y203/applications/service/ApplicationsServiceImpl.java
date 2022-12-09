@@ -90,4 +90,24 @@ public class ApplicationsServiceImpl implements ApplicationsService {
             return Optional.empty();
         }
     }
+
+    @Override
+    public void save(ApplicationsDTO applicationsDTO) {
+        Applications newApplications = new Applications(
+                applicationsDTO.getId(),
+                applicationsDTO.getAppstatus(),
+                applicationsDTO.getCid()
+        );
+        applicationsRepository.save(newApplications);
+    }
+
+    @Override
+    public void updateStatus(ApplicationsDTO applicationsDTO) {
+        Applications newApplications = new Applications(
+                applicationsDTO.getId(),
+                applicationsDTO.getAppstatus(),
+                applicationsDTO.getCid()
+        );
+        applicationsRepository.updateStatus(newApplications);
+    }
 }

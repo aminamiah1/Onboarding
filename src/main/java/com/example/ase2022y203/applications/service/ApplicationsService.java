@@ -11,4 +11,6 @@ public interface ApplicationsService {
     ApplicationsListResponse getDeniedApplications(ApplicationsListRequest applicationsListRequest);
     ApplicationsListResponse getApprovedApplications(ApplicationsListRequest applicationsListRequest);
     Optional<ApplicationsDTO> getApplicationByID(Optional<Integer> id);
+    void save(ApplicationsDTO applicationsDTO);
+    void updateStatus(ApplicationsDTO applicationsDTO);
 }
