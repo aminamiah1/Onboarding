@@ -32,7 +32,10 @@
             </thead>
             <tbody>
             <tr th:each="candidate : ${candidates}">
-                <td  th:text="${candidate.first_name}">First Name</td>
+                <td>
+                    <a th:href="@{/admin/view-profile/{id} (id=${candidate.id})}"
+                       th:text="${candidate.first_name}"></a>
+                </td>
                 <td th:text="${candidate.surname}">Surname</td>
                 <td th:text="${candidate.email}">Email</td>
                 <td th:text="${candidate.company_name}">Company Name</td>
@@ -50,7 +53,10 @@
                 <a class="btn btn-dark btn-gold" href="/admin/view-details">View all details</a>
             </div>
             <div class="submit">
-                <a class="btn btn-dark btn-gold" href="/todo">Add vetting officer</a>
+                <a class="btn btn-dark btn-gold" href="/officer/add">Add vetting officer</a>
+            </div>
+            <div class="submit">
+                <p>Click on a candidate's first name to visit their profile</p>
             </div>
         </div>
     </div>

@@ -1,11 +1,14 @@
 package com.example.ase2022y203.vettingOfficers.web;
 
 
+import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
+import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
+import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
@@ -17,10 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,10 +37,13 @@ public class VettingOfficerController {
 
     private final CandidatePersonalService candidatePersonalService;
 
-    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService) {
+    private final CandidateReferencesService candidateReferencesService;
+
+    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService) {
         this.candidateService = candidateService;
         this.vettingOfficersService = vos;
         this.candidatePersonalService = candidatePersonalService;
+        this.candidateReferencesService = candidateReferencesService;
     }
 
     @GetMapping("officer-profile")
@@ -160,4 +163,26 @@ public class VettingOfficerController {
             return mv;
         }
     }
+
+    @GetMapping("view-profile/{id}")
+    public ModelAndView getCandidate(@PathVariable Integer id, Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(id);
+            Optional<CandidatePersonalDTO> candidatePersonal = candidatePersonalService.getCandidatePersonalByCID(id);
+            var candidateRefListResponse = candidateReferencesService
+                    .getCandidateReferencesByCID(id);
+            if (candidate.isPresent()) {
+                model.addAttribute("candidate", candidate.get());
+                model.addAttribute("candidatePersonal", candidatePersonal.get());
+                model.addAttribute("references", candidateRefListResponse);
+                var mv = new ModelAndView("officer/officer-candidate", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
 }
