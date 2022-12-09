@@ -1,6 +1,10 @@
 package com.example.ase2022y203.vettingOfficers.web;
 
 
+import com.example.ase2022y203.applications.service.ApplicationsDTO;
+import com.example.ase2022y203.applications.service.ApplicationsService;
+import com.example.ase2022y203.applications.service.messages.ApplicationsListRequest;
+import com.example.ase2022y203.applications.service.messages.ApplicationsListResponse;
 import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
@@ -8,7 +12,6 @@ import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
-import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
@@ -39,11 +42,14 @@ public class VettingOfficerController {
 
     private final CandidateReferencesService candidateReferencesService;
 
-    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService) {
+    private final ApplicationsService applicationsService;
+
+    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService, ApplicationsService applicationsService) {
         this.candidateService = candidateService;
         this.vettingOfficersService = vos;
         this.candidatePersonalService = candidatePersonalService;
         this.candidateReferencesService = candidateReferencesService;
+        this.applicationsService = applicationsService;
     }
 
     @GetMapping("officer-profile")
@@ -215,7 +221,12 @@ public class VettingOfficerController {
         CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
         model.addAttribute("candidates", candidateListResponse.getCandidates());
 
-        Optional<ApplicationsDTO> applications =
+        ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                .of()
+                .build();
+        ApplicationsListResponse applicationsListResponse = applicationsService.getApplications(applicationsListRequest);
+        model.addAttribute("applications", applicationsListResponse);
+
 
     }
 
