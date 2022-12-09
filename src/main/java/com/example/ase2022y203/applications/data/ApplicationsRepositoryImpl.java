@@ -4,6 +4,7 @@ import com.example.ase2022y203.applications.domain.Applications;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
@@ -31,5 +32,10 @@ public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
     @Override
     public List<Applications> getApprovedApplications() {
         return applicationsRepoJDBC.findAllByAppstatusLike("approved");
+    }
+
+    @Override
+    public Optional<Applications> findApplicationById(Optional<Integer> id) {
+        return applicationsRepoJDBC.findById(id);
     }
 }

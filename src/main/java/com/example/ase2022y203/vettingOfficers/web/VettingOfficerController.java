@@ -296,4 +296,21 @@ public class VettingOfficerController {
         }
     }
 
+    @GetMapping("edit/{id}")
+    public ModelAndView getApplicationStatusForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request){
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+            model.addAttribute("app", application.get());
+
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
 }

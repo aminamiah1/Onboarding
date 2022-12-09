@@ -7,6 +7,7 @@ import com.example.ase2022y203.applications.service.messages.ApplicationsListRes
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApplicationsServiceImpl implements ApplicationsService {
@@ -78,5 +79,15 @@ public class ApplicationsServiceImpl implements ApplicationsService {
                 .request(applicationsListRequest)
                 .applications(applications)
                 .build();
+    }
+
+    @Override
+    public Optional<ApplicationsDTO> getApplicationByID(Optional<Integer> id) {
+        Optional<Applications> aApplication = applicationsRepository.findApplicationById(id);
+        if(aApplication.isPresent()){
+            return Optional.of(ApplicationsAssembler.toDto(aApplication.get()));
+        } else {
+            return Optional.empty();
+        }
     }
 }

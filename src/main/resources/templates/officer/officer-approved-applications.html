@@ -42,10 +42,10 @@
                 </td>
                 <td th:text="${app.appstatus}">Application Status</td>
                 <td>
-                    <a th:href="@{/officer/editstatus/{id} (id=${application.id})}" class="btn btn-dark btn-gold">Change status</a>
+                    <a th:href="@{/officer/editstatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Change status</a>
                 </td>
                 <td>
-                    <a th:href="@{/officer/deletestatus/{id} (id=${application.id})}" class="btn btn-dark btn-gold">Delete application</a>
+                    <a th:href="@{/officer/deletestatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Delete application</a>
                 </td>
             </tr>
             </tbody>
