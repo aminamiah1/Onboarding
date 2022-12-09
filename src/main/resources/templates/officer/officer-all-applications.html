@@ -31,6 +31,8 @@
     <thead>
       <th class="table-header">Candidate's Name</th>
       <th class="table-header">Application Status</th>
+      <th class="table-header">Change Application Status</th>
+      <th class="table-header">Delete Application</th>
     </thead>
     <tbody>
     <tr th:each="app : ${applications}">
@@ -39,6 +41,12 @@
            th:text="${app.cid.first_name} + ' ' + ${app.cid.surname}"></a>
       </td>
       <td th:text="${app.appstatus}">Application Status</td>
+      <td>
+        <a th:href="@{/officer/editstatus/{id} (id=${application.id})}" class="btn btn-dark btn-gold">Change status</a>
+      </td>
+      <td>
+        <a th:href="@{/officer/deletestatus/{id} (id=${application.id})}" class="btn btn-dark btn-gold">Delete application</a>
+      </td>
     </tr>
     </tbody>
     </table>
