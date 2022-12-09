@@ -12,6 +12,6 @@ import java.util.Set;
 @AllArgsConstructor
 public class ApplicationsDTO {
     private Integer id;
-    private String app_status;
+    private String appstatus;
     private Candidate cid;
 }

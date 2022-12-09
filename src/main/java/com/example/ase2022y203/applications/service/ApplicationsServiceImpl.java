@@ -21,10 +21,26 @@ public class ApplicationsServiceImpl implements ApplicationsService {
         return ApplicationsAssembler.toDto(applications);
     }
 
+    private List<ApplicationsDTO> getPendingAppliations(){
+        List<Applications> applications = applicationsRepository.getPendingApplications();
+        return ApplicationsAssembler.toDto(applications);
+    }
+
     @Override
     public ApplicationsListResponse getApplications(ApplicationsListRequest applicationsListRequest) {
         List<ApplicationsDTO> applications;
         applications = getApplications();
+        return ApplicationsListResponse
+                .of()
+                .request(applicationsListRequest)
+                .applications(applications)
+                .build();
+    }
+
+    @Override
+    public ApplicationsListResponse getPendingApplications(ApplicationsListRequest applicationsListRequest) {
+        List<ApplicationsDTO> applications;
+        applications = getPendingAppliations();
         return ApplicationsListResponse
                 .of()
                 .request(applicationsListRequest)

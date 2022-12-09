@@ -11,7 +11,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
-    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfile.css}" rel="stylesheet"/>
+    <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfileTable.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/navbar3.0"></div>
@@ -27,7 +27,21 @@
         </div>
     </div>
     <div class="Table">
-        <p>Select a option</p>
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+            <th class="table-header">Candidate's Name</th>
+            <th class="table-header">Application Status</th>
+            </thead>
+            <tbody>
+            <tr th:each="app : ${applications}">
+                <td>
+                    <a th:href="@{/officer/view-profile/{id} (id=${app.cid.id})}"
+                       th:text="${app.cid.first_name} + ' ' + ${app.cid.surname}"></a>
+                </td>
+                <td th:text="${app.appstatus}">Application Status</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
     <div class="Panel">
         <h3>Viewing Options</h3>
@@ -43,6 +57,9 @@
             </div>
             <div class="submit">
                 <a class="btn btn-dark btn-gold" href="/officer/all-applications">View all applications</a>
+            </div>
+            <div class="submit">
+                <p>Click on a candidate's first name to visit their profile</p>
             </div>
         </div>
     </div>

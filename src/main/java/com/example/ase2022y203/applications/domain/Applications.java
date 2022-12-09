@@ -5,6 +5,7 @@ import com.example.ase2022y203.candidate.service.CandidateDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -17,7 +18,8 @@ import java.util.Set;
 public class Applications {
     @Id
     private Integer id;
-    private String app_status;
+    @Column("app_status")
+    private String appstatus;
     @MappedCollection(idColumn = "id")
     Candidate cid;
 }

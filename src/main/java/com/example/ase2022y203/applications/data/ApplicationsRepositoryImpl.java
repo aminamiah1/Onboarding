@@ -18,4 +18,9 @@ public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
         return applicationsRepoJDBC.findAll();
     }
 
+    @Override
+    public List<Applications> getPendingApplications() {
+        return applicationsRepoJDBC.findAllByAppstatusLike("pending");
+    }
+
 }

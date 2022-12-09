@@ -38,7 +38,7 @@
         <a th:href="@{/officer/view-profile/{id} (id=${app.cid.id})}"
            th:text="${app.cid.first_name} + ' ' + ${app.cid.surname}"></a>
       </td>
-      <td th:text="${app.app_status}">Application Status</td>
+      <td th:text="${app.appstatus}">Application Status</td>
     </tr>
     </tbody>
     </table>
@@ -47,13 +47,13 @@
     <h3>Viewing Options</h3>
     <div class="center-panel">
       <div class="submit">
-        <a class="btn btn-dark btn-gold" href="">View approved applications</a>
+        <a class="btn btn-dark btn-gold" href="/officer/approved-applications">View approved applications</a>
       </div>
       <div class="submit">
-        <a class="btn btn-dark btn-gold" href="">View denied applications</a>
+        <a class="btn btn-dark btn-gold" href="/officer/denied-applications">View denied applications</a>
       </div>
       <div class="submit">
-        <a class="btn btn-dark btn-gold" href="">View pending applications</a>
+        <a class="btn btn-dark btn-gold" href="/officer/pending-applications">View pending applications</a>
       </div>
       <div class="submit">
         <a class="btn btn-dark btn-gold" href="/officer/all-applications">View all applications</a>

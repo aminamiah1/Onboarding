@@ -14,7 +14,7 @@ public class ApplicationsAssembler {
     }
 
     public static ApplicationsDTO toDto(Applications a){
-        return new ApplicationsDTO(a.getId(), a.getApp_status(), a.getCid());
+        return new ApplicationsDTO(a.getId(), a.getAppstatus(), a.getCid());
     }
 
 }

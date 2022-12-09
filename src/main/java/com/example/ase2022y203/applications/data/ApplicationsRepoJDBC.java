@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ApplicationsRepoJDBC extends CrudRepository<Applications, Integer> {
     List<Applications> findAll();
+    List<Applications> findAllByAppstatusLike(String like);
 }
