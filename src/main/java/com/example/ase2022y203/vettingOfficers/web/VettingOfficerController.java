@@ -202,4 +202,21 @@ public class VettingOfficerController {
         }
     }
 
+    @GetMapping("all-applications")
+    public ModelAndView getAllApplications(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+
+        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+        CandidateListRequest candidateListRequest = CandidateListRequest
+                .of()
+                .build();
+        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
+        model.addAttribute("candidates", candidateListResponse.getCandidates());
+
+        Optional<ApplicationsDTO> applications =
+
+    }
+
 }
