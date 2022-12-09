@@ -36,6 +36,6 @@ public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
 
     @Override
     public Optional<Applications> findApplicationById(Optional<Integer> id) {
-        return applicationsRepoJDBC.findById(id);
+        return applicationsRepoJDBC.findById(id.get());
     }
 }

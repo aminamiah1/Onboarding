@@ -16,12 +16,12 @@
 <div class="container my-5">
     <h3>
         <span>Change Application Status for: </span>
-        <small th:text="${application.cid.first_name}">Subtitle</small>
+        <small th:text="${app.cid.first_name}">Subtitle</small>
     </h3>
     <div class="card">
         <div class="card-body">
             <div class="col-md-10">
-                <form th:action="@{/officer/savestatus/{id} (id=${application.id})}" th:object="${application}"
+                <form th:action="@{/officer/savestatus/{id} (id=${app.id})}" th:object="${applicationsForm}"
                       th:method="post">
                     <div class="row">
 
@@ -32,11 +32,11 @@
                             <label for="app_status" class="col-form-label">Application Status</label>
                             <select class="form-control" id="app_status" name="app_status" required>
                                 <option value="">Select Application Status</option>
-                                <option value="Pending" th:field="*{app_status}">Pending</option>
-                                <option value="Approved" th:field="*{app_status}">Approved</option>
-                                <option value="Denied" th:field="*{app_status}">Denied</option>
+                                <option value="Pending" th:field="*{appstatus}">Pending</option>
+                                <option value="Approved" th:field="*{appstatus}">Approved</option>
+                                <option value="Denied" th:field="*{appstatus}">Denied</option>
                             </select>
-                            <div class="alert alert-warning" th:errors="*{app_status}" th:if="${#fields.hasErrors('app_status')}">
+                            <div class="alert alert-warning" th:errors="*{appstatus}" th:if="${#fields.hasErrors('appstatus')}">
                                Application status not in list
                             </div>
                         </div>

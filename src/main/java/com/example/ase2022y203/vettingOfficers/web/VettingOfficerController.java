@@ -5,6 +5,8 @@ import com.example.ase2022y203.applications.service.ApplicationsDTO;
 import com.example.ase2022y203.applications.service.ApplicationsService;
 import com.example.ase2022y203.applications.service.messages.ApplicationsListRequest;
 import com.example.ase2022y203.applications.service.messages.ApplicationsListResponse;
+import com.example.ase2022y203.applications.web.forms.ApplicationsForm;
+import com.example.ase2022y203.applications.web.forms.ApplicationsFormAssembler;
 import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
@@ -296,17 +298,28 @@ public class VettingOfficerController {
         }
     }
 
-    @GetMapping("edit/{id}")
+    @GetMapping("editstatus/{id}")
     public ModelAndView getApplicationStatusForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request){
         if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentPrincipleEmail = authentication.getName();
 
             Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
-            model.addAttribute("officer", vettingOfficer.get());
+
 
             Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
-            model.addAttribute("app", application.get());
+
+            if (application.isPresent()){
+                var applicationDTO = application.get();
+                ApplicationsForm applicationsForm = ApplicationsFormAssembler.toApplicationsForm(applicationDTO);
+                model.addAttribute("vettingOfficer", vettingOfficer.get());
+                model.addAttribute("app", application.get());
+                model.addAttribute("applicationsForm", applicationsForm);
+                var mv = new ModelAndView("officer/officer-edit-status", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
 
         } else {
             return new ModelAndView("redirect:/404");
