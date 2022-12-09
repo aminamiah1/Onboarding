@@ -6,4 +6,5 @@ import com.example.ase2022y203.applications.service.messages.ApplicationsListRes
 public interface ApplicationsService {
     ApplicationsListResponse getApplications(ApplicationsListRequest applicationsListRequest);
     ApplicationsListResponse getPendingApplications(ApplicationsListRequest applicationsListRequest);
+    ApplicationsListResponse getDeniedApplications(ApplicationsListRequest applicationsListRequest);
 }
