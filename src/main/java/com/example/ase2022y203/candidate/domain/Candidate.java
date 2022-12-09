@@ -13,7 +13,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Table
+@Table(name = "candidates")
 public class Candidate implements UserDetails {
     @Id
     private Integer id;
@@ -22,6 +22,10 @@ public class Candidate implements UserDetails {
     private String email;
     private String password;
     private String company_name;
+
+    public Candidate() {
+
+    }
 
     public Candidate(String first_name, String surname, String email, String password, String company_name) {
     }

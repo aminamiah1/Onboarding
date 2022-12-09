@@ -209,25 +209,25 @@ public class VettingOfficerController {
     }
 
     @GetMapping("all-applications")
-    public ModelAndView getAllApplications(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipleEmail = authentication.getName();
+    public ModelAndView getAllApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
 
-        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
 
-        CandidateListRequest candidateListRequest = CandidateListRequest
-                .of()
-                .build();
-        CandidateListResponse candidateListResponse = candidateService.getCandidates(candidateListRequest);
-        model.addAttribute("candidates", candidateListResponse.getCandidates());
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
 
-        ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
-                .of()
-                .build();
-        ApplicationsListResponse applicationsListResponse = applicationsService.getApplications(applicationsListRequest);
-        model.addAttribute("applications", applicationsListResponse);
-
-
+            var mv = new ModelAndView("officer/officer-all-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
     }
 
 }
