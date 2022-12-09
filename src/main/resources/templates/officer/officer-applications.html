@@ -21,9 +21,9 @@
             <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
             <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
             <h3 th:text="${officer.email}"></h3>
-            <div class="submit">
-                <a class="btn btn-dark btn-gold" href="/officer/officer-profile">Back to dashboard</a>
-            </div>
+        </div>
+        <div class="submit submit-bottom">
+            <a class="btn btn-dark btn-gold" href="/officer/officer-profile">Back to dashboard</a>
         </div>
     </div>
     <div class="Table">
