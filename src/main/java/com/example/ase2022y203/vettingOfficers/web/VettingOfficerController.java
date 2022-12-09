@@ -20,10 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -166,4 +163,26 @@ public class VettingOfficerController {
             return mv;
         }
     }
+
+    @GetMapping("view-profile/{id}")
+    public ModelAndView getCandidate(@PathVariable Integer id, Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Optional<CandidateDTO> candidate = candidateService.getCandidateByID(id);
+            Optional<CandidatePersonalDTO> candidatePersonal = candidatePersonalService.getCandidatePersonalByCID(id);
+            var candidateRefListResponse = candidateReferencesService
+                    .getCandidateReferencesByCID(id);
+            if (candidate.isPresent()) {
+                model.addAttribute("candidate", candidate.get());
+                model.addAttribute("candidatePersonal", candidatePersonal.get());
+                model.addAttribute("references", candidateRefListResponse);
+                var mv = new ModelAndView("officer/officer-candidate", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
 }
