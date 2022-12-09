@@ -28,7 +28,7 @@ public class CandidatesWebTestSuite {
         //Given the candidate loads the homepage
         //When the index page is called it should contain this fragment
         String HTMLFragment = """
-               <h5 class="title-container-1">WHAT MAKES INITIA UNIQUE?</h5>""";
+                <img src="/images/homeFirst.jpg" alt="image" class="bg">""";
 
         MvcResult result =
                 mvc.perform(get("/index"))

@@ -31,8 +31,8 @@ public class GetCandidatesRealRepo {
         //When the candidates are retrieved
         var candidateListResponse = candidateService.getCandidates(candidateListRequest);
 
-        //Then the size of the candidate list should be two
-        assertEquals(3, candidateListResponse.getCandidates().size());
+        //Then the size of the candidate list should be five
+        assertEquals(5, candidateListResponse.getCandidates().size());
     }
 
     @Test
@@ -53,14 +53,14 @@ public class GetCandidatesRealRepo {
 
     @Test
     public void shouldGetAllCandidates() throws Exception {
-        //Given the number of candidates are 4
+        //Given the number of candidates are 5
         List<CandidateDTO> candidates;
         CandidateListRequest candidateListRequest = CandidateListRequest
                 .of()
                 .build();
         //When the candidates are retrieved
         var candidateListResponse = candidateService.getCandidates(candidateListRequest);
-        //Then the size of the candidate list should be 4
-        assertEquals(4, candidateListResponse.getCandidates().size());
+        //Then the size of the candidate list should be 5
+        assertEquals(5, candidateListResponse.getCandidates().size());
     }
 }

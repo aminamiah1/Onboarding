@@ -154,6 +154,9 @@ public class ValidationTestSuite {
         RegistersForm registersForm = new RegistersForm();
         registersForm.setFirst_name("Kerry");
         registersForm.setSurname("Malik");
+        registersForm.setCompany_name("Aldi");
+        registersForm.setEmail("KM@gmail.com");
+        registersForm.setPassword("Tester@123");
         //When they submit the form
         Set<ConstraintViolation<RegistersForm>> violations = validator.validate(registersForm);
         //Then there should be not violations
