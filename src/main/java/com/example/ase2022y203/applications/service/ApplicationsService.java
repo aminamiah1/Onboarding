@@ -7,4 +7,5 @@ public interface ApplicationsService {
     ApplicationsListResponse getApplications(ApplicationsListRequest applicationsListRequest);
     ApplicationsListResponse getPendingApplications(ApplicationsListRequest applicationsListRequest);
     ApplicationsListResponse getDeniedApplications(ApplicationsListRequest applicationsListRequest);
+    ApplicationsListResponse getApprovedApplications(ApplicationsListRequest applicationsListRequest);
 }

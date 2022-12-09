@@ -31,6 +31,11 @@ public class ApplicationsServiceImpl implements ApplicationsService {
         return ApplicationsAssembler.toDto(applications);
     }
 
+    private List<ApplicationsDTO> getApprovedApplications(){
+        List<Applications> applications = applicationsRepository.getApprovedApplications();
+        return ApplicationsAssembler.toDto(applications);
+    }
+
     @Override
     public ApplicationsListResponse getApplications(ApplicationsListRequest applicationsListRequest) {
         List<ApplicationsDTO> applications;
@@ -57,6 +62,17 @@ public class ApplicationsServiceImpl implements ApplicationsService {
     public ApplicationsListResponse getDeniedApplications(ApplicationsListRequest applicationsListRequest) {
         List<ApplicationsDTO> applications;
         applications = getDeniedApplications();
+        return ApplicationsListResponse
+                .of()
+                .request(applicationsListRequest)
+                .applications(applications)
+                .build();
+    }
+
+    @Override
+    public ApplicationsListResponse getApprovedApplications(ApplicationsListRequest applicationsListRequest) {
+        List<ApplicationsDTO> applications;
+        applications = getApprovedApplications();
         return ApplicationsListResponse
                 .of()
                 .request(applicationsListRequest)

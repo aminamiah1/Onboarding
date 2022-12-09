@@ -27,4 +27,9 @@ public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
     public List<Applications> getDeniedApplications() {
         return applicationsRepoJDBC.findAllByAppstatusLike("denied");
     }
+
+    @Override
+    public List<Applications> getApprovedApplications() {
+        return applicationsRepoJDBC.findAllByAppstatusLike("approved");
+    }
 }

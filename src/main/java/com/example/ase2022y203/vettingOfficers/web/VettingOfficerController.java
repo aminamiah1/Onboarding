@@ -274,4 +274,26 @@ public class VettingOfficerController {
         }
     }
 
+    @GetMapping("approved-applications")
+    public ModelAndView getApprovedApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getApprovedApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
+
+            var mv = new ModelAndView("officer/officer-approved-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
 }

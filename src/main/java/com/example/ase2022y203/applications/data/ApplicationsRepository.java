@@ -8,4 +8,5 @@ public interface ApplicationsRepository {
     List<Applications> getApplications();
     List<Applications> getPendingApplications();
     List<Applications> getDeniedApplications();
+    List<Applications> getApprovedApplications();
 }
