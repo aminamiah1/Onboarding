@@ -14,7 +14,8 @@ import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
-import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
+import com.example.ase2022y203.masterAdmin.service.MasterAdminDTO;
+import com.example.ase2022y203.masterAdmin.service.MasterAdminService;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
@@ -47,12 +48,19 @@ public class VettingOfficerController {
 
     private final ApplicationsService applicationsService;
 
-    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService, ApplicationsService applicationsService) {
+    private final MasterAdminService masterAdminService;
+
+    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos,
+                                    CandidatePersonalService candidatePersonalService,
+                                    CandidateReferencesService candidateReferencesService,
+                                    ApplicationsService applicationsService, MasterAdminService masterAdminService) {
+
         this.candidateService = candidateService;
         this.vettingOfficersService = vos;
         this.candidatePersonalService = candidatePersonalService;
         this.candidateReferencesService = candidateReferencesService;
         this.applicationsService = applicationsService;
+        this.masterAdminService = masterAdminService;
     }
 
     @GetMapping("officer-profile")
@@ -383,4 +391,23 @@ public class VettingOfficerController {
         return mv;
     }
 
+    @PostMapping("delete/{id}")
+    public ModelAndView deleteAdmin(@PathVariable("id") Optional<Integer> id, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrinciple = authentication.getName();
+
+        Optional<MasterAdminDTO> masterAdmin = masterAdminService.getMasterAdminByEmail(currentPrinciple);
+
+        if(masterAdmin.isPresent()){
+            Optional<VettingOfficersDTO> officersDTO = vettingOfficersService.getVettingOfficerById(id);
+            var vettingOfficer = officersDTO.get();
+
+            vettingOfficersService.delete(vettingOfficer);
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+        var mv = new ModelAndView("redirect:/officer/all-officers");
+        return mv;
+    }
 }
