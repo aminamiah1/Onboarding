@@ -168,7 +168,7 @@ public class VettingOfficerController {
                 model.addAttribute("VettingOfficerForm", officerForm);
                 return new ModelAndView("admin/addOfficers", model.asMap());
             }
-            var mv = new ModelAndView("redirect:/successPage2");
+            var mv = new ModelAndView("redirect:/successAdmin");
             return mv;
         }
     }
