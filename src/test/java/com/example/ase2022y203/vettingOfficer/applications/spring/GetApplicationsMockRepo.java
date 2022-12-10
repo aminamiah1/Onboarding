@@ -21,9 +21,6 @@ public class GetApplicationsMockRepo {
     @MockBean
     private ApplicationsRepository applicationsRepository;
 
-    @Autowired
-    private ApplicationsService applicationsService;
-
     @Test
     public void shouldGetThreeApplications() throws Exception {
         //Given the number of applications for all three candidates is three
@@ -39,8 +36,6 @@ public class GetApplicationsMockRepo {
         Applications a3 = new Applications(3, "denied", c3);
 
         given(applicationsRepository.getApplications()).willReturn(List.of(a1, a2, a3));
-
-        List<ApplicationsDTO> applications;
 
         //When the applications are retrieved
         var applicationsResponse = applicationsRepository.getApplications();

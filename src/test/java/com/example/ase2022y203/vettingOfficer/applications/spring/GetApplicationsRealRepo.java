@@ -25,8 +25,10 @@ public class GetApplicationsRealRepo {
                 .of()
                 .build();
 
-       var applicationsResponse = applicationsService.getApplications(applicationsListRequest);
+        //When the applications are retrieved
+        var applicationsResponse = applicationsService.getApplications(applicationsListRequest);
 
+        //Then the number of applications should be 5
         assertEquals(5, applicationsResponse.getApplications().size());
     }
 
