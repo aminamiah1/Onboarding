@@ -13,4 +13,5 @@ public interface ApplicationsService {
     Optional<ApplicationsDTO> getApplicationByID(Optional<Integer> id);
     void save(ApplicationsDTO applicationsDTO);
     void updateStatus(ApplicationsDTO applicationsDTO);
+    void delete(ApplicationsDTO applicationsDTO);
 }

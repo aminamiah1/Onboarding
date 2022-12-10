@@ -110,4 +110,15 @@ public class ApplicationsServiceImpl implements ApplicationsService {
         );
         applicationsRepository.updateStatus(newApplications);
     }
+
+    @Override
+    public void delete(ApplicationsDTO applicationsDTO) {
+        Applications deleteApplication = new Applications(
+                applicationsDTO.getId(),
+                applicationsDTO.getAppstatus(),
+                applicationsDTO.getCid()
+        );
+        applicationsRepository.delete(deleteApplication);
+    }
+
 }

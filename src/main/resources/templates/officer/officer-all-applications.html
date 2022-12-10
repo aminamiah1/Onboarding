@@ -45,7 +45,10 @@
         <a th:href="@{/officer/editstatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Change status</a>
       </td>
       <td>
-        <a th:href="@{/officer/deletestatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Delete application</a>
+        <form th:action="@{/officer/deletestatus/{id} (id=${app.id})}" th:object="${app}"
+              th:method="post">
+           <button class="btn btn-dark btn-gold" type="submit">Delete application</button>
+        </form>
       </td>
     </tr>
     </tbody>

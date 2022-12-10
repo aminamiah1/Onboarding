@@ -14,6 +14,7 @@ import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
+import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
@@ -354,11 +355,32 @@ public class VettingOfficerController {
                 model.addAttribute("app", applicationsDTO);
                 model.addAttribute("ApplicationsForm", applicationsForm);
                 return new ModelAndView("officer/officer-edit-status", model.asMap());
-            }
+               }
 
             var mv = new ModelAndView("redirect:/officer/all-applications");
             return mv;
         }
+    }
+
+    @PostMapping("deletestatus/{id}")
+    public ModelAndView deleteReference(@PathVariable("id") Optional<Integer> id, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+        if (vettingOfficer.isPresent()) {
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+            var applicationDTO = application.get();
+
+            applicationsService.delete(applicationDTO);
+        } else{
+            return new ModelAndView("redirect:/404");
+        }
+
+        var mv = new ModelAndView("redirect:/officer/all-applications");
+        return mv;
     }
 
 }

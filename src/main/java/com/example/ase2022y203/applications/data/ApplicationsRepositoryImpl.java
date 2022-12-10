@@ -52,4 +52,10 @@ public class ApplicationsRepositoryImpl implements  ApplicationsRepository {
         String updateQuery = "update Applications set App_Status = ? where id = ?";
         jdbc.update(updateQuery, newApplications.getAppstatus(), newApplications.getId());
     }
+
+    @Override
+    public void delete(Applications newApplications) {
+        String deleteQuery = "DELETE FROM Applications WHERE ID = ?";
+        jdbc.update(deleteQuery, newApplications.getId());
+    }
 }

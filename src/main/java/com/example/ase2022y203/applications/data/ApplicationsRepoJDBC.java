@@ -10,4 +10,6 @@ public interface ApplicationsRepoJDBC extends CrudRepository<Applications, Integ
     List<Applications> findAll();
     List<Applications> findAllByAppstatusLike(String like);
     Optional<Applications> findById(Integer id);
+    @Override
+    void delete(Applications applications);
 }

@@ -13,4 +13,5 @@ public interface ApplicationsRepository {
     Optional<Applications> findApplicationById(Optional<Integer> id);
     void save(Applications newApplications);
     void updateStatus(Applications newApplications);
+    void delete(Applications newApplications);
 }
