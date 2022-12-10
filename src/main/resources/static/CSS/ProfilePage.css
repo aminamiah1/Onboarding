@@ -75,7 +75,9 @@ table{
     height: 4em;
     width: 4em;
     border: 1px solid black;
-    border-radius: 50%
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 1em;
 }
 
 .profile-bar-table{

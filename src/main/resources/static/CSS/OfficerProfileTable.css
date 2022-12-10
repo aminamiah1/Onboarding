@@ -76,9 +76,21 @@ label{
 .profile-img{
     width: 5em;
     height: 5em;
+    position: relative;
+}
+
+.center-panel{
+    text-align: center;
 }
 
 h3{
     text-align: center;
     color: white;
+}
+
+.submit-bottom{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1em;
 }

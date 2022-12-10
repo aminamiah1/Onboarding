@@ -1,6 +1,12 @@
 package com.example.ase2022y203.vettingOfficers.web;
 
 
+import com.example.ase2022y203.applications.service.ApplicationsDTO;
+import com.example.ase2022y203.applications.service.ApplicationsService;
+import com.example.ase2022y203.applications.service.messages.ApplicationsListRequest;
+import com.example.ase2022y203.applications.service.messages.ApplicationsListResponse;
+import com.example.ase2022y203.applications.web.forms.ApplicationsForm;
+import com.example.ase2022y203.applications.web.forms.ApplicationsFormAssembler;
 import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
@@ -39,11 +45,14 @@ public class VettingOfficerController {
 
     private final CandidateReferencesService candidateReferencesService;
 
-    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService) {
+    private final ApplicationsService applicationsService;
+
+    public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos, CandidatePersonalService candidatePersonalService, CandidateReferencesService candidateReferencesService, ApplicationsService applicationsService) {
         this.candidateService = candidateService;
         this.vettingOfficersService = vos;
         this.candidatePersonalService = candidatePersonalService;
         this.candidateReferencesService = candidateReferencesService;
+        this.applicationsService = applicationsService;
     }
 
     @GetMapping("officer-profile")
@@ -183,6 +192,195 @@ public class VettingOfficerController {
         } else {
             return new ModelAndView("redirect:/404");
         }
+    }
+
+    @GetMapping("view-applications")
+    public ModelAndView getApplicationDashboard(Model model) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+
+        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+        if (vettingOfficer.isPresent()) {
+            model.addAttribute("officer", vettingOfficer.get());
+            var mv = new ModelAndView("officer/officer-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("all-applications")
+    public ModelAndView getAllApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
+
+            var mv = new ModelAndView("officer/officer-all-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("pending-applications")
+    public ModelAndView getPendingApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getPendingApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
+
+            var mv = new ModelAndView("officer/officer-pending-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("denied-applications")
+    public ModelAndView getDeniedApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getDeniedApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
+
+            var mv = new ModelAndView("officer/officer-denied-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("approved-applications")
+    public ModelAndView getApprovedApplications(Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            ApplicationsListRequest applicationsListRequest = ApplicationsListRequest
+                    .of()
+                    .build();
+            ApplicationsListResponse applicationsListResponse = applicationsService.getApprovedApplications(applicationsListRequest);
+            model.addAttribute("applications", applicationsListResponse.getApplications());
+
+            var mv = new ModelAndView("officer/officer-approved-applications", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @GetMapping("editstatus/{id}")
+    public ModelAndView getApplicationStatusForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request){
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+
+            if (application.isPresent()){
+                var applicationDTO = application.get();
+                ApplicationsForm applicationsForm = ApplicationsFormAssembler.toApplicationsForm(applicationDTO);
+                model.addAttribute("vettingOfficer", vettingOfficer.get());
+                model.addAttribute("app", applicationDTO);
+                model.addAttribute("applicationsForm", applicationsForm);
+                var mv = new ModelAndView("officer/officer-edit-status", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
+
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @PostMapping("savestatus/{id}")
+    public ModelAndView saveApplicationStatus(@Valid @ModelAttribute("applicationsForm") ApplicationsForm applicationsForm
+    , BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> id) {
+        if(bindingResult.hasErrors()) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+            var applicationDTO = application.get();
+
+            model.addAttribute("vettingOfficer", vettingOfficer.get());
+            model.addAttribute("app", applicationDTO);
+            model.addAttribute("applicationsForm", applicationsForm);
+
+            return new ModelAndView("officer/officer-edit-status", model.asMap());
+        } else {
+            ApplicationsDTO applicationsDTO = new ApplicationsDTO(
+                    applicationsForm.getId(), applicationsForm.getAppstatus(), applicationsForm.getCid()
+            );
+
+            try{
+                applicationsService.updateStatus(applicationsDTO);
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                model.addAttribute("app", applicationsDTO);
+                model.addAttribute("ApplicationsForm", applicationsForm);
+                return new ModelAndView("officer/officer-edit-status", model.asMap());
+               }
+
+            var mv = new ModelAndView("redirect:/officer/all-applications");
+            return mv;
+        }
+    }
+
+    @PostMapping("deletestatus/{id}")
+    public ModelAndView deleteReference(@PathVariable("id") Optional<Integer> id, Model model){
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+        Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+
+        if (vettingOfficer.isPresent()) {
+
+            Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
+            var applicationDTO = application.get();
+
+            applicationsService.delete(applicationDTO);
+        } else{
+            return new ModelAndView("redirect:/404");
+        }
+
+        var mv = new ModelAndView("redirect:/officer/all-applications");
+        return mv;
     }
 
 }
