@@ -17,4 +17,6 @@ public interface VettingOfficersService {
     void addNewAdmin(VettingOfficersDTO officerDTO);
 
     void delete(VettingOfficersDTO vettingOfficersDTO);
+
+    void update(VettingOfficersDTO updateVettingOfficer);
 }

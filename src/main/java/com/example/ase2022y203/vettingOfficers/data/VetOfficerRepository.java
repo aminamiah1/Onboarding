@@ -11,4 +11,5 @@ public interface VetOfficerRepository {
     List<VettingOfficers> getOfficers();
     void save(VettingOfficers newAdmin);
     void delete(VettingOfficers vettingOfficers);
+    void update(VettingOfficers updateVettingOfficers);
 }

@@ -80,4 +80,16 @@ public class VettingOfficersServiceImpl implements VettingOfficersService {
                 );
         vetOfficerRepository.delete(deleteOfficer);
     }
+
+    @Override
+    public void update(VettingOfficersDTO vettingOfficersDTO){
+        VettingOfficers vettingOfficers = new VettingOfficers(
+                vettingOfficersDTO.getId(),
+                vettingOfficersDTO.getFirst_name(),
+                vettingOfficersDTO.getSurname(),
+                vettingOfficersDTO.getEmail(),
+                vettingOfficersDTO.getPassword()
+        );
+        vetOfficerRepository.update(vettingOfficers);
+    }
 }

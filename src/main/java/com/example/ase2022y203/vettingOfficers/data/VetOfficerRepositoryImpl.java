@@ -58,4 +58,9 @@ public class VetOfficerRepositoryImpl implements VetOfficerRepository {
         String deleteQuery = "DELETE FROM Vetting_Officers WHERE ID = ?";
         jdbc.update(deleteQuery, vettingOfficers.getId());
     }
+
+    @Override
+    public void update(VettingOfficers updateVettingOfficers){
+        vetOfficerRepoJDBC.save(updateVettingOfficers);
+    }
 }

@@ -16,11 +16,13 @@ import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalServic
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminDTO;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminService;
+import com.example.ase2022y203.vettingOfficers.service.VettingOfficersAssembler;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListResponse;
 import com.example.ase2022y203.vettingOfficers.web.forms.VettingOfficerForm;
+import com.example.ase2022y203.vettingOfficers.web.forms.VettingOfficerFormAssembler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -308,7 +310,7 @@ public class VettingOfficerController {
     }
 
     @GetMapping("editstatus/{id}")
-    public ModelAndView getApplicationStatusForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request){
+    public ModelAndView getApplicationStatusForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentPrincipleEmail = authentication.getName();
@@ -318,7 +320,7 @@ public class VettingOfficerController {
 
             Optional<ApplicationsDTO> application = applicationsService.getApplicationByID(id);
 
-            if (application.isPresent()){
+            if (application.isPresent()) {
                 var applicationDTO = application.get();
                 ApplicationsForm applicationsForm = ApplicationsFormAssembler.toApplicationsForm(applicationDTO);
                 model.addAttribute("vettingOfficer", vettingOfficer.get());
@@ -337,8 +339,8 @@ public class VettingOfficerController {
 
     @PostMapping("savestatus/{id}")
     public ModelAndView saveApplicationStatus(@Valid @ModelAttribute("applicationsForm") ApplicationsForm applicationsForm
-    , BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> id) {
-        if(bindingResult.hasErrors()) {
+            , BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> id) {
+        if (bindingResult.hasErrors()) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             String currentPrincipleEmail = authentication.getName();
             Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
@@ -356,14 +358,14 @@ public class VettingOfficerController {
                     applicationsForm.getId(), applicationsForm.getAppstatus(), applicationsForm.getCid()
             );
 
-            try{
+            try {
                 applicationsService.updateStatus(applicationsDTO);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 model.addAttribute("app", applicationsDTO);
                 model.addAttribute("ApplicationsForm", applicationsForm);
                 return new ModelAndView("officer/officer-edit-status", model.asMap());
-               }
+            }
 
             var mv = new ModelAndView("redirect:/officer/all-applications");
             return mv;
@@ -371,7 +373,7 @@ public class VettingOfficerController {
     }
 
     @PostMapping("deletestatus/{id}")
-    public ModelAndView deleteReference(@PathVariable("id") Optional<Integer> id, Model model){
+    public ModelAndView deleteReference(@PathVariable("id") Optional<Integer> id, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleEmail = authentication.getName();
@@ -383,7 +385,7 @@ public class VettingOfficerController {
             var applicationDTO = application.get();
 
             applicationsService.delete(applicationDTO);
-        } else{
+        } else {
             return new ModelAndView("redirect:/404");
         }
 
@@ -392,14 +394,14 @@ public class VettingOfficerController {
     }
 
     @PostMapping("delete/{id}")
-    public ModelAndView deleteAdmin(@PathVariable("id") Optional<Integer> id, Model model){
+    public ModelAndView deleteAdmin(@PathVariable("id") Optional<Integer> id, Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrinciple = authentication.getName();
 
         Optional<MasterAdminDTO> masterAdmin = masterAdminService.getMasterAdminByEmail(currentPrinciple);
 
-        if(masterAdmin.isPresent()){
+        if (masterAdmin.isPresent()) {
             Optional<VettingOfficersDTO> officersDTO = vettingOfficersService.getVettingOfficerById(id);
             var vettingOfficer = officersDTO.get();
 
@@ -409,5 +411,64 @@ public class VettingOfficerController {
         }
         var mv = new ModelAndView("redirect:/officer/all-officers");
         return mv;
+    }
+
+    @GetMapping("edit/{id}")
+    public ModelAndView getEditOfficerForm(@PathVariable("id") Optional<Integer> id, Model model, HttpServletRequest request) {
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrinciple = authentication.getName();
+            Optional<MasterAdminDTO> masterAdminDTO = masterAdminService.getMasterAdminByEmail(currentPrinciple);
+            Optional<VettingOfficersDTO> vettingOfficersDTO = vettingOfficersService.getVettingOfficerById(id);
+
+            if (masterAdminDTO.isPresent()) {
+                var vettingOfficerDTO = vettingOfficersDTO.get();
+                VettingOfficerForm vettingOfficerForm = VettingOfficerFormAssembler.toOfficerForm(vettingOfficerDTO);
+                model.addAttribute("masterAdmin", masterAdminDTO.get());
+                model.addAttribute("vettingOfficer", vettingOfficerDTO);
+                model.addAttribute("vettingOfficerForm", vettingOfficerForm);
+                var mv = new ModelAndView("officer/editOfficerForm", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
+    }
+
+    @PostMapping("saveUpdatedForm/{id}")
+    public ModelAndView saveOfficerInfo(@Valid @ModelAttribute("VettingOfficerForm") VettingOfficerForm vetOfficerForm,
+                                        BindingResult bindingResult, Model model, @PathVariable("id") Optional<Integer> id) {
+        if (bindingResult.hasErrors()) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+            Optional<MasterAdminDTO> masterAdminDTO = masterAdminService.getMasterAdminByEmail(currentPrincipleEmail);
+
+            Optional<VettingOfficersDTO> vettingOfficersDTO = vettingOfficersService.getVettingOfficerById(id);
+            var officerDTO = vettingOfficersDTO.get();
+
+            model.addAttribute("masterAdmin", masterAdminDTO.get());
+            model.addAttribute("vettingOfficer", vettingOfficersDTO);
+            model.addAttribute("vettingOfficerForm", vetOfficerForm);
+
+            return new ModelAndView("officer/editOfficerForm", model.asMap());
+        } else {
+            VettingOfficersDTO vettingOfficersDTO = new VettingOfficersDTO(
+                    vetOfficerForm.getID(), vetOfficerForm.getFirst_name(), vetOfficerForm.getSurname(),
+                    vetOfficerForm.getEmail(), vetOfficerForm.getPassword()
+            );
+
+            try {
+                vettingOfficersService.update(vettingOfficersDTO);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                model.addAttribute("vettingOfficerForm");
+                return new ModelAndView("officer/editOfficerForm", model.asMap());
+            }
+
+            var mv = new ModelAndView("redirect:/officer/all-officers");
+            return mv;
+        }
     }
 }
