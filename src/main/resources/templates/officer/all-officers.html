@@ -29,7 +29,7 @@
         <th class="table-header">Delete</th>
         </thead>
         <tbody>
-        <tr th:each="vettingOfficer : ${VettingOfficers}">
+        <tr th:each="vettingOfficer : ${officers}">
             <td th:text="${vettingOfficer.first_name}">First Name</td>
             <td th:text="${vettingOfficer.surname}">Surname</td>
             <td th:text="${vettingOfficer.email}">Email</td>
@@ -39,7 +39,7 @@
             <td>
                 <form th:action="@{/officer/delete/{id} (id=${vettingOfficer.id})}" th:object="${vettingOfficer}"
                       th:method="post">
-                    <button class="btn btn-dark btn-gold" type="submit">Delete application</button>
+                    <button class="btn btn-dark btn-gold" type="submit">Delete</button>
                 </form>
         </tbody>
     </table>

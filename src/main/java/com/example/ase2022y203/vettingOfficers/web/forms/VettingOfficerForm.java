@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 public class VettingOfficerForm {
-    private Integer ID;
+    private Integer id;
 
     @NotEmpty
     @Pattern(regexp = "^[A-Za-z]*$", message = "Invalid Input")

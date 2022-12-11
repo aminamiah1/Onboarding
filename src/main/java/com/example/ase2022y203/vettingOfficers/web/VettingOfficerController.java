@@ -167,7 +167,7 @@ public class VettingOfficerController {
         } else {
             BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-            VettingOfficersDTO officersDTO = new VettingOfficersDTO(officerForm.getID(), officerForm.getFirst_name(), officerForm.getSurname(),
+            VettingOfficersDTO officersDTO = new VettingOfficersDTO(officerForm.getId(), officerForm.getFirst_name(), officerForm.getSurname(),
                     officerForm.getEmail(), bCryptPasswordEncoder.encode(officerForm.getPassword()));
 
             try {
@@ -454,7 +454,7 @@ public class VettingOfficerController {
             return new ModelAndView("officer/editOfficerForm", model.asMap());
         } else {
             VettingOfficersDTO vettingOfficersDTO = new VettingOfficersDTO(
-                    vetOfficerForm.getID(), vetOfficerForm.getFirst_name(), vetOfficerForm.getSurname(),
+                    vetOfficerForm.getId(), vetOfficerForm.getFirst_name(), vetOfficerForm.getSurname(),
                     vetOfficerForm.getEmail(), vetOfficerForm.getPassword()
             );
 
