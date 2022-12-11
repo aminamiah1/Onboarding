@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Application Status</title>
+    <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="/CSS/Personal.css" th:href="@{/CSS/Personal.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/navbar2.0"></div>
+<div class="container my-5">
+    <h3>
+        <span>Change Application Status for: </span>
+        <small th:text="${app.cid.first_name}">Subtitle</small>
+    </h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form th:action="@{/officer/savestatus/{id} (id=${applicationsForm.id})}" th:object="${applicationsForm}"
+                      th:method="post">
+                    <div class="row">
+
+                        <input type="hidden" id="id" th:field="*{id}">
+                        <input type="hidden" id="cid" th:field="*{cid}">
+
+                        <div class="form-group col-md-8">
+                            <label for="appstatus" class="col-form-label">Application Status</label>
+                            <select class="form-control" id="appstatus" name="appstatus" required>
+                                <option value="">Select Application Status</option>
+                                <option value="Pending" th:field="*{appstatus}">Pending</option>
+                                <option value="Approved" th:field="*{appstatus}">Approved</option>
+                                <option value="Denied" th:field="*{appstatus}">Denied</option>
+                            </select>
+                            <div class="alert alert-warning" th:errors="*{appstatus}" th:if="${#fields.hasErrors('appstatus')}">
+                               Application status not in list
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-dark" value=" Submit ">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

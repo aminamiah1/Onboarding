@@ -9,6 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="/CSS/Personal.css" th:href="@{/CSS/Personal.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/navbar2.0"></div>
@@ -23,7 +24,6 @@
         <form th:action="@{/personal/{id}/save (id=${candidatePersonalForm.c_id})}" th:object="${candidatePersonalForm}"
               th:method="post">
           <div class="row">
-
             <input type="hidden" id="id" th:field="*{id}">
             <input type="hidden" id="cid" th:field="*{c_id}">
 
@@ -72,23 +72,16 @@
               </div>
             </div>
             <div class="form-group col-md-8">
-              <label for="sexuality" class="col-form-label">Sexuality</label>
-                <select class="form-control" id="sexuality" name="sexuality" required>
-                    <option value="">Select Sexuality</option>
-                    <option value="Heterosexual" th:field="*{sexuality}">Heterosexual</option>
-                    <option value="Homosexual" th:field="*{sexuality}">Homosexual</option>
-                    <option value="Bisexual" th:field="*{sexuality}">Bisexual</option>
-                    <option value="Pansexual" th:field="*{sexuality}">Pansexual</option>
-                    <option value="Asexual" th:field="*{sexuality}">Asexual</option>
-                    <option value="Not-stated" th:field="*{sexuality}">Not-stated</option>
-                </select>
-              <div class = "alert alert-warning" th:errors="*{sexuality}" th:if="${#fields.hasErrors('sexuality')}">
-                Sexuality outside of list
-              </div>
+                <label for="telephone_number" class="col-form-label">Telephone Number</label>
+                <input type="text" class="form-control" id="telephone_number"
+                       th:field="*{telephone_number}"/>
+                <div class="alert alert-warning" th:errors="*{telephone_number}" th:if="${#fields.hasErrors('telephone_number')}">
+                    Telephone number does not fit the required format
+                </div>
             </div>
 
             <div class="col-md-6">
-              <input type="submit" class="btn btn-primary" value=" Submit ">
+              <input type="submit" class="btn btn-dark" value=" Submit ">
             </div>
           </div>
         </form>

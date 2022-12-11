@@ -1,0 +1,146 @@
+.container {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    GRID-TEMPLATE-ROWS: MAX-CONTENT;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Profile-Overview Profile-Overview Profile-Overview"
+    "Personal-Details Personal-Details References"
+    "Personal-Details Personal-Details References";
+}
+
+.Profile-Overview {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Profile-Overview-Title Profile-Overview-Title Profile-Overview-Title"
+    "Profile--Bar Profile--Bar Profile--Bar"
+    "Profile--Bar Profile--Bar Profile--Bar";
+    grid-area: Profile-Overview;
+}
+
+.Profile-Overview-Title { grid-area: Profile-Overview-Title; }
+
+.Profile--Bar {
+    grid-area: Profile--Bar;
+    padding-bottom: 1em;
+}
+
+.Personal-Details {
+    grid-area: Personal-Details;
+    padding-right: 1em;
+}
+
+html, body , .container {
+    height: 100%;
+    margin: 0;
+}
+
+/* For presentation only, no need to copy the code below */
+
+.container * {
+    position: relative;
+    width: -moz-available;
+    width: -webkit-fill-available;
+}
+
+.container *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.table{
+    width: 100%;
+    height: auto;
+}
+
+table{
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%)
+}
+
+.tbody{
+    width: 100%;
+    height: 100%;
+}
+
+.profile-img{
+    height: 4em;
+    width: 4em;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 1em;
+}
+
+.profile-bar-table{
+    border: 2px solid #dadada;
+    border-radius: 7px;
+    background-color: black;
+}
+
+.references-table {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+    background-color: black;
+}
+
+.profile-image-holder{
+    padding-top: 1em;
+}
+
+.table-text{
+    display: inline-block;
+    height: fit-content;
+    width: fit-content;
+    color: white;
+}
+
+.table-text-left{
+    padding-left: 0.5em;
+    color: white;
+}
+
+.nav_link_profile{
+    position: relative;
+    color: white;
+    margin-bottom: 1.5rem;
+    transition: .3s;
+}
+
+.nav_link_profile:hover {
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+h5{
+    color: white;
+}
+
+.personal-table{
+    background-color: black;
+}
+
+th{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+#body-pd{
+    background-color: white;
+}
+
+.btn-gold{
+    background-color: darkgoldenrod  !important;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+}

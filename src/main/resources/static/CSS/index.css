@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+
+.how {
+    align-items: center;
+}
+
+.bg {
+    width: 100%;
+    height: auto;
+}
+
+.sbg {
+    width: 100%;
+    height: auto;
+}
+
+.obg {
+    width: 35%;
+    height: auto;
+    margin-left: 450px;
+    align-items: center;
+    justify-content: center;
+}

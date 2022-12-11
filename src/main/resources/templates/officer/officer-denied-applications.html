@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Dashboard</title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        rel="stylesheet">
+  <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+  <link href="/CSS/OfficerProfile.css" th:href="@{/CSS/OfficerProfileTable.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/navbar3.0"></div>
+<div class="container">
+  <div class="Profile">
+    <div class="center-panel">
+      <img class="profile-img" src="/images/ProfileImage.png" th:src="@{/images/ProfileImage.png}" alt="profile image"/>
+      <h3 th:text="${officer.first_name} + ' ' + ${officer.surname}"></h3>
+      <h3 th:text="${officer.email}"></h3>
+    </div>
+    <div class="submit submit-bottom">
+      <a class="btn btn-dark btn-gold" href="/officer/officer-profile">Back to dashboard</a>
+    </div>
+  </div>
+  <div class="Table">
+    <table class="table table-bordered table-striped table-dark">
+      <thead>
+      <th class="table-header">Candidate's Name</th>
+      <th class="table-header">Application Status</th>
+      <th class="table-header">Change Application Status</th>
+      <th class="table-header">Delete Application</th>
+      </thead>
+      <tbody>
+      <tr th:each="app : ${applications}">
+        <td>
+          <a th:href="@{/officer/view-profile/{id} (id=${app.cid.id})}"
+             th:text="${app.cid.first_name} + ' ' + ${app.cid.surname}"></a>
+        </td>
+        <td th:text="${app.appstatus}">Application Status</td>
+        <td>
+          <a th:href="@{/officer/editstatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Change status</a>
+        </td>
+        <td>
+          <a th:href="@{/officer/deletestatus/{id} (id=${app.id})}" class="btn btn-dark btn-gold">Delete application</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="Panel">
+    <h3>Viewing Options</h3>
+    <div class="center-panel">
+      <div class="submit">
+        <a class="btn btn-dark btn-gold" href="/officer/approved-applications">View approved applications</a>
+      </div>
+      <div class="submit">
+        <a class="btn btn-dark btn-gold" href="/officer/denied-applications">View denied applications</a>
+      </div>
+      <div class="submit">
+        <a class="btn btn-dark btn-gold" href="/officer/pending-applications">View pending applications</a>
+      </div>
+      <div class="submit">
+        <a class="btn btn-dark btn-gold" href="/officer/all-applications">View all applications</a>
+      </div>
+      <div class="submit">
+        <p>Click on a candidate's first name to visit their profile</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
