@@ -14,4 +14,5 @@ public class OfficersListRequest {
     private Optional<String> searchTerm;
     private List<String> orderBy;
     private Integer limit;
+    private final Integer Id;
 }

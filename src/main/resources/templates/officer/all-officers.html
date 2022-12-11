@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <title>Admins</title>
+</head>
+
+<body class="candidatesPage">
+<div class="container">
+    <div th:replace="fragments/navbar"></div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        <div th:replace="fragments/navbar4.0"></div>
+    </div>
+    <h1 class="candidatesHeader"><u> A D M I N S </u></h1>
+    <table class="table table-bordered table-striped table-dark">
+        <thead>
+        <th class="table-header">First Name</th>
+        <th class="table-header">Surname</th>
+        <th class="table-header">Email</th>
+        <th class="table-header">Edit</th>
+        <th class="table-header">Delete</th>
+        </thead>
+        <tbody>
+        <tr th:each="vettingOfficer : ${officers}">
+            <td th:text="${vettingOfficer.first_name}">First Name</td>
+            <td th:text="${vettingOfficer.surname}">Surname</td>
+            <td th:text="${vettingOfficer.email}">Email</td>
+            <td>
+                <a th:href="@{/officer/edit/{id} (id=${vettingOfficer.id})}" class="btn btn-dark btn-gold">Edit</a>
+            </td>
+            <td>
+                <form th:action="@{/officer/delete/{id} (id=${vettingOfficer.id})}" th:object="${vettingOfficer}"
+                      th:method="post">
+                    <button class="btn btn-dark btn-gold" type="submit">Delete</button>
+                </form>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

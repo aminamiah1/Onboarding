@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS Master_Admin
 )
     ENGINE = INNODB;
     
-SHOW VARIABLES; -- returns all system variable --
+/* SHOW VARIABLES; -- returns all system variable --
 
 SHOW VARIABLES WHERE Variable_name = 'port';
 
@@ -152,4 +152,5 @@ Set @authstring = (SELECT authentication_string
 SELECT plugin FROM user WHERE User='miaha9' and Host='localhost';
 SELECT plugin FROM user WHERE User='milliganec' and Host='localhost';
 -- password passes it to the authentication plugin --
+*/
 

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link href="/CSS/register.css" th:href="@{/CSS/register.css}" rel="stylesheet"/>
+    <title>Add Officer</title>
+</head>
+
+<body class="login-page">
+<div>
+    <div th:replace="fragments/navbar"></div>
+    <main>
+        <div class="login-block">
+            <h1>Edit Info</h1>
+            <form th:action="@{/officer/saveUpdatedForm/{id} (id=${vetOfficerForm.id})}" th:object="${vetOfficerForm}" th:method="post">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="hidden" id="id" th:field="*{id}">
+                        <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                        <label class="label" for="first_name"></label>
+                        <input type="text" class="form-control" id="first_name" placeholder="First Name"
+                               th:field="*{first_name}">
+                        <div class="alert alert-warning" th:errors="*{first_name}"
+                             th:if="${#fields.hasErrors('first_name')}">
+                            First Name does not fit the required format
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user ti-user"></i></span>
+                        <label class="label" for="surname"></label>
+                        <input type="text" class="form-control" id="surname" placeholder="Surname"
+                               th:field="*{surname}">
+                        <div class="alert alert-warning" th:errors="*{surname}"
+                             th:if="${#fields.hasErrors('surname')}">
+                            Surname does not fit the required format
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope ti-email"></i></span>
+                        <label class="label" for="Email"></label>
+                        <input type="text" class="form-control" id="Email" placeholder="Email Address"
+                               th:field="*{email}">
+                        <div class="alert alert-warning" th:errors="*{email}"
+                             th:if="${#fields.hasErrors('email')}">
+                            Email does not fit the required format
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                        <label class="label" for="password"></label>
+                        <input type="password" class="form-control" id="password" placeholder="Create A Password"
+                               th:field="*{password}">
+                        <div class="alert alert-warning" th:errors="*{password}"
+                             th:if="${#fields.hasErrors('password')}">
+                            Password does not fit the required format of 2 to 100 characters
+                        </div>
+                    </div>
+                </div>
+                <hr class="hr-xs">
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

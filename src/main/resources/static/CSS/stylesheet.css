@@ -173,13 +173,19 @@ a {
     }
 
     .candidatesPage {
-        background-color: floralwhite;
+        background-color: white;
     }
 
     .candidatesHeader {
         margin-bottom: 2.5rem;
-        color: darkgoldenrod;
+        color: black;
         text-align: center;
         font-weight: bold;
+    }
+
+    .btn-dark{
+        background-color: darkgoldenrod; !important;
+        color: white !important;
+        box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
     }
 }

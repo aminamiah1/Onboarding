@@ -45,6 +45,17 @@ public class VettingOfficersServiceImpl implements VettingOfficersService {
     }
 
     @Override
+    public Optional<VettingOfficersDTO> getVettingOfficerById(Optional<Integer> id){
+        Optional<VettingOfficers> vettingOfficers = vetOfficerRepository.getVettingOfficerById(id);
+        if (vettingOfficers.isPresent()){
+            System.out.println(vettingOfficers.get());
+            return Optional.of(VettingOfficersAssembler.toDto(vettingOfficers.get()));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    @Override
     public void addNewAdmin(VettingOfficersDTO officerDTO) {
         VettingOfficers officers = new VettingOfficers(
                 vetOfficerRepository.getOfficers()
@@ -56,5 +67,29 @@ public class VettingOfficersServiceImpl implements VettingOfficersService {
                 officerDTO.getPassword()
         );
         vetOfficerRepository.save(officers);
+    }
+
+    @Override
+    public void delete(VettingOfficersDTO vettingOfficersDTO){
+        VettingOfficers deleteOfficer = new VettingOfficers(
+                vettingOfficersDTO.getId(),
+                vettingOfficersDTO.getFirst_name(),
+                vettingOfficersDTO.getSurname(),
+                vettingOfficersDTO.getEmail(),
+                vettingOfficersDTO.getPassword()
+                );
+        vetOfficerRepository.delete(deleteOfficer);
+    }
+
+    @Override
+    public void update(VettingOfficersDTO vettingOfficersDTO){
+        VettingOfficers vettingOfficers = new VettingOfficers(
+                vettingOfficersDTO.getId(),
+                vettingOfficersDTO.getFirst_name(),
+                vettingOfficersDTO.getSurname(),
+                vettingOfficersDTO.getEmail(),
+                vettingOfficersDTO.getPassword()
+        );
+        vetOfficerRepository.update(vettingOfficers);
     }
 }

@@ -35,6 +35,12 @@ public class VetOfficerRepositoryImpl implements VetOfficerRepository {
         return vetOfficerRepoJDBC.findVettingOfficersByEmail(email);
     }
 
+    @Override
+    public Optional<VettingOfficers> getVettingOfficerById(Optional<Integer> id) {
+        return vetOfficerRepoJDBC.findVettingOfficersById(id);
+    }
+
+    @Override
     public List<VettingOfficers> getOfficers() {
         String allOfficersSQl = "select * from Vetting_Officers";
         return jdbc.query(allOfficersSQl, candidateMapper);
@@ -45,5 +51,16 @@ public class VetOfficerRepositoryImpl implements VetOfficerRepository {
         String addOfficerSQL = "INSERT INTO Vetting_Officers (first_name, surname, email, password) values (?, ?, ?, ?)";
         jdbc.update(addOfficerSQL, newAdmin.getFirst_name(), newAdmin.getSurname(),
                 newAdmin.getEmail(), newAdmin.getPassword());
+    }
+
+    @Override
+    public void delete(VettingOfficers vettingOfficers) {
+        String deleteQuery = "DELETE FROM Vetting_Officers WHERE ID = ?";
+        jdbc.update(deleteQuery, vettingOfficers.getId());
+    }
+
+    @Override
+    public void update(VettingOfficers updateVettingOfficers){
+        vetOfficerRepoJDBC.save(updateVettingOfficers);
     }
 }
