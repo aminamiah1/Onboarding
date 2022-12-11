@@ -16,7 +16,6 @@ import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalServic
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminDTO;
 import com.example.ase2022y203.masterAdmin.service.MasterAdminService;
-import com.example.ase2022y203.vettingOfficers.service.VettingOfficersAssembler;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;

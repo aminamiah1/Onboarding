@@ -25,17 +25,22 @@
         <th class="table-header">First Name</th>
         <th class="table-header">Surname</th>
         <th class="table-header">Email</th>
+        <th class="table-header">Edit</th>
+        <th class="table-header">Delete</th>
         </thead>
         <tbody>
-        <tr th:each="candidate : ${candidates}">
+        <tr th:each="vettingOfficer : ${VettingOfficers}">
+            <td th:text="${vettingOfficer.first_name}">First Name</td>
+            <td th:text="${vettingOfficer.surname}">Surname</td>
+            <td th:text="${vettingOfficer.email}">Email</td>
             <td>
-                <a th:href="@{/candidate/candidate-profile/{id} (id=${candidate.id})}"
-                   th:text="${candidate.first_name}"></a>
+                <a th:href="@{/officer/edit/{id} (id=${vettingOfficer.id})}" class="btn btn-dark btn-gold">Edit</a>
             </td>
-            <td th:text="${candidate.surname}">Surname</td>
-            <td th:text="${candidate.email}">Email</td>
-            <td th:text="${candidate.company_name}">Company Name</td>
-        </tr>
+            <td>
+                <form th:action="@{/officer/delete/{id} (id=${vettingOfficer.id})}" th:object="${vettingOfficer}"
+                      th:method="post">
+                    <button class="btn btn-dark btn-gold" type="submit">Delete application</button>
+                </form>
         </tbody>
     </table>
 </div>
