@@ -110,13 +110,13 @@ public class CandidateController {
 
     @GetMapping("document-portal")
     public ModelAndView getDocumentPortal(Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleEmail = authentication.getName();
 
         Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
 
         if(candidate.isPresent()){
+            model.addAttribute("candidate", candidate.get());
             var mv = new ModelAndView("candidate/document-portal", model.asMap());
             return mv;
         } else {

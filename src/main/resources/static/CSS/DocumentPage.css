@@ -1,0 +1,80 @@
+.container {
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "Document-Header-1 Document-Header-1"
+    "Document-Header-2 Document-Header-2"
+    "Document-Upload Document-Upload"
+    "Document-Status Document-Status";
+}
+
+.Document-Header-1 {
+    grid-area: Document-Header-1;
+    display: flex;
+    background-color: black;
+    padding: 2em;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+}
+
+.Document-Header-2 {
+    grid-area: Document-Header-2;
+    display: flex;
+    background-color: black;
+    padding: 2em;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+    margin-top: 0.5em;
+}
+
+.Document-Upload {
+    grid-area: Document-Upload;
+    display: flex;
+    background-color: black;
+    padding: 2em;
+    box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
+    margin-top: 0.5em;
+}
+
+.Document-Status { grid-area: Document-Status; }
+
+
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+/* For presentation only, no need to copy the code below */
+
+.container * {
+    position: relative;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    height: fit-content;
+}
+
+.container *:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-text{
+    color: white;
+    font-size: x-large;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.center-text{
+    text-align: center;
+}

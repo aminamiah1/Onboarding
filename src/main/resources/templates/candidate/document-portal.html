@@ -12,24 +12,44 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/DocumentPage.css}" rel="stylesheet"/>
 </head>
 <body>
 <div th:replace="fragments/navbar2.0"></div>
 <div class="container">
-    <div class="Profile-Overview">
-        <div class="Profile-Overview-Title">
-            <h2>Upload Documents</h2>
+    <div class="Document-Header-1">
+        <p class="header-text center-text">
+            <span th:remove="tag">Documents For: </span>
+            <span th:text="${candidate.first_name}" >Candidate</span>
+        </p>
+    </div>
+    <div class="Document-Header-2">
+            <p class="header-text">
+                <span th:remove="tag">Progress: </span>
+                <span>To do</span>
+            </p>
+            <p class="header-text">
+                <span th:remove="tag">ID file status: </span>
+                <span>To upload</span>
+            </p>
+            <p class="header-text text-right">
+                <span th:remove="tag">Passport file status: </span>
+                <span>To Upload</span>
+            </p>
+    </div>
+    <div class="Document-Upload">
+        <div>
+            <p class="header-text">ID:</p>
+            <input name="imageFile" type="file"/>
+            <button name="submit" type="submit" value="0">Submit</button>
         </div>
-        <div class="Profile--Bar">
-
+        <div>
+            <p class="header-text">Passport:</p>
+            <input name="imageFile" type="file"/>
+            <button name="submit" type="submit" value="0">Submit</button>
         </div>
     </div>
-    <div class="Personal-Details">
-
-    </div>
-    <div class="References">
-
-    </div>
+    <div class="Document-Status"></div>
 </div>
 </body>
 </html>
