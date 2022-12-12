@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class VetOfficerRepositoryImpl implements VetOfficerRepository {
-    private VetOfficerRepoJDBC vetOfficerRepoJDBC;
+    private final VetOfficerRepoJDBC vetOfficerRepoJDBC;
     private final JdbcTemplate jdbc;
     private RowMapper<VettingOfficers> candidateMapper;
 
