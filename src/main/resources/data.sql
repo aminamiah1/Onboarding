@@ -80,3 +80,27 @@ VALUES(4, 'Pending', 4);
 
 INSERT INTO applications(ID, App_Status, CID)
 VALUES(5, 'Approved', 5);
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(1, 1, 'ID_C1.pdf', 'ID', 'Pending');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(2, 1, 'PP_C1.pdf', 'Passport', 'Pending');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(3, 2, 'PP_C2.pdf', 'Passport', 'Pending');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(4, 3, 'ID_C3.pdf', 'ID', 'Denied');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(5, 3, 'PP_C3.pdf', 'Passport', 'Denied');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(6, 4, 'ID_C4.pdf', 'ID', 'Pending');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(7, 5, 'PP_C5.pdf', 'Passport', 'Approved');
+
+INSERT INTO documents(ID, CID, Document_Name, Document_Type, Document_Status)
+VALUES(8, 5, 'ID_C5.pdf', 'ID', 'Approved');
