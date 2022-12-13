@@ -1,1 +1,0 @@
-This folder is for storing candidates' documents which have been uploaded.

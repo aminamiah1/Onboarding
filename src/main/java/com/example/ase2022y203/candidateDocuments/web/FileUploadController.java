@@ -7,17 +7,18 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static java.nio.file.Files.probeContentType;
+import static java.nio.file.Files.write;
 
 
 @Controller
@@ -27,9 +28,9 @@ public class FileUploadController {
     @Value("${candidate.documents.directory}")
     private String candidateDocumentPathSuffix;
 
-    @GetMapping("{fileName}")
+    @GetMapping("candidateDocuments/{fileName}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName){
-        String homePath = System.getProperty("user.home");
+        String homePath = "/resources";
         String candidateDocumentPath = homePath.concat(candidateDocumentPathSuffix);
         Path path = Paths.get(candidateDocumentPath + fileName);
 
@@ -44,6 +45,35 @@ public class FileUploadController {
         } catch(IOException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @PostMapping("/uploadID")
+    public String saveID(@RequestParam("idFile") MultipartFile idFile, Model model){
+        String homePath = System.getProperty("user.dir");
+        String candidateDocumentPath = homePath.concat(candidateDocumentPathSuffix);
+        File documentDirectory = new File(candidateDocumentPath);
+
+        if(!documentDirectory.exists()){
+            documentDirectory.mkdir();
+        }
+
+        byte[] bytes = new byte[0];
+        try{
+            bytes = idFile.getBytes();
+        } catch(IOException e){
+            throw new RuntimeException(e);
+        }
+
+        Path path = Paths.get(candidateDocumentPath + idFile.getOriginalFilename());
+        System.out.println("Writing file: " + candidateDocumentPath + idFile.getOriginalFilename());
+        try{
+            write(path, bytes);
+            model.addAttribute("lastFile", idFile.getOriginalFilename());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return "redirect:/candidate/document-portal";
     }
 
 }
