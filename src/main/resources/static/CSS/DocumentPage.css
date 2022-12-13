@@ -37,6 +37,7 @@
     padding: 2em;
     box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
     margin-top: 0.5em;
+    align-items: center;
 }
 
 .Document-Status { grid-area: Document-Status; }
@@ -92,4 +93,5 @@ button{
 
 .file-upload{
     margin-top: 2em;
+    width: 15em;
 }

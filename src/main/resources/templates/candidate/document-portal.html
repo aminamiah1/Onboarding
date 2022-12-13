@@ -41,6 +41,7 @@
         <p class="header-text">Please upload as jpeg only: </p>
         <div class="file-upload">
             <p class="header-text">ID:</p>
+            <img src="/candidateDocuments/ID_C2.jpg">
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadID}" th:object="${idFile}">
                 <input name="idFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
@@ -48,6 +49,7 @@
         </div>
         <div class="file-upload">
             <p class="header-text">Passport:</p>
+            <img src="/candidateDocuments/PP_C2.jpg">
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadPassport}" th:object="${passportFile}">
                 <input name="passportFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
