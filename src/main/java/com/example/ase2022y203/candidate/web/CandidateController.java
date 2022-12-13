@@ -1,13 +1,12 @@
 package com.example.ase2022y203.candidate.web;
 
-import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
-import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
 import com.example.ase2022y203.candidate.web.forms.RegistersForm;
 import com.example.ase2022y203.candidate.service.*;
 import com.example.ase2022y203.candidate.service.CandidateService;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsService;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
-import com.example.ase2022y203.candidateReferences.service.CandidateReferencesDTO;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
 import com.example.ase2022y203.candidateReferences.service.messages.CandidateRefListRequest;
 import org.springframework.security.core.Authentication;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -32,10 +30,13 @@ public class CandidateController {
 
     private final CandidateReferencesService candidateReferencesService;
 
-    public CandidateController(CandidateService svc, CandidatePersonalService cps, CandidateReferencesService crs) {
+    private final DocumentsService documentsService;
+
+    public CandidateController(CandidateService svc, CandidatePersonalService cps, CandidateReferencesService crs, DocumentsService documentsService) {
         this.candidateService = svc;
         this.candidatePersonalService = cps;
         this.candidateReferencesService = crs;
+        this.documentsService = documentsService;
     }
 
     @GetMapping("candidate-profile")
@@ -115,7 +116,30 @@ public class CandidateController {
 
         Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
 
-        if(candidate.isPresent()){
+        String idFileName = "ID_" + "C" + candidate.get().getId().toString() + ".jpg";
+
+        String passportFileName = "PP_" + "C" + candidate.get().getId().toString() + ".jpg";
+
+        Optional<DocumentsDTO> idFile = documentsService.getDocument(idFileName);
+        Optional<DocumentsDTO> passportFile = documentsService.getDocument(passportFileName);
+
+        if(candidate.isPresent() & idFile.isPresent() & passportFile.isPresent()){
+            model.addAttribute("candidate", candidate.get());
+            model.addAttribute("idFile", idFile.get());
+            model.addAttribute("passportFile", passportFile.get());
+            var mv = new ModelAndView("candidate/document-portal", model.asMap());
+            return mv;
+        } else if(candidate.isPresent() & idFile.isPresent()) {
+            model.addAttribute("candidate", candidate.get());
+            model.addAttribute("idFile", idFile.get());
+            var mv = new ModelAndView("candidate/document-portal", model.asMap());
+            return mv;
+        } else if(candidate.isPresent() & passportFile.isPresent()){
+            model.addAttribute("candidate", candidate.get());
+            model.addAttribute("passportFile", passportFile.get());
+            var mv = new ModelAndView("candidate/document-portal", model.asMap());
+            return mv;
+        } else if(candidate.isPresent()){
             model.addAttribute("candidate", candidate.get());
             var mv = new ModelAndView("candidate/document-portal", model.asMap());
             return mv;

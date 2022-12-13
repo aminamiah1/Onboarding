@@ -47,25 +47,6 @@ public class FileUploadController {
     @Value("${candidate.documents.directory}")
     private String candidateDocumentPathSuffix;
 
-    @GetMapping("candidateDocuments/{fileName}")
-    public ResponseEntity<Resource> downloadFile(@PathVariable String fileName){
-        String homePath = System.getProperty("user.dir");
-        String candidateDocumentPath = homePath.concat(candidateDocumentPathSuffix);
-        Path path = Paths.get(candidateDocumentPath + fileName);
-
-        try{
-            System.out.println("File path to file:" + path.toAbsolutePath().toString());
-            String type = probeContentType(path);
-            return ResponseEntity.ok()
-                    .contentType(MediaType.parseMediaType(type))
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + path.toAbsolutePath().toString()
-                    + "\"")
-                    .body(new ByteArrayResource(Files.readAllBytes(path)));
-        } catch(IOException e){
-            throw new RuntimeException(e);
-        }
-    }
-
     @PostMapping("/uploadID")
     public String saveID(@RequestParam("idFile") MultipartFile idFile, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

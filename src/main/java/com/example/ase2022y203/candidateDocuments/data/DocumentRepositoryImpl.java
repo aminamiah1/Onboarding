@@ -32,7 +32,7 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
     }
 
     @Override
-    public Optional<Documents> getDocument(String fileName) {
-        return documentsRepoJDBC.findAllByDocumentNameLike(fileName);
+    public Optional<Documents> getDocument(String documentName) {
+        return documentsRepoJDBC.findAllByDocumentNameIsLike(documentName);
     }
 }
