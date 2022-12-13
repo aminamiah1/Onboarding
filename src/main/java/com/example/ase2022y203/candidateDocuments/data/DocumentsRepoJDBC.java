@@ -4,8 +4,9 @@ import com.example.ase2022y203.candidateDocuments.domain.Documents;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DocumentsRepoJDBC extends CrudRepository<Documents, Integer> {
     List<Documents> findAll();
-    Documents findAllByDocumentNameLike(String fileName);
+    Optional<Documents> findAllByDocumentNameLike(String fileName);
 }

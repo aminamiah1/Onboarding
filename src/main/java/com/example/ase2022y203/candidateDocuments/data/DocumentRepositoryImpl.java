@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class DocumentRepositoryImpl implements DocumentsRepository {
@@ -24,11 +25,11 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
 
     @Override
     public void save(Documents newDocuments) {
-
+        documentsRepoJDBC.save(newDocuments);
     }
 
     @Override
-    public Documents getDocument(String fileName) {
+    public Optional<Documents> getDocument(String fileName) {
         return documentsRepoJDBC.findAllByDocumentNameLike(fileName);
     }
 }
