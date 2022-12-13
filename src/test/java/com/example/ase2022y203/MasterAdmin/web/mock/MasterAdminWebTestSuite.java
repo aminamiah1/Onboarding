@@ -1,4 +1,4 @@
-package com.example.ase2022y203.candidateReferences.web.mock;
+package com.example.ase2022y203.MasterAdmin.web.mock;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +9,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-public class ReferencesWebTestSuite{
+public class MasterAdminWebTestSuite {
+
     @Autowired
     private WebApplicationContext context;
 
@@ -25,32 +26,37 @@ public class ReferencesWebTestSuite{
     private MockMvc mockMvc;
 
     @Test
-    public void shouldNotBeAbleToAccessReferencePathWithoutLogin() throws Exception {
+    public void shouldNotBeAbleToAccessALlOfficersPathWithoutLogin() throws Exception {
 
-        //Given a user tries to access the reference page without logging in
+        //Given a user tries to access the all officers path without logging in
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
                 .addFilters(filterChainProxy).build();
-        //When the user accesses the reference url then they should get an error
-        mockMvc.perform(get("/reference")).andExpect(status().is4xxClientError());
+
+        //When the user accesses the all officers url then they should get an error
+        mockMvc.perform(get("/all-officers")).andExpect(status().is4xxClientError());
     }
 
     @Test
-    public void shouldNotBeAbleToAccessReferenceDeletePathWithoutLogin() throws Exception {
+    public void shouldNotBeAbleToAccessAccessEditPathWithoutLogin() throws Exception {
 
-        //Given a user tries to delete a reference without logging in
+        //Given a user tries to access the edit path without logging in
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
                 .addFilters(filterChainProxy).build();
-        //When the user accesses the reference delete url then they should get an error
-        mockMvc.perform(get("/reference/delete/1")).andExpect(status().is4xxClientError());
+
+        //When the user accesses the edit url then they should get an error
+        mockMvc.perform(get("/officers/edit/2")).andExpect(status().is4xxClientError());
+
     }
 
     @Test
-    public void shouldNotBeAbleToAccessReferenceEditPathWithoutLogin() throws Exception {
+    public void shouldNotBeAbleToAccessAccessDeletePathWithoutLogin() throws Exception {
 
-        //Given a user tries to edit a reference without logging in
+        //Given a user tries to access the delete path without logging in
         mockMvc = MockMvcBuilders.webAppContextSetup(context).dispatchOptions(true)
                 .addFilters(filterChainProxy).build();
-        //When the user accesses the edit reference url then they should get an error
-        mockMvc.perform(get("/reference/edit/2")).andExpect(status().is4xxClientError());
+
+        //When the user accesses the delete url then they should get an error
+        mockMvc.perform(get("/officers/delete/2")).andExpect(status().is4xxClientError());
+
     }
 }
