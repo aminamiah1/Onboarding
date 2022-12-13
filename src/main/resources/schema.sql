@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS Documents
 (
     ID                int auto_increment not null primary key,
     CID               int not null,
-    Document_Name     varchar(100) not null,
+    Document_Name     varchar(100) not null unique,
     Document_Type     varchar(100) not null,
     Document_Status   varchar(100) not null,
     constraint documents_candidates_fk
