@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface DocumentsRepoJDBC extends CrudRepository<Documents, Integer> {
     List<Documents> findAll();
     Optional<Documents> findAllByDocumentNameIsLike(String documentName);
+    Optional<Documents> findDocumentsById(Integer id);
 }

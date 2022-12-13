@@ -9,4 +9,6 @@ public interface DocumentsService {
     List<DocumentsDTO> getAllDocuments();
     void save(DocumentsDTOSave documentsDTOSave);
     Optional<DocumentsDTO> getDocument(String fileName);
+    Optional<DocumentsDTO> getDocumentByID(Integer id);
+    void deleteDocument(DocumentsDTO documentsDTO);
 }

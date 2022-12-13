@@ -51,6 +51,10 @@
                 <input name="idFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
             </form>
+            <form th:if="${idFile != null}" th:action="@{/deleteCandidateID/{id} (id=${idFile.id})}" th:object="${idFile}"
+                  th:method="post">
+                <button class="btn btn-dark btn-gold" type="submit">Delete ID</button>
+            </form>
         </div>
         <div class="file-upload">
             <p class="header-text">Passport:</p>
@@ -59,10 +63,11 @@
                 <input name="passportFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
             </form>
+            <form th:if="${passportFile != null}" th:action="@{/deleteCandidatePassport/{id} (id=${passportFile.id})}" th:object="${passportFile}"
+                  th:method="post">
+                <button class="btn btn-dark btn-gold" type="submit">Delete Passport</button>
+            </form>
         </div>
-    </div>
-    <div class="Document-Status">
-
     </div>
 </div>
 </body>

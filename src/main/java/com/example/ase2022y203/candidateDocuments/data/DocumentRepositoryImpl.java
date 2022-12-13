@@ -1,6 +1,7 @@
 package com.example.ase2022y203.candidateDocuments.data;
 
 import com.example.ase2022y203.candidateDocuments.domain.Documents;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,16 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
     @Override
     public Optional<Documents> getDocument(String documentName) {
         return documentsRepoJDBC.findAllByDocumentNameIsLike(documentName);
+    }
+
+    @Override
+    public Optional<Documents> getDocumentByID(Integer id) {
+        return documentsRepoJDBC.findDocumentsById(id);
+    }
+
+    @Override
+    public void deleteDocument(Documents documents) {
+        String deleteQuery = "DELETE FROM Documents WHERE ID = ?";
+        jdbc.update(deleteQuery, documents.getId());
     }
 }

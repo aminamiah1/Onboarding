@@ -7,38 +7,31 @@ import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 
-import static java.nio.file.Files.probeContentType;
 import static java.nio.file.Files.write;
 
 
 @Controller
 @SessionAttributes({"passportFile, IDFile"})
-public class FileUploadController {
+public class DocumentController {
 
     private final CandidateService candidateService;
     private final DocumentsService documentsService;
 
-    public FileUploadController(CandidateService candidateService, DocumentsService documentsService) {
+    public DocumentController(CandidateService candidateService, DocumentsService documentsService) {
         this.candidateService = candidateService;
         this.documentsService = documentsService;
     }
@@ -144,4 +137,47 @@ public class FileUploadController {
         return "redirect:/candidate/document-portal";
     }
 
+    @PostMapping("/deleteCandidateID/{id}")
+    public ModelAndView deleteCandidateID(@PathVariable("id") Integer id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+
+        if(candidate.isPresent()){
+            Optional<DocumentsDTO> document = documentsService.getDocumentByID(id);
+            String homePath = System.getProperty("user.dir");
+            String candidateDocumentPath = homePath.concat(candidateDocumentPathSuffix);
+            Path path = Paths.get(candidateDocumentPath + document.get().getDocumentName());
+            path.toFile().delete();
+            documentsService.deleteDocument(document.get());
+        } else{
+            return new ModelAndView("redirect:/404");
+        }
+
+        var mv = new ModelAndView("redirect:/candidate/document-portal", model.asMap());
+        return mv;
+    }
+
+    @PostMapping("/deleteCandidatePassport/{id}")
+    public ModelAndView deleteCandidatePassport(@PathVariable("id") Integer id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipleEmail = authentication.getName();
+
+        Optional<CandidateDTO> candidate = candidateService.getCandidateByEmail(currentPrincipleEmail);
+
+        if(candidate.isPresent()){
+            Optional<DocumentsDTO> document = documentsService.getDocumentByID(id);
+            String homePath = System.getProperty("user.dir");
+            String candidateDocumentPath = homePath.concat(candidateDocumentPathSuffix);
+            Path path = Paths.get(candidateDocumentPath + document.get().getDocumentName());
+            path.toFile().delete();
+            documentsService.deleteDocument(document.get());
+        } else{
+            return new ModelAndView("redirect:/404");
+        }
+
+        var mv = new ModelAndView("redirect:/candidate/document-portal", model.asMap());
+        return mv;
+    }
 }

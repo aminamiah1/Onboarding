@@ -1,6 +1,7 @@
 package com.example.ase2022y203.candidateDocuments.data;
 
 import com.example.ase2022y203.candidateDocuments.domain.Documents;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
 
 import java.util.List;
@@ -10,4 +11,6 @@ public interface DocumentsRepository {
     List<Documents> getAllDocuments();
     void addNewDocument(DocumentsDTOSave documentsDTOSave);
     Optional<Documents> getDocument(String fileName);
+    Optional<Documents> getDocumentByID(Integer id);
+    void deleteDocument(Documents documents);
 }

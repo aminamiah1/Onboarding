@@ -36,4 +36,26 @@ public class DocumentsServiceImpl implements DocumentsService {
             return Optional.empty();
         }
     }
+
+    @Override
+    public Optional<DocumentsDTO> getDocumentByID(Integer id) {
+        Optional<Documents> aDocument = documentsRepository.getDocumentByID(id);
+        if(aDocument.isPresent()){
+            return Optional.of(DocumentsAssembler.toDto(aDocument.get()));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    @Override
+    public void deleteDocument(DocumentsDTO documentsDTO) {
+        Documents deleteDocument = new Documents(
+                documentsDTO.getId(),
+                documentsDTO.getCid(),
+                documentsDTO.getDocumentName(),
+                documentsDTO.getDocumentType(),
+                documentsDTO.getDocumentStatus()
+        );
+        documentsRepository.deleteDocument(deleteDocument);
+    }
 }
