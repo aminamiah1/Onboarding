@@ -1,6 +1,7 @@
 package com.example.ase2022y203.candidateDocuments.data;
 
 import com.example.ase2022y203.candidateDocuments.domain.Documents;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -24,8 +25,10 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
     }
 
     @Override
-    public void save(Documents newDocuments) {
-        documentsRepoJDBC.save(newDocuments);
+    public void addNewDocument(DocumentsDTOSave documentsDTOSave) {
+        String addNewDocumentSQL ="INSERT INTO Documents (cid, document_name, document_type, document_status) VALUES(?, ?, ?, ?)";
+        jdbc.update(addNewDocumentSQL, documentsDTOSave.getCid().getId(), documentsDTOSave.getDocumentName(), documentsDTOSave.getDocumentType()
+        , documentsDTOSave.getDocumentStatus());
     }
 
     @Override

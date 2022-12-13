@@ -23,15 +23,8 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
-    public void save(DocumentsDTO documentsDTO) {
-        Documents newDocuments = new Documents(
-                documentsDTO.getId(),
-                documentsDTO.getCid(),
-                documentsDTO.getDocumentName(),
-                documentsDTO.getDocumentType(),
-                documentsDTO.getDocumentStatus()
-        );
-        documentsRepository.save(newDocuments);
+    public void save(DocumentsDTOSave documentsDTOSave) {
+        documentsRepository.addNewDocument(documentsDTOSave);
     }
 
     @Override

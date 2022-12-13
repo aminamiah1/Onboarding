@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface DocumentsService {
     List<DocumentsDTO> getAllDocuments();
-    void save(DocumentsDTO documentsDTO);
+    void save(DocumentsDTOSave documentsDTOSave);
     Optional<DocumentsDTO> getDocument(String fileName);
 }

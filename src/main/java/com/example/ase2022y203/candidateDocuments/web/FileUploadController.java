@@ -2,7 +2,12 @@ package com.example.ase2022y203.candidateDocuments.web;
 
 import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
+import com.example.ase2022y203.candidateDocuments.domain.Documents;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.couchbase.CouchbaseProperties;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -31,9 +36,11 @@ import static java.nio.file.Files.write;
 public class FileUploadController {
 
     private final CandidateService candidateService;
+    private final DocumentsService documentsService;
 
-    public FileUploadController(CandidateService candidateService) {
+    public FileUploadController(CandidateService candidateService, DocumentsService documentsService) {
         this.candidateService = candidateService;
+        this.documentsService = documentsService;
     }
 
     //Directory where the candidate documents are stored
@@ -81,10 +88,25 @@ public class FileUploadController {
             throw new RuntimeException(e);
         }
 
-        Path path = Paths.get(candidateDocumentPath + "ID_" + "C" + candidate.get().getId().toString() + ".jpg");
+        String fileName = "ID_" + "C" + candidate.get().getId().toString() + ".jpg";
+        Path path = Paths.get(candidateDocumentPath + fileName);
         System.out.println("Writing file: " + candidateDocumentPath + idFile.getOriginalFilename());
         try{
             write(path, bytes);
+
+            DocumentsDTOSave documentsDTOSave = new DocumentsDTOSave(
+                    candidateService.getCandidateEntityByID(candidate.get().getId()).get(),
+                    fileName,
+                    "ID",
+                    "Pending"
+            );
+
+            try{
+                documentsService.save(documentsDTOSave);
+            } catch(Exception e){
+                System.out.println(e.getMessage());
+            }
+
             model.addAttribute("lastIDFile", idFile.getOriginalFilename());
         } catch (IOException e) {
             throw new RuntimeException(e);
