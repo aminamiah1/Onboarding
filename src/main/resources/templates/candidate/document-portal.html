@@ -41,14 +41,14 @@
         <div class="file-upload">
             <p class="header-text">ID:</p>
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadID}" th:object="${idFile}">
-                <input name="idFile" type="file" class="file-style"/>
+                <input name="idFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
             </form>
         </div>
         <div class="file-upload">
             <p class="header-text">Passport:</p>
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadPassport}" th:object="${passportFile}">
-                <input name="passportFile" type="file" class="file-style"/>
+                <input name="passportFile" type="file" accept="image/jpeg" class="file-style"/>
                 <button name="submit" type="submit" value="0">Submit</button>
             </form>
         </div>
