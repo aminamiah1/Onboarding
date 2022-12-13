@@ -26,15 +26,20 @@
     <div class="Document-Header-2">
             <p class="header-text">
                 <span th:remove="tag">Progress: </span>
-                <span>To do</span>
+                <span th:if="${idFile == null and passportFile == null}">0/2</span>
+                <span th:if="${idFile != null and passportFile == null}">1/2</span>
+                <span th:if="${passportFile != null and idFile == null}">1/2</span>
+                <span th:if="${passportFile != null and idFile != null}">2/2</span>
             </p>
             <p class="header-text">
                 <span th:remove="tag">ID file status: </span>
-                <span>To upload</span>
+                <span th:if="${idFile == null}">To upload</span>
+                <span th:if="${idFile != null}">Uploaded</span>
             </p>
             <p class="header-text text-right">
                 <span th:remove="tag">Passport file status: </span>
-                <span>To Upload</span>
+                <span th:if="${passportFile == null}">To upload</span>
+                <span th:if="${passportFile != null}">Uploaded</span>
             </p>
     </div>
     <div class="Document-Upload">
