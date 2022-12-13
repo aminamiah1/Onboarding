@@ -1,6 +1,6 @@
 .container {
     display: grid;
-    height: fit-content;
+    height: inherit;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 0px 0px;
@@ -32,6 +32,7 @@
 .Document-Upload {
     grid-area: Document-Upload;
     display: flex;
+    flex-direction: column;
     background-color: black;
     padding: 2em;
     box-shadow: 6px 6px 0px 0px rgb(0 0 0 / 20%);
@@ -77,4 +78,18 @@ html, body{
 
 .center-text{
     text-align: center;
+}
+
+.file-style{
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+button{
+    background-color: darkgoldenrod;
+    color: white;
+}
+
+.file-upload{
+    margin-top: 2em;
 }
