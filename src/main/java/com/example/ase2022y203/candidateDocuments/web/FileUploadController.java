@@ -137,10 +137,24 @@ public class FileUploadController {
             throw new RuntimeException(e);
         }
 
-        Path path = Paths.get(candidateDocumentPath + "PP_" + "C" + candidate.get().getId().toString() + ".jpg");
+        String fileName = "PP_" + "C" + candidate.get().getId().toString() + ".jpg";
+        Path path = Paths.get(candidateDocumentPath + fileName);
         System.out.println("Writing file: " + candidateDocumentPath + passportFile.getOriginalFilename());
         try{
             write(path, bytes);
+
+            DocumentsDTOSave documentsDTOSave = new DocumentsDTOSave(
+                    candidateService.getCandidateEntityByID(candidate.get().getId()).get(),
+                    fileName,
+                    "Passport",
+                    "Pending"
+            );
+
+            try{
+                documentsService.save(documentsDTOSave);
+            } catch(Exception e){
+                System.out.println(e.getMessage());
+            }
             model.addAttribute("lastPassportFile", passportFile.getOriginalFilename());
         } catch (IOException e) {
             throw new RuntimeException(e);
