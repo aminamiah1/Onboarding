@@ -11,6 +11,8 @@ import com.example.ase2022y203.candidate.service.CandidateDTO;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
 import com.example.ase2022y203.candidate.service.messages.CandidateListResponse;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
+import com.example.ase2022y203.candidateDocuments.service.DocumentsService;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalDTO;
 import com.example.ase2022y203.candidatePersonal.service.CandidatePersonalService;
 import com.example.ase2022y203.candidateReferences.service.CandidateReferencesService;
@@ -51,17 +53,19 @@ public class VettingOfficerController {
 
     private final MasterAdminService masterAdminService;
 
+    private final DocumentsService documentsService;
+
     public VettingOfficerController(CandidateService candidateService, VettingOfficersService vos,
                                     CandidatePersonalService candidatePersonalService,
                                     CandidateReferencesService candidateReferencesService,
-                                    ApplicationsService applicationsService, MasterAdminService masterAdminService) {
-
+                                    ApplicationsService applicationsService, MasterAdminService masterAdminService, DocumentsService documentsService) {
         this.candidateService = candidateService;
         this.vettingOfficersService = vos;
         this.candidatePersonalService = candidatePersonalService;
         this.candidateReferencesService = candidateReferencesService;
         this.applicationsService = applicationsService;
         this.masterAdminService = masterAdminService;
+        this.documentsService = documentsService;
     }
 
     @GetMapping("officer-profile")
@@ -468,6 +472,25 @@ public class VettingOfficerController {
 
             var mv = new ModelAndView("redirect:/officer/all-officers");
             return mv;
+        }
+    }
+
+    @GetMapping("/view-files")
+    public ModelAndView viewFiles(Model model, HttpServletRequest request){
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String currentPrincipleEmail = authentication.getName();
+
+            Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
+            model.addAttribute("officer", vettingOfficer.get());
+
+            List<DocumentsDTO> documents = documentsService.getAllDocuments();
+            model.addAttribute("documents", documents);
+
+            var mv = new ModelAndView("officer/officer-files", model.asMap());
+            return mv;
+        } else {
+            return new ModelAndView("redirect:/404");
         }
     }
 }

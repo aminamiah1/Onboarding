@@ -1,9 +1,10 @@
 package com.example.ase2022y203.candidateDocuments.data;
 
+import com.example.ase2022y203.candidate.data.CandidateRepository;
 import com.example.ase2022y203.candidateDocuments.domain.Documents;
-import com.example.ase2022y203.candidateDocuments.service.DocumentsDTO;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,15 +15,30 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
 
     private final JdbcTemplate jdbc;
     private final DocumentsRepoJDBC documentsRepoJDBC;
+    private final CandidateRepository candidateRepository;
+    private RowMapper<Documents> documentsMapper;
 
-    public DocumentRepositoryImpl(JdbcTemplate jdbc, DocumentsRepoJDBC documentsRepoJDBC) {
+    public DocumentRepositoryImpl(JdbcTemplate jdbc, DocumentsRepoJDBC documentsRepoJDBC, CandidateRepository candidateRepository) {
         this.jdbc = jdbc;
         this.documentsRepoJDBC = documentsRepoJDBC;
+        this.candidateRepository = candidateRepository;
+        setDocumentsMapper();
+    }
+
+    private void setDocumentsMapper(){
+        documentsMapper = (rs, i) -> new Documents(
+                rs.getInt("id"),
+                candidateRepository.getCandidateByID(rs.getInt("cid")).get(),
+                rs.getString("document_name"),
+                rs.getString("document_type"),
+                rs.getString("document_status")
+        );
     }
 
     @Override
     public List<Documents> getAllDocuments() {
-        return documentsRepoJDBC.findAll();
+        String allDocumentsSQL = "SELECT * FROM Documents";
+        return jdbc.query(allDocumentsSQL, documentsMapper);
     }
 
     @Override

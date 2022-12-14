@@ -26,4 +26,5 @@ public class Documents {
 
     public Documents(Candidate cid, String documentName, String documentType, String documentStatus) {
     }
+
 }

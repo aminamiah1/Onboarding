@@ -33,16 +33,20 @@
             <tbody>
             <tr th:each="document : ${documents}">
                 <td>
-                    <a th:href="@{/officer/view-profile/{id} (id=${documents.cid.id})}"
-                       th:text="${documents.cid.first_name} + ' ' + ${documents.cid.surname}"></a>
+                    <a th:href="@{/officer/view-profile/{id} (id=${document.cid.id})}"
+                       th:text="${document.cid.first_name} + ' ' + ${document.cid.surname}"></a>
                 </td>
                 <td>
-                    <a th:if="${document.document_type}.equals('id')" th:href="@{/view-document/{id} (id=${document.id})}"
-                       th:text="View ID"></a>
+                    <a th:if="${document.documentType == 'ID'}" th:href="@{/view-document/{id} (id=${document.id})}">
+                        View ID</a>
+                    <a th:if="${document.documentType != 'ID'}">
+                        No ID</a>
                 </td>
                 <td>
-                    <a th:if="${document.document_type}.equals('passport')" th:href="@{/view-document/{id} (id=${document.id})}"
-                       th:text="View Passport"></a>
+                    <a th:if="${document.documentType == 'Passport'}" th:href="@{/view-document/{id} (id=${document.id})}">
+                        View Passport</a>
+                    <a th:if="${document.documentType != 'Passport'}">
+                        No Passport</a>
                 </td>
             </tr>
             </tbody>
