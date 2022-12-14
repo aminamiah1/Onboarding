@@ -14,7 +14,8 @@
     <main>
         <div class="login-block">
             <h1>Edit Info</h1>
-            <form th:action="@{/officer/saveUpdatedForm/{id} (id=${vetOfficerForm.id})}" th:object="${vetOfficerForm}" th:method="post">
+            <form th:action="@{/officer/saveUpdatedForm/{id} (id=${vetOfficerForm.id})}" th:object="${vetOfficerForm}"
+                  th:method="post">
                 <div class="form-group">
                     <div class="input-group">
                         <input type="hidden" id="id" th:field="*{id}">
@@ -56,18 +57,18 @@
                 </div>
                 <hr class="hr-xs">
                 <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
-                        <label class="label" for="password"></label>
-                        <input type="password" class="form-control" id="password" placeholder="Create A Password"
-                               th:field="*{password}">
-                        <div class="alert alert-warning" th:errors="*{password}"
-                             th:if="${#fields.hasErrors('password')}">
-                            Password does not fit the required format of 2 to 100 characters
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock ti-unlock"></i></span>
+                            <label class="label" for="password"></label>
+                            <input type="password" class="form-control" id="password" placeholder="Create A Password"
+                                   th:field="*{password}">
+                            <div class="alert alert-warning" th:errors="*{password}"
+                                 th:if="${#fields.hasErrors('password')}">
+                                Password does not fit the required format of 2 to 100 characters
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr class="hr-xs">
+                    <hr class="hr-xs">
                 <button class="btn btn-primary btn-block" type="submit">Submit</button>
             </form>
         </div>

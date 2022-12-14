@@ -80,6 +80,17 @@ public class CandidateServiceImpl implements CandidateService {
         }
     }
 
+    @Override
+    public Optional<Candidate> getCandidateEntityByID(Integer id) {
+        Optional<Candidate> aCandidate = candidateRepository.getCandidateByID(id);
+        if (aCandidate.isPresent()) {
+            System.out.println(aCandidate.get());
+            return aCandidate;
+        } else {
+            return Optional.empty();
+        }
+    }
+
 }
 
 

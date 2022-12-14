@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Your profile</title>
+    <title>View Candidate Files</title>
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           rel="stylesheet">
@@ -24,23 +24,44 @@
         </div>
     </div>
     <div class="Table">
+        <p class="table-header table-title">IDs For Candidates</p>
         <table class="table table-bordered table-striped table-dark">
             <thead>
-            <th class="table-header">First Name</th>
-            <th class="table-header">Surname</th>
-            <th class="table-header">Email</th>
-            <th class="table-header">Company Name</th>
+                <th class="table-header">Candidate Name</th>
+                <th class="table-header">View ID</th>
             </thead>
             <tbody>
-            <tr th:each="candidate : ${candidates}">
+            <tr th:each="idFile : ${idFiles}">
                 <td>
-                    <a th:href="@{/officer/view-profile/{id} (id=${candidate.id})}"
-                       th:text="${candidate.first_name}"></a>
+                    <a th:href="@{/officer/view-profile/{id} (id=${idFile.cid.id})}"
+                       th:text="${idFile.cid.first_name} + ' ' + ${idFile.cid.surname}"></a>
                 </td>
-                <td th:text="${candidate.surname}">Surname</td>
-                <td th:text="${candidate.email}">Email</td>
-                <td th:text="${candidate.company_name}">Company Name</td>
-            </tr>
+                <td>
+                    <a th:if="${idFile}" th:href="@{/view-document/{id} (id=${idFile.id})}">
+                        View ID</a>
+                    <a th:if="${idFile == null}">
+                        No ID</a>
+                </td>
+            </tbody>
+        </table>
+        <p class="table-header table-title">Passports For Candidates</p>
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+                <th class="table-header">Candidate Name</th>
+                <th class="table-header">View Passport</th>
+            </thead>
+            <tbody>
+            <tr th:each="passportFile : ${passportFiles}">
+                <td>
+                    <a th:href="@{/officer/view-profile/{id} (id=${passportFile.cid.id})}"
+                       th:text="${passportFile.cid.first_name} + ' ' + ${passportFile.cid.surname}"></a>
+                </td>
+                <td>
+                    <a th:if="${passportFile}" th:href="@{/view-document/{id} (id=${passportFile.id})}">
+                        View Passport</a>
+                    <a th:if="${passportFile == null}">
+                        No Passport</a>
+                </td>
             </tbody>
         </table>
     </div>
@@ -60,7 +81,8 @@
                 <a class="btn btn-dark btn-gold" href="/officer/view-applications">Go to applications dashboard</a>
             </div>
             <div class="submit">
-                <p>Click on a candidate's first name to visit their profile</p>
+                <p th:if="${idFiles.size() != 0}">Click on a candidate's first name to visit their profile</p>
+                <p th:if="${idFiles.size() == 0}">No documents have been uploaded</p>
             </div>
         </div>
     </div>

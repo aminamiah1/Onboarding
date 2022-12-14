@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class VetOfficerRepositoryImpl implements VetOfficerRepository {
-    private VetOfficerRepoJDBC vetOfficerRepoJDBC;
+    private final VetOfficerRepoJDBC vetOfficerRepoJDBC;
     private final JdbcTemplate jdbc;
     private RowMapper<VettingOfficers> candidateMapper;
 
@@ -37,6 +37,11 @@ public class VetOfficerRepositoryImpl implements VetOfficerRepository {
 
     @Override
     public Optional<VettingOfficers> getVettingOfficerById(Optional<Integer> id) {
+        return vetOfficerRepoJDBC.findVettingOfficersById(id);
+    }
+
+    @Override
+    public List<VettingOfficers> getVettingOfficerByID(Integer id) {
         return vetOfficerRepoJDBC.findVettingOfficersById(id);
     }
 
