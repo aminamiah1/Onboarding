@@ -17,7 +17,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 public class GetOfficers {
-
     private VettingOfficersService vettingOfficersService;
 
     private VetOfficerRepository vetOfficerRepository;

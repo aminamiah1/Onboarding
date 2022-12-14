@@ -1,11 +1,11 @@
 package com.example.ase2022y203.MasterAdmin.spring;
 
 import com.example.ase2022y203.vettingOfficers.data.VetOfficerRepository;
+import com.example.ase2022y203.vettingOfficers.data.VetOfficerRepositoryImpl;
 import com.example.ase2022y203.vettingOfficers.domain.VettingOfficers;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersDTO;
 import com.example.ase2022y203.vettingOfficers.service.VettingOfficersService;
 import com.example.ase2022y203.vettingOfficers.service.messages.OfficersListRequest;
-import org.assertj.core.api.BDDAssumptions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +16,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 
 @SpringBootTest
 public class GetOfficersMockRepo {
@@ -74,4 +75,5 @@ public class GetOfficersMockRepo {
         //Then the officer with id of 1 should be returned
         assertEquals("Harry", officerListResponse.get().getFirst_name());
     }
+
 }

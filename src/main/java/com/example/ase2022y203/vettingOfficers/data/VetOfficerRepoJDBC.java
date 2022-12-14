@@ -11,6 +11,8 @@ public interface VetOfficerRepoJDBC extends CrudRepository<VettingOfficers, Inte
 
     Optional<VettingOfficers> findVettingOfficersById(Optional<Integer> id);
 
+    List<VettingOfficers> findVettingOfficersById(Integer id);
+
     @Override
     void delete(VettingOfficers vettingOfficers);
 }

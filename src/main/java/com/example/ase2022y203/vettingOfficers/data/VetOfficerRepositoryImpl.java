@@ -41,6 +41,11 @@ public class VetOfficerRepositoryImpl implements VetOfficerRepository {
     }
 
     @Override
+    public List<VettingOfficers> getVettingOfficerByID(Integer id) {
+        return vetOfficerRepoJDBC.findVettingOfficersById(id);
+    }
+
+    @Override
     public List<VettingOfficers> getOfficers() {
         String allOfficersSQl = "select * from Vetting_Officers";
         return jdbc.query(allOfficersSQl, candidateMapper);
