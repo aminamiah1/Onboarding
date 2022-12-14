@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -193,5 +194,21 @@ public class DocumentController {
 
         var mv = new ModelAndView("redirect:/candidate/document-portal", model.asMap());
         return mv;
+    }
+
+    @GetMapping("/view-document/{id}")
+    public ModelAndView viewDocument(@PathVariable("id") Integer id, Model model, HttpServletRequest request){
+        if (request.isUserInRole("ROLE_ADMIN") | request.isUserInRole("ROLE_OFFICER")) {
+            Optional<DocumentsDTO> document = documentsService.getDocumentByID(id);
+            if(document.isPresent()){
+                model.addAttribute("document", document.get());
+                var mv = new ModelAndView("officer/view-document", model.asMap());
+                return mv;
+            } else {
+                return new ModelAndView("redirect:/404");
+            }
+        } else {
+            return new ModelAndView("redirect:/404");
+        }
     }
 }

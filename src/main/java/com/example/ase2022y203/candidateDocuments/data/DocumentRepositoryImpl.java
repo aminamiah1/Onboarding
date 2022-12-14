@@ -3,6 +3,7 @@ package com.example.ase2022y203.candidateDocuments.data;
 import com.example.ase2022y203.candidate.data.CandidateRepository;
 import com.example.ase2022y203.candidateDocuments.domain.Documents;
 import com.example.ase2022y203.candidateDocuments.service.DocumentsDTOSave;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -67,7 +68,16 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
 
     @Override
     public Optional<Documents> getDocumentByID(Integer id) {
-        return documentsRepoJDBC.findDocumentsById(id);
+        String getDocumentSQL = "SELECT * FROM Documents WHERE ID = ?";
+
+        Optional<Documents> theDocument;
+
+        try{
+            theDocument = Optional.of(jdbc.queryForObject(getDocumentSQL, documentsMapper, id));
+            return theDocument;
+        } catch(IncorrectResultSizeDataAccessException e){
+            return Optional.empty();
+        }
     }
 
     @Override
