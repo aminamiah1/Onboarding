@@ -24,6 +24,7 @@
     <img th:if="${document != null}"  th:src="@{${'/candidateDocuments/' + document.documentName}}" class="document-img">
 </div>
 <div>
+    <button th:onclick="'javascript:window.print()'" class="btn btn-dark btn-gold back-button">Print Page</button>
     <a th:href="@{/officer/view-files}" class="btn btn-dark btn-gold back-button">Back to dashboard</a>
 </div>
 </body>
