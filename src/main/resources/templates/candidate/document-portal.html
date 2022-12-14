@@ -46,6 +46,9 @@
         <p class="header-text">Please upload as jpeg only: </p>
         <div class="file-upload">
             <p class="header-text">ID:</p>
+            <p class="header-text" th:if="${wrongIDFileError}">
+                <span th:text="${wrongIDFileError}">Wrong File Error</span>
+            </p>
             <img th:if="${idFile != null}" th:src="@{${'/candidateDocuments/' + idFile.documentName}}">
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadID}" th:object="${idFile}">
                 <input name="idFile" type="file" accept="image/jpeg" class="file-style"/>
@@ -58,6 +61,9 @@
         </div>
         <div class="file-upload">
             <p class="header-text">Passport:</p>
+            <p class="header-text" th:if="${wrongPPFileError}">
+                <span th:text="${wrongPPFileError}">Wrong File Error</span>
+            </p>
             <img th:if="${passportFile != null}"  th:src="@{${'/candidateDocuments/' + passportFile.documentName}}">
             <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadPassport}" th:object="${passportFile}">
                 <input name="passportFile" type="file" accept="image/jpeg" class="file-style"/>

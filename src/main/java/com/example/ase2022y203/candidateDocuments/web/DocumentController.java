@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class DocumentController {
     private String candidateDocumentPathSuffix;
 
     @PostMapping("/uploadID")
-    public String saveID(@RequestParam("idFile") MultipartFile idFile, Model model){
+    public String saveID(@RequestParam("idFile") MultipartFile idFile, Model model, RedirectAttributes redirectAttributes){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleEmail = authentication.getName();
 
@@ -53,6 +54,12 @@ public class DocumentController {
 
         if(!documentDirectory.exists()){
             documentDirectory.mkdir();
+        }
+
+        if(!idFile.getContentType().equals("image/jpeg")) {
+            redirectAttributes.addFlashAttribute("wrongIDFileError",
+                    "Only JPEG files allowed for uploading documents, use a JPEG file");
+            return "redirect:/candidate/document-portal";
         }
 
         byte[] bytes = new byte[0];
@@ -90,7 +97,8 @@ public class DocumentController {
     }
 
     @PostMapping("/uploadPassport")
-    public String savePassport(@RequestParam("passportFile") MultipartFile passportFile, Model model){
+    public String savePassport(@RequestParam("passportFile") MultipartFile passportFile, Model model,
+                               RedirectAttributes redirectAttributes){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipleEmail = authentication.getName();
 
@@ -102,6 +110,12 @@ public class DocumentController {
 
         if(!documentDirectory.exists()){
             documentDirectory.mkdir();
+        }
+
+        if(!passportFile.getContentType().equals("image/jpeg")) {
+            redirectAttributes.addFlashAttribute("wrongPPFileError",
+                    "Only JPEG files allowed for uploading documents, use a JPEG file");
+            return "redirect:/candidate/document-portal";
         }
 
         byte[] bytes = new byte[0];
