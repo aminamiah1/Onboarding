@@ -20,7 +20,7 @@ public class GetOfficersRealRepo {
 
     @Test
     public void shouldGetThreeOfficers() throws Exception {
-        //Given the number of officers in the system is three
+        //Given the number of officers in the system is four
         List<VettingOfficersDTO> officersDTO;
 
         OfficersListRequest officersListRequest = OfficersListRequest
@@ -30,8 +30,8 @@ public class GetOfficersRealRepo {
         //When the officers are retrieved
         var officersListResponse = vettingOfficersService.getOfficers(officersListRequest);
 
-        //Then the size of the officers list should be three
-        assertEquals(3,officersListResponse.getOfficersDTOS().size());
+        //Then the size of the officers list should be four
+        assertEquals(4,officersListResponse.getOfficersDTOS().size());
     }
 
     @Test

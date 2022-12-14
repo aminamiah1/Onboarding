@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload documents</title>
+    <link th:href="@{/CSS/ProfilePage.css}" rel="stylesheet"/>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          rel="stylesheet">
+    <link href ="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link href="/CSS/stylesheet.css" th:href="@{/CSS/stylesheet.css}" rel="stylesheet"/>
+    <link th:href="@{/CSS/DocumentPage.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:replace="fragments/navbar2.0"></div>
+<div class="container">
+    <div class="Document-Header-1">
+        <p class="header-text center-text">
+            <span th:remove="tag">Documents For: </span>
+            <span th:text="${candidate.first_name}" >Candidate</span>
+        </p>
+    </div>
+    <div class="Document-Header-2">
+            <p class="header-text">
+                <span th:remove="tag">Progress: </span>
+                <span th:if="${idFile == null and passportFile == null}">0/2</span>
+                <span th:if="${idFile != null and passportFile == null}">1/2</span>
+                <span th:if="${passportFile != null and idFile == null}">1/2</span>
+                <span th:if="${passportFile != null and idFile != null}">2/2</span>
+            </p>
+            <p class="header-text">
+                <span th:remove="tag">ID file status: </span>
+                <span th:if="${idFile == null}">To upload</span>
+                <span th:if="${idFile != null}">Uploaded</span>
+            </p>
+            <p class="header-text text-right">
+                <span th:remove="tag">Passport file status: </span>
+                <span th:if="${passportFile == null}">To upload</span>
+                <span th:if="${passportFile != null}">Uploaded</span>
+            </p>
+    </div>
+    <div class="Document-Upload">
+        <p class="header-text">Please upload as jpeg only: </p>
+        <div class="file-upload">
+            <p class="header-text">ID:</p>
+            <p class="header-text" th:if="${wrongIDFileError}">
+                <span th:text="${wrongIDFileError}">Wrong File Error</span>
+            </p>
+            <img th:if="${idFile != null}" th:src="@{${'/candidateDocuments/' + idFile.documentName}}">
+            <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadID}" th:object="${idFile}">
+                <input name="idFile" type="file" accept="image/jpeg" class="file-style"/>
+                <button name="submit" type="submit" value="0">Submit</button>
+            </form>
+            <form th:if="${idFile != null}" th:action="@{/deleteCandidateID/{id} (id=${idFile.id})}" th:object="${idFile}"
+                  th:method="post">
+                <button class="btn btn-dark btn-gold" type="submit">Delete ID</button>
+            </form>
+        </div>
+        <div class="file-upload">
+            <p class="header-text">Passport:</p>
+            <p class="header-text" th:if="${wrongPPFileError}">
+                <span th:text="${wrongPPFileError}">Wrong File Error</span>
+            </p>
+            <img th:if="${passportFile != null}"  th:src="@{${'/candidateDocuments/' + passportFile.documentName}}">
+            <form action="#" enctype="multipart/form-data" method="POST" th:action="@{/uploadPassport}" th:object="${passportFile}">
+                <input name="passportFile" type="file" accept="image/jpeg" class="file-style"/>
+                <button name="submit" type="submit" value="0">Submit</button>
+            </form>
+            <form th:if="${passportFile != null}" th:action="@{/deleteCandidatePassport/{id} (id=${passportFile.id})}" th:object="${passportFile}"
+                  th:method="post">
+                <button class="btn btn-dark btn-gold" type="submit">Delete Passport</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

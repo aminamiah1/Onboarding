@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS Personal_Information;
 DROP TABLE IF EXISTS Candidate_References;
 DROP TABLE IF EXISTS Vetting_Officers;
 DROP TABLE IF EXISTS Applications;
+DROP TABLE IF EXISTS Documents;
 DROP TABLE IF EXISTS Candidates;
 DROP TABLE IF EXISTS Master_Admin;
 
@@ -109,6 +110,22 @@ CREATE TABLE IF NOT EXISTS Master_Admin
 )
     ENGINE = INNODB;
 
+-- -----------------------------------------------------
+-- TABLE `Documents`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS Documents
+(
+    ID                int auto_increment not null primary key,
+    CID               int not null,
+    Document_Name     varchar(100) not null unique,
+    Document_Type     varchar(100) not null,
+    Document_Status   varchar(100) not null,
+    constraint documents_candidates_fk
+        foreign key (CID) references candidates (ID)
+)
+    ENGINE = INNODB;
+    
 /* SHOW VARIABLES; -- returns all system variable --
 
 SHOW VARIABLES WHERE Variable_name = 'port';
