@@ -28,27 +28,33 @@
             <thead>
             <th class="table-header">Candidate Name</th>
             <th class="table-header">View ID</th>
-            <th class="table-header">View Passport</th>
             </thead>
             <tbody>
-            <tr th:each="document : ${documents}">
+            <tr th:each="idFile : ${idFiles}">
                 <td>
-                    <a th:href="@{/officer/view-profile/{id} (id=${document.cid.id})}"
-                       th:text="${document.cid.first_name} + ' ' + ${document.cid.surname}"></a>
+                    <a th:href="@{/officer/view-profile/{id} (id=${idFile.cid.id})}"
+                       th:text="${idFile.cid.first_name} + ' ' + ${idFile.cid.surname}"></a>
                 </td>
                 <td>
-                    <a th:if="${document.documentType == 'ID'}" th:href="@{/view-document/{id} (id=${document.id})}">
+                    <a th:if="${idFile}" th:href="@{/view-document/{id} (id=${idFile.id})}">
                         View ID</a>
-                    <a th:if="${document.documentType != 'ID'}">
+                    <a th:if="!${idFile}">
                         No ID</a>
                 </td>
+            </tbody>
+        </table>
+        <table class="table table-bordered table-striped table-dark">
+            <thead>
+                <th class="table-header">View Passport</th>
+            </thead>
+            <tbody>
+            <tr th:each="passportFile : ${passportFiles}">
                 <td>
-                    <a th:if="${document.documentType == 'Passport'}" th:href="@{/view-document/{id} (id=${document.id})}">
+                    <a th:if="${passportFile}" th:href="@{/view-document/{id} (id=${passportFile.id})}">
                         View Passport</a>
-                    <a th:if="${document.documentType != 'Passport'}">
+                    <a th:if="!${passportFile}">
                         No Passport</a>
                 </td>
-            </tr>
             </tbody>
         </table>
     </div>
