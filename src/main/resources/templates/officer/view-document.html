@@ -17,7 +17,7 @@
     <link th:href="@{/CSS/DocumentPage.css}" rel="stylesheet"/>
 </head>
 <body>
-<div th:replace="fragments/navbar2.0"></div>
+<div th:replace="fragments/navbar3.0"></div>
 <div class="img-viewer">
     <p th:if="${document != null}" th:inline="text">[[${document.documentType}]] for:</p>
     <p th:if="${document != null}" th:text="${document.cid.first_name + ' ' + document.cid.surname}"></p>
