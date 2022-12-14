@@ -23,6 +23,18 @@ public class DocumentsServiceImpl implements DocumentsService {
     }
 
     @Override
+    public List<DocumentsDTO> getAllIDFiles() {
+        List<Documents> idFiles = documentsRepository.getAllIDFiles();
+        return DocumentsAssembler.toDto(idFiles);
+    }
+
+    @Override
+    public List<DocumentsDTO> getAllPassportFiles() {
+        List<Documents> passportFiles = documentsRepository.getAllPassportFiles();
+        return DocumentsAssembler.toDto(passportFiles);
+    }
+
+    @Override
     public void save(DocumentsDTOSave documentsDTOSave) {
         documentsRepository.addNewDocument(documentsDTOSave);
     }

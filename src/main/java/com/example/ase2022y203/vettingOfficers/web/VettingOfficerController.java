@@ -484,8 +484,11 @@ public class VettingOfficerController {
             Optional<VettingOfficersDTO> vettingOfficer = vettingOfficersService.getVettingOfficerByEmail(currentPrincipleEmail);
             model.addAttribute("officer", vettingOfficer.get());
 
-            List<DocumentsDTO> documents = documentsService.getAllDocuments();
-            model.addAttribute("documents", documents);
+            List<DocumentsDTO> idFiles = documentsService.getAllIDFiles();
+            model.addAttribute("idFiles", idFiles);
+
+            List<DocumentsDTO> passportFiles = documentsService.getAllPassportFiles();
+            model.addAttribute("passportFiles", passportFiles);
 
             var mv = new ModelAndView("officer/officer-files", model.asMap());
             return mv;

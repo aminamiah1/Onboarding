@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public interface DocumentsRepository {
     List<Documents> getAllDocuments();
+    List<Documents> getAllPassportFiles();
+    List<Documents> getAllIDFiles();
     void addNewDocument(DocumentsDTOSave documentsDTOSave);
     Optional<Documents> getDocument(String fileName);
     Optional<Documents> getDocumentByID(Integer id);

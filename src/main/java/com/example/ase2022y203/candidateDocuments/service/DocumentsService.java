@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface DocumentsService {
     List<DocumentsDTO> getAllDocuments();
+    List<DocumentsDTO> getAllIDFiles();
+    List<DocumentsDTO> getAllPassportFiles();
     void save(DocumentsDTOSave documentsDTOSave);
     Optional<DocumentsDTO> getDocument(String fileName);
     Optional<DocumentsDTO> getDocumentByID(Integer id);

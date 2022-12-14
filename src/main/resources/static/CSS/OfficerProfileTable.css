@@ -95,6 +95,14 @@ h3{
     padding: 1em;
 }
 
+.table-title{
+    color: white;
+    background: #323539;
+    padding: 0.5em;
+    font-family: inherit;
+    font-weight: bold;
+}
+
 /*Change text in autofill textbox*/
 input:-webkit-autofill{
     -webkit-text-fill-color: white !important;

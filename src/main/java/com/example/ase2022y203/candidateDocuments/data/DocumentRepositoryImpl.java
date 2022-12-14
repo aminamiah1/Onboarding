@@ -42,6 +42,18 @@ public class DocumentRepositoryImpl implements DocumentsRepository {
     }
 
     @Override
+    public List<Documents> getAllPassportFiles() {
+        String allPassportsSQL = "SELECT * FROM Documents WHERE Document_Type = 'Passport'";
+        return jdbc.query(allPassportsSQL, documentsMapper);
+    }
+
+    @Override
+    public List<Documents> getAllIDFiles() {
+        String allIDSQL = "SELECT * FROM Documents WHERE Document_Type = 'ID'";
+        return jdbc.query(allIDSQL, documentsMapper);
+    }
+
+    @Override
     public void addNewDocument(DocumentsDTOSave documentsDTOSave) {
         String addNewDocumentSQL ="INSERT INTO Documents (cid, document_name, document_type, document_status) VALUES(?, ?, ?, ?)";
         jdbc.update(addNewDocumentSQL, documentsDTOSave.getCid().getId(), documentsDTOSave.getDocumentName(), documentsDTOSave.getDocumentType()
