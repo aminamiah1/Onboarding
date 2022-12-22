@@ -1,0 +1,268 @@
+Title,Description,Issue ID,URL,State,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+As a user I would like to visit the landing page of the website so that I can have info about the purpose of the website,"# Acceptance Criteria
+- [x] Given the user vists the homepage, then they should see an aesthetically pleasing homepage
+- [x] Given the user scrolls through the homepage then they should see info about the website
+
+# Tasks
+- [x] Create a homepage
+- [x] Make sure navbar works on the homepage 
+- [x] Have info on the purpose of the website on the homepage",2,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/2,Closed,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-11-21 12:30:20,2022-12-12 22:11:17,2022-12-08 15:16:06,Sprint Goal 3,3,,0,0
+As an vetting officer I would like to see all candidates information,"# Acceptance Criteria
+- [x] Given the vetting officer visits the 'all candidates' page, then they should see all candidates
+- [x] Given the vetting officer clicks on their name, then it should redirect them to their profile
+
+# Tasks
+- [x] Create an aesthetically pleasing 'all candidates' page
+- [x] Allow officer to click on the name and see their profile
+- [x] Create a table where all candidates will show
+- [x] Add tests for this feature",6,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/6,Closed,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-11-21 12:35:01,2022-12-12 22:35:51,2022-12-12 22:35:51,,3,,0,0
+As a candidate I would like see a login page that looks good.,"",9,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/9,Closed,Eric Milligan,c21040245,Jericho Aguinaldo,c2067115,No,No,,2022-11-21 13:03:58,2022-12-09 10:28:01,2022-12-08 21:13:03,Sprint Goal 3,3,,0,0
+As an admin I would like to have the database populated with mock data so that I can trial the system,"# Acceptance Criteria
+
+- [x] Schema of database is defined within a schema.sql file
+- [x] Mock data is inserted into the database from a data.sql file
+- [x] Can view the mock data from within the database",10,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/10,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-22 09:46:32,2022-11-22 16:03:36,2022-11-22 16:03:36,,3,,0,0
+As a user I would like to know I have visited a non-existent page so that I can report the issue to IT,"# Acceptance Critera
+
+- [x] Create a error controller
+- [x] Create a generic error page
+- [x] User shown error page when trying to access a page that does not exist",11,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/11,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-22 09:48:45,2022-11-22 16:03:38,2022-11-22 16:03:38,,3,,0,0
+As a candidate I would like to be able to view account specific information,"# Acceptance Criteria
+
+- [x] Given the candidate visits the profile page when the page loads then they should see the profile page.
+- [x] Given the profile page is populated with mock candidate information when the candidate visits the profile page then they 
+      should see their account specific information.
+- [x] Given unit tests are created when the tests have finished running then they should pass.
+- [x] Given the page is styled when the candidate visits the page then the page should be styled as expected.
+- [x] Given another candidate is added when the URL is changed from candidate/candidate-profile/1 to candidate/candidate-profile/2 then I should see candidate two's information displayed.",12,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/12,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-22 11:14:19,2022-11-24 08:49:10,2022-11-23 16:48:26,Sprint Goal 1 - Candidate Login,8,,0,0
+As a candidate I would like to be able to register for an account,"# Acceptance Criteria
+- [x] Given the user visits the register page, then they should see an aesthetically pleasing form.
+- [x] Given the user inputs the wrong info, then they should see an error message.
+- [x] Given the user inputs the right info and clicks submit, then they should see a success page telling them they submitted their info
+- [x] Given the user clicks submit, the info should go to the database
+# Tasks
+- [x] Create an aesthetically pleasing registration form
+- [x] Create a functional submit button
+- [x] Allow user to input their info and submit it
+- [x] Application should tell users that they inputted the incorrect format",13,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/13,Closed,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-11-22 11:14:58,2022-12-12 22:31:46,2022-12-12 22:31:46,Sprint Goal 1 - Candidate Login,5,,0,0
+As a user I would like to be able to navigate the site using a sidebar,"# Acceptance Criteria
+- [x] Given the user visits any page, then they should see the sidebar
+- [x] Given the user clicks on any page, it should redirect them to that page
+
+# Tasks
+- [x] Create an aesthetically pleasing sidebar
+- [x] Create a functional navbar that takes them to certain pages",14,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/14,Closed,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-11-22 11:24:56,2022-12-12 22:34:07,2022-12-12 22:34:07,Sprint Goal 3,3,,0,0
+As  a candidate I would like to have access to the personal information and references forms,,15,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/15,Closed,Eric Milligan,c21040245,Jericho Aguinaldo,c2067115,No,No,,2022-11-22 11:44:36,2022-12-05 14:41:45,2022-12-05 14:41:45,Sprint Goal 1 - Candidate Login,5,,0,0
+As a candidate I would like to use the personal information form so that I can register my personal details,"# Acceptance Criteria
+
+- [x] Given the candidate visits the personal information form when the form loads then they should see a form to enter their details.
+- [x] Given the candidate hits submit and the details are are valid when they submit then they should have their personal details entered into the system
+- [x] Given the candidate enters invalid details into one of the form boxes when they hit submit then they should see an error message for the invalid details box.
+
+# Tasks
+- [x] Implement sidebar
+- [x] Create the personal information registration form
+- [x] Details sent into the database and recorded
+- [x] Validate the details on submit
+- [x] Add test suite",16,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/16,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-22 11:46:01,2022-12-02 15:11:34,2022-11-27 19:27:30,Sprint Goal 1 - Candidate Login,5,,0,0
+As a candidate I would like to add my references so that I can record previous experience,"# Acceptance Criteria
+
+- [x] Given the user visits the portal page for their references when the page loads then they should see their previous references and be able to click an add reference button.
+- [x] Given the user visits the create reference page when the page loads they should be able to create a new reference using a form
+- [x] Given the user enters valid data when they submit then the data should be accepted and they should have the newly created reference linked to them.
+
+- [x] Given the user enters invalid data when they submit then the data should be rejected
+# Tasks
+- [x] Create a portal page where the user can see their references with a link to create a new reference.
+- [x] Create a reference form page where the user can add a new reference.
+- [x] The reference has been added on submission for the candidate who added it and is linked to the candidate.
+- [x] Validate the data on submission.
+- [x] Create a test suite for the reference adding for each candidate.",17,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/17,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-22 11:49:34,2022-12-05 14:46:56,2022-12-05 14:37:34,,,,0,0
+As a user I want my data within a database to be securely stored so it is not vulnerable to attacks,,19,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/19,Open,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-11-28 14:57:29,2022-12-15 14:35:01,,,,Development,0,0
+As a user I want  user input validation in the database tier So I enter the right information,"# Acceptance Criteria
+
+- [x] Given the user inputs data that does not match the required format when the data is inserted, then the database should reject the data by using check constraints. 
+- [x] Given the user tries to add the same value for a unique field on another entry when the user tries to insert the entry into the database, then the database should reject the data.
+- [x] Given the user breaks a business rule with the data inputted, when the data is to be inserted into the database, then a exception should fire that reports if the the inputted data violates a business rule, if it does then the database should reject the data.
+
+# Tasks
+- [x] Use unique constraints within the database for the required fields.
+- [x] Use check constraints to make sure data being inputted into the database is in the correct format.
+- [x] Handle exceptions that fire on data being inserted that violates the required business rules.",20,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/20,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-28 14:58:26,2022-12-05 14:39:24,2022-12-05 14:36:55,,3,,0,0
+As a candidate I would like to be able to login with my account so I can be taken to my unique profile page.,"# Acceptance Criteria
+
+- [x] Given the candidate visits the login page when they login with their email and password then they should be logged in.
+- [x] Given the candidate has logged in when they are taken to their profile page they should see their details and they should also then be able to logout using a button.
+- [x] Given the candidate tries to break the login then the system should use Spring Security to then mitigate mis-use of login page. 
+
+# Tasks
+- [x] Create basic loginpage 
+- [x] Configure Spring Security for Authentication(Login)
+- [x] Create UserDetails and UserDetailsService Classes
+- [x] Associate with candidates
+- [x] Link to the logged in candidate's profile page and add a logout button on the profile page
+- [x] Add unit tests",21,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/21,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-11-28 21:49:02,2022-11-29 20:27:10,2022-11-29 15:54:50,,8,,0,0
+"As a candidate, I would like to see a aesthetically pleasing application page",,25,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/25,Open,Amina Miah,c21063494,Diyorbek Sanaqulov,c21070772,No,No,,2022-12-01 12:47:21,2022-12-12 11:52:10,,,,Design,0,0
+As a candidate I would like to edit or delete my references so that I can change my referee,"# Acceptance Criteria
+
+- [x] Given the user accesses the reference portal when they see their references then they should be able to edit or delete a reference through buttons.
+- [x] Given the user clicks edit for a reference they should be taken to the reference form loaded with the chosen references' details.
+- [x] Given the candidate clicks submit on the edit reference form when the data is submitted then the references' details should be updated.
+- [x] Given the candidate enters invalid details when they submit the edit form then they should see their errors highlighted.
+- [x] Given the candidate clicks the delete button for a reference when the button is clicked then the chosen reference should be deleted.
+
+
+# Tasks
+
+- [x] Create buttons on the references table for each candidate that takes the candidate to the edit form or allows the candidate to delete the reference
+- [x] Populate the edit reference form with the chosen references' details
+- [x] Update details on submission for chosen reference
+- [x] Check the validation works for the edit form
+- [x] Link the delete button to deleting a reference
+- [x] Add some tests to test suites",26,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/26,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-01 19:20:37,2022-12-05 14:39:24,2022-12-05 14:37:22,,5,,0,0
+As a vetting officer or a master vetting officer I would like to be able to log in so that I can access my part of the system.,"# Acceptance Critera
+- [x] Given a vetting officer or master vetting officer has an encrypted password when they login it should be decrypted 
+- [x] Given a vetting officer logs in, when they login then they should be taken to their section of the system  
+- [x] Given a master vetting officer logs in, when they login then they should be taken to their section of the system
+- [x] Given a vetting officer/master vetting officer logs in when they log in then they should see their respective navbar types and landing pages
+
+
+# Tasks
+- [x] Encrypt vetting officers and master vetting officers' passwords in the database and decrypt on log in
+- [x] Allow users of vetting officers type to login and have own path
+- [x] Allow user of master vetting officer type to login have own path
+- [x] Add navbar to the landing page of each path with features each type can do (add as we do)",27,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/27,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-02 15:14:50,2022-12-05 14:39:24,2022-12-05 14:37:09,,5,,0,0
+As a Master Admin I would like to add a new vetting officer So that new vetting officers can use the system .,"# Acceptance Criteria
+
+- [x] Given a master vetting officer goes to the add new vetting officer page When the page loads Then they should see a button for submitting the form to add a new master vetting officer
+- [x] Given a master vetting officer submits the form when the data is submitted then the data should show in the database
+- [x] Given a master vetting officer enters invalid data when the data is submitted then the data should not be saved 
+
+
+# Tasks
+
+- [x] Create add vetting officer form
+- [x] Allow a master admin to submit the vetting officer form
+- [x] Save vetting officer into the database
+- [x] Validation for the vetting officer form",31,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/31,Closed,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-12-05 11:05:40,2022-12-12 22:32:06,2022-12-12 22:32:05,Sprint Goal 3,5,,0,0
+"As A Master Admin Or Vetting officer  I would like to view the references, application status and details of candidates on one dashboard page.","# Acceptance Criteria
+
+- [x] Given a master admin or vetting officer visits their dashboard page when the page loads then they should be able to select whether they would like to view all candidates, references or personal details
+
+# Tasks
+
+- [x] Create a master admin/vetting officer dashboard page which is consistent in style to the other pages and follows the wireframe
+- [x] Create a buttons for viewing all candidates, references or personal details
+- [x] On all candidates click, show all candidates on the table view
+- [x] On all references click, show all references on the table view
+- [x] On all personal details click, show all personal details on the table view",32,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/32,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-05 11:24:28,2022-12-08 12:16:12,2022-12-08 12:16:12,Sprint Goal 3,5,,0,0
+As a candidate I would like the candidate portal style to be consistent with the rest of the site So that I have a consistent and appealing experience,"# Acceptance Criteria
+
+- [x] Given a candidate visits the portal when the portal loads then they should have all the key links shown and available to them.
+- [x] Given a candidate would like to fill out all the forms they need to when they visit their onboarding profile then they should see links to all the forms they need to fill out.
+
+# Tasks
+
+- [x] Remodify the candidate portal to match the rest of the website and fit the decided color scheme.
+- [x] Link to the different forms on the one page all links to the progress",33,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/33,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-05 12:31:26,2022-12-07 12:07:28,2022-12-07 12:07:28,Sprint Goal 3,5,,0,0
+As a candidate I would like to be confronted with the personal details form after registration or log in so that I can fill out my details,"# Acceptance Critera
+
+- [x] Given a candidate has not yet filled in personal details on login the candidate should be confronted with the personal information form
+- [x] Given a candidate successfully enters their personal details, they should be shown their profile page
+
+# Tasks
+
+- [x] Take the candidate from login to personal information form if not done
+- [x] Take the user from personal information form to profile when doen.",34,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/34,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-08 13:18:36,2022-12-08 14:53:26,2022-12-08 14:53:26,,3,,0,0
+"As a master admin, I would like the ability to edit officers details or delete them from the system","# Acceptance Criteria
+- [x] Given the master admin visits the 'all officers' page, then they should see an edit and delete button.
+- [x] Given the master admin clicks the edit button, then it should take them to a form where they can input and submit edited details.
+- [x] Given the master admin clicks the delete button, then it should delete from the database.
+# Tasks
+- [x] Create an aesthetically pleasing 'all officers' page
+- [x] Create a functional edit button 
+- [x] Allow only a master admin to edit the officers info
+- [x] Create a functional delete button
+- [x] Allow only a master admin to delete officers from the system
+- [x] Create a table where all officers will show",35,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/35,Closed,Amina Miah,c21063494,Amina Miah,c21063494,No,No,,2022-12-08 15:16:57,2022-12-12 22:27:50,2022-12-12 22:23:43,Sprint Goal 3,,,0,0
+As a user I would like the site to use TLS so the website is secure,"# Acceptance criteria
+
+- [x] Given a user visits the site when the site loads then they can use an https link.
+
+
+# Tasks 
+
+- [x] Generate a self signed certificate through generating a keystore
+- [x] Configure SSL properties
+- [x] Invoke a HTPPS url
+- [x] Allow a HTTPS enabled application",36,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/36,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-08 15:18:10,2022-12-08 16:49:03,2022-12-08 16:49:03,Sprint Goal 3,5,,0,0
+As a master admin/vetting officer I would like to click on candidate to see their profile view so that I can see their profile,"# Acceptance Criteria
+
+- [x]  Given a master admin visits their dashboard and views all candidates and clicks on a candidate hyperlink the they will be taken to their profile.
+- [x] Given a non-vetting officer/master admin tries to view a candidate's profile when they visit the link then they should see the error page
+
+# Tasks
+
+- [x] From the all candidate table a vetting officer/master admin can click on the candidate's hyperlink to be taken to their profile view.
+- [x] Disallow non-vetting officers/master admin from viewing a candidate's profile",37,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/37,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-08 17:37:04,2022-12-09 11:02:53,2022-12-09 11:02:53,,5,,0,0
+"As a vetting officer I would like a functional application dashboard so I can approve, set pending or deny a candidate's application","# Acceptance Criteria
+- [x] Given a vetting officer visits the application dashboard page when the page loads then they should see an aesthetically pleasing application dashboard.
+- [x] Given the vetting officer clicks on a button to see all approved, denied, in pending applications then they should see approved, denied or in pending applications in a table.
+- [x] Given the vetting officer wants to approve, deny or set in pending an application when they click one of the options then they should change the status of the application
+- [x] Given the vetting officer wants to delete an application when they hit the delete button then the application should be removed from the database
+
+# Tasks
+- [x] Create a vetting officer application dashboard page.
+- [x] Buttons on the dashboard for viewing all approved applications, denied applications and pending applications.
+- [x] Different table on click for all approved, denied and pending applications.
+- [x] Allow a vetting officer to approve, deny or set in pending an application by a candidate.
+- [x] Allow a vetting officer to delete an application.
+- [x] Add tests for this feature",38,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/38,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-09 10:27:35,2022-12-11 15:52:45,2022-12-11 15:52:45,Sprint Goal 3,5,,0,0
+"As a master admin, I would like to see all vetting officers","# Acceptance Criteria
+- [x] Given the master admin visits the 'all officers' page, then they should see all officers in a nice table.
+
+# Tasks
+- [x] Create an aesthetically pleasing 'all officers' page
+- [x] Create a table where all officers will show
+- [x] Allow only a master admin to see this table
+- [x] Add Tests for this feature",39,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/39,Closed,Amina Miah,c21063494,Amina Miah,c21063494,No,No,,2022-12-11 16:59:58,2022-12-12 22:27:00,2022-12-12 22:25:52,Sprint Goal 3,,,0,0
+"As a user, I would like to see an email with a congratulations for completing all applications","# Acceptance Criteria
+- [ ] Given the officer approves the candidates applications, then the system should send them an email saying congratulations.
+- [ ] Given the user completes their applications.
+- [ ] Given the officer clicks the approved button on their applications
+# Tasks
+- [ ] Create an aesthetically pleasing email to send to the user
+- [ ] Create a functional button where it sends an email to the candidate
+- [ ] Create tests for this feature",40,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/40,Open,Eric Milligan,c21040245,Amina Miah,c21063494,No,No,,2022-12-12 10:49:56,2022-12-12 22:44:05,,,,Design,0,0
+Upload documents such as a candidate's passport or other id and vetting officer can see this and approve,"# Acceptance Criteria
+
+- [x] Given a candidate visits the document uploading page when the page loads then they should see a page with a file submissions area for documents such as passport and ID, it should allow jpg only.
+- [x] Given a candidate wants to upload a document when they click upload file then their file should be uploaded and stored in our server(git repository).
+- [x] Given a candidate would like to see their previous ID or passport submitted when they load the document portal then the images should be displayed.
+- [x] Given a candidate would like to see their progress of documents that they have uploaded when they load the document upload page then they should see a progress indicator for the progress associated with uploading documents.
+- [x] Given a candidate would like to delete a image when they click the delete button then the image should be deleted from the system.
+- [x] Given a vetting officer would like to view candidate's documents when they load the document viewing page then they should have the option to view each image on a separate page.
+- [x] Given a vetting officer would like to print a candidate's document then they should be able to click a button to print the document.
+- [x] Given a candidate uploads a wrong file type to the document upload area when the document is to be uploaded then it should be rejected
+
+# Tasks
+
+- [x] Create a document uploading page with a upload area for documents to be uploaded
+- [x] Create a functioning file upload area for documents such as ID, Passport etc
+- [x] Show previous passport and ID images on document portal for candidate
+- [x] Create a progress indicator at the top of the page for documents submitted
+- [x] Allow a candidate to delete a image from the system
+- [x] The vetting officer or candidate can view the documents uploaded. 
+- [x] Allow vetting officers to print the candidate images uploaded.
+- [x] Error handling for wrong files uploaded and image not showing etc",41,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/41,Closed,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-12 10:50:57,2022-12-14 17:38:27,2022-12-14 17:38:27,,8,,0,0
+Vetting officer can give feedback comments to a candidate for application rejected or approved,"# Acceptance Critera
+- [ ] As a vetting officer I would like to give feedback comments to a candidate for their application.
+- [ ] As a candidate I would like to view the feedback comments given to me by a vetting officer
+- [ ] As a candidate/vetting officer I would like to reply to feedback comments 
+
+# Tasks
+
+- [ ] Vetting officer can give feedback comments to a candidate for the application
+- [ ] Candidate can view the feedback comments on their profile page
+- [ ] Candidate/Vetting officer can reply to feedback comments",42,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/42,Open,Eric Milligan,c21040245,Eric Milligan,c21040245,No,No,,2022-12-12 10:51:45,2022-12-12 11:55:24,,,,Design,0,0
+Employment history page seperate from references for candidates.,,43,https://git.cardiff.ac.uk/c21040245/ase-2022-y2-03/-/issues/43,Open,Eric Milligan,c21040245,Jericho Aguinaldo,c2067115,No,No,,2022-12-12 11:24:37,2022-12-12 11:52:06,,,,Design,0,0
