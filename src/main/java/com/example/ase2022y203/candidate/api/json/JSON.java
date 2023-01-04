@@ -1,22 +1,17 @@
-package com.example.ase2022y203.candidate.service.messages;
+package com.example.ase2022y203.candidate.api.json;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Value;
 
-import java.util.List;
-import java.util.Optional;
-
 @Value
 @AllArgsConstructor
 @Builder(builderMethodName = "of")
-public class CandidateListRequest {
-    private Optional<String> searchTerm;
-    private List<String> orderBy;
-    private Integer limit;
+public class JSON {
     private Integer id;
     private String first_name;
     private String surname;
     private String email;
+    private String password;
     private String company_name;
 }

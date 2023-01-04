@@ -15,4 +15,5 @@ public class CandidateListResponse {
     private CandidateListRequest request;
     private List<CandidateDTO> candidates;
     private List<CandidateDTOReg> allCandidates;
+    private List<CandidateDTO> candidatesAPI;
 }

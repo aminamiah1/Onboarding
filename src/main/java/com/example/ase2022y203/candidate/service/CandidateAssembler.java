@@ -24,8 +24,19 @@ public class CandidateAssembler {
                 .map(b -> toDTO(b))
                 .collect(Collectors.toList());
     }
-    public static CandidateDTOReg toDTO(Candidate b){
+
+    public static CandidateDTOReg toDTO(Candidate b) {
         return new CandidateDTOReg(b.getFirst_name(), b.getSurname(),
                 b.getEmail(), b.getPassword(), b.getCompany_name());
+    }
+
+    public static List<CandidateDTO> toDtO(List<Candidate> candidatesAPI) {
+        return candidatesAPI.stream().map(l -> toDtO(l)).collect(Collectors.toList());
+    }
+
+    public static CandidateDTO toDtO(Candidate candidatesAPI) {
+        return new CandidateDTO(candidatesAPI.getId(), candidatesAPI.getFirst_name(), candidatesAPI.getSurname(),
+                candidatesAPI.getEmail(), candidatesAPI.getPassword(), candidatesAPI.getCompany_name()
+        );
     }
 }
