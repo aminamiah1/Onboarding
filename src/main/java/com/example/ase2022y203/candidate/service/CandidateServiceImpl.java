@@ -90,16 +90,7 @@ public class CandidateServiceImpl implements CandidateService {
             return Optional.empty();
         }
     }
-    @Override
-    public CandidateListResponse getAPICandidates(CandidateListRequest candidateListRequest) {
-        List<Candidate> candidates = candidateRepository.getAPICandidates();
-        List<CandidateDTO> candidateDTO = CandidateAssembler.toDtO(candidates);
-        return CandidateListResponse
-                .of()
-                .request(candidateListRequest)
-                .candidates(candidateDTO)
-                .build();
-    }
+
 }
 
 

@@ -125,3 +125,49 @@ CREATE TABLE IF NOT EXISTS Documents
         foreign key (CID) references candidates (ID)
 )
     ENGINE = INNODB;
+    
+/* SHOW VARIABLES; -- returns all system variable --
+
+SHOW VARIABLES WHERE Variable_name = 'port';
+
+SELECT @@port;
+
+SHOW VARIABLES WHERE Variable_name = 'hostname';
+
+SELECT @@hostname;
+
+SELECT CONNECTION_ID();
+
+USE mysql;
+
+SHOW tables;
+
+SELECT * FROM user; -- user table accepts and rejects a connection from a host --
+SELECT * FROM db; -- contains database level privileges --
+SELECT * FROM tables_priv;
+SELECT * FROM columns_priv;
+SELECT * FROM procs_priv;
+
+SELECT user(); -- checks the current user --
+
+DROP USER 'miah9'@'localhost'; -- drops users so we can create them--
+DROP USER 'milliganec'@'localhost';
+
+CREATE USER 'miaha9'@'localhost' IDENTIFIED BY 'comsc'; -- creates a new user who can connect from a local host ONLY --
+SHOW GRANTS FOR 'miaha9'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'miaha9'; -- grants user privileges --
+
+CREATE USER 'milliganec'@'localhost' IDENTIFIED BY 'comsc';
+SHOW GRANTS FOR 'milliganec'@'localhost'; -- grants user privileges --
+
+USE mysql;
+
+Set @authstring = (SELECT authentication_string
+                   FROM user WHERE User='miaha9' and Host='localhost');
+-- the authentication string has been hashed using mysql-native-password
+
+SELECT plugin FROM user WHERE User='miaha9' and Host='localhost';
+SELECT plugin FROM user WHERE User='milliganec' and Host='localhost';
+-- password passes it to the authentication plugin --
+*/
+
