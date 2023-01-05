@@ -14,6 +14,5 @@ public interface CandidateService {
     void addNewCandidate(CandidateDTOReg candidateDTO);
     Optional<CandidateDTO> getCandidateByEmail(String email);
     Optional<Candidate> getCandidateEntityByID(Integer id);
-    CandidateListResponse getAPICandidates(CandidateListRequest candidateListRequest);
 }
 

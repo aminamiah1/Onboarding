@@ -14,9 +14,4 @@ public class CandidateListRequest {
     private Optional<String> searchTerm;
     private List<String> orderBy;
     private Integer limit;
-    private Integer id;
-    private String first_name;
-    private String surname;
-    private String email;
-    private String company_name;
 }
