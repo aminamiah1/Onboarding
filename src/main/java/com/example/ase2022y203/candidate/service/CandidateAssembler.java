@@ -24,7 +24,8 @@ public class CandidateAssembler {
                 .map(b -> toDTO(b))
                 .collect(Collectors.toList());
     }
-    public static CandidateDTOReg toDTO(Candidate b){
+
+    public static CandidateDTOReg toDTO(Candidate b) {
         return new CandidateDTOReg(b.getFirst_name(), b.getSurname(),
                 b.getEmail(), b.getPassword(), b.getCompany_name());
     }

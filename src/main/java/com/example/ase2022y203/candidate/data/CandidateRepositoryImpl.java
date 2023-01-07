@@ -78,4 +78,13 @@ public class CandidateRepositoryImpl implements CandidateRepository {
         String addCandidatePersonalSQL = "INSERT INTO Personal_Information (cid) values (?)";
             jdbc.update(addCandidatePersonalSQL, newCandidate.getId());
     }
+
+    @Override
+    public List<Candidate> getAPICandidates() {
+        List<Candidate> candidatesAPI = new ArrayList<>
+                ();
+        repoJDBC.findAll().forEach(candidatesAPI::add);
+        return candidatesAPI;
+    }
+
 }

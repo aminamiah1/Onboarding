@@ -12,4 +12,5 @@ public interface CandidateRepository {
     Optional<Candidate> getCandidateByID(Integer id);
     Optional<Candidate> getCandidateByEmail(String email);
     void save(Candidate newCandidate);
+    List<Candidate> getAPICandidates();
 }
