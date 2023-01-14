@@ -3,13 +3,15 @@
 # Instructions
 1. Clone the project
 2. CD to the project path and run:
-    ./gradlew build
+    `./gradlew build` or `gradlew build`
 3. Run the sql files in MySQLWorkbench:
     data.sql and schema.sql
+4. Run:
+    `./gradlew bootJar` or `gradlew bootJar`
 4. CD to build/libs/ and run:
-    java -jar ASE-2022-Y2-03-0.0.1-SNAPSHOT 
+    `java -jar ASE-2022-Y2-03-0.0.1-SNAPSHOT` 
 or 
-    java -jar ASE-2022-Y2-03-0.0.1-SNAPSHOT.jar
+    `java -jar ASE-2022-Y2-03-0.0.1-SNAPSHOT.jar`
 5. Go to http://localhost:8080/login.
 
 # Login Details
