@@ -4,6 +4,7 @@ import com.example.ase2022y203.candidate.data.CandidateRepository;
 import com.example.ase2022y203.candidate.data.CandidateRepositoryImpl;
 import com.example.ase2022y203.candidate.domain.Candidate;
 import com.example.ase2022y203.candidate.service.CandidateDTO;
+import com.example.ase2022y203.candidate.service.CandidateDTOReg;
 import com.example.ase2022y203.candidate.service.CandidateService;
 import com.example.ase2022y203.candidate.service.CandidateServiceImpl;
 import com.example.ase2022y203.candidate.service.messages.CandidateListRequest;
@@ -94,5 +95,19 @@ public class GetCandidatesMockRepo {
         var candidateListResponse = candidateService.getCandidates(candidateListRequest);
         //Then the size of the candidate list should be 2
         assertEquals(2, candidateListResponse.getCandidates().size());
+    }
+
+    @Test
+    public void shouldGetAllCandidatesAPI() throws Exception {
+        //Given that there are 2 candidates
+        Candidate c1 = new Candidate(1, "Karen", "Long", "KL@gmail.com",
+                "KLPass@123", "Admiral");
+        Candidate c2 = new Candidate(2, "Michael", "Shell", "MS@gmail.com",
+                "MSPass@123", "Alacrity");
+        given(candidateRepository.getAPICandidates()).willReturn(List.of(c1, c2));
+        //When the candidates are retrieved
+        List<Candidate> candidates = candidateRepository.getAPICandidates();
+        //Then the size of the candidate list should be 2
+        assertEquals(2, candidates.size());
     }
 }

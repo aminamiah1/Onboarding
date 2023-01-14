@@ -64,3 +64,4 @@ public class GetCandidatesRealRepo {
         assertEquals(5, candidateListResponse.getCandidates().size());
     }
 }
+
